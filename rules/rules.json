@@ -1,0 +1,49 @@
+{
+  "program": "ODSP income support (financial and status screening only; disability adjudication, Directive 1.2, is out of scope)",
+  "retrieved": "2026-10-31",
+  "sources": {
+    "4.1": {"title": "Definition and treatment of assets", "directive_date": "July 2024", "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/41-definition-and"},
+    "2.5": {"title": "Tourists, immigrants, refugees and deportees", "directive_date": "September 2025 (page updated March 10, 2026)", "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/25-tourists-immigrants"}
+  },
+  "rules": [
+    {"id": "asset_limit_single", "source": "4.1", "kind": "deterministic",
+     "quote": "The prescribed asset limits for a benefit unit are $40,000 for a single recipient, $50,000 for a couple and $500 for each dependant other than a spouse.",
+     "limit": {"single": 40000, "couple": 50000, "per_dependant": 500}},
+    {"id": "exempt_principal_residence", "source": "4.1", "kind": "deterministic",
+     "quote": "The principal residence of an applicant/recipient ... [is] exempt as an asset."},
+    {"id": "exempt_one_vehicle", "source": "4.1", "kind": "deterministic",
+     "quote": "One motor vehicle owned by a member of the benefit unit is exempt regardless of the value. A second vehicle is exempt, provided that its net value is no more than $15,000 and it is required to permit a dependant of the applicant/recipient to maintain employment outside of the home."},
+    {"id": "exempt_rdsp", "source": "4.1", "kind": "deterministic",
+     "quote": "All funds held in an RDSP are fully exempt as assets."},
+    {"id": "exempt_prepaid_funeral", "source": "4.1", "kind": "deterministic",
+     "quote": "Pre-paid funerals for any member of the benefit unit are exempt as an asset."},
+    {"id": "exempt_life_insurance_trust_cap", "source": "4.1", "kind": "deterministic",
+     "quote": "The combined capital of the trust and the total cash surrender value of a life insurance policy, if held, cannot exceed $100,000.",
+     "cap": 100000},
+    {"id": "exempt_business_assets", "source": "4.1", "kind": "deterministic",
+     "quote": "... allowed $20,000 in business assets that are necessary to the operation of the business.",
+     "cap": 20000, "note": "Director may approve more under exceptional circumstances (discretionary)."},
+    {"id": "rrsp_accessible_counts", "source": "4.1", "kind": "deterministic",
+     "quote": "If the applicant/recipient is able to access RRSP funds, regardless of the penalty involved, then he/she will be expected to do so ... treated as an asset. If the RRSP is locked-in, it is not considered an asset."},
+    {"id": "asset_limit_health_increase", "source": "4.1", "kind": "discretionary",
+     "quote": "With the Director's approval, the allowable asset level for a benefit unit may be increased to permit the purchase of an item that is necessary for the health of a member of the benefit unit ..."},
+    {"id": "second_property", "source": "4.1", "kind": "discretionary",
+     "quote": "An interest in a second property other than the principal residence is exempt as an asset if the Director is satisfied that the property is necessary for the health or well-being of a member of the benefit unit. If the Director does not approve ... the property will be exempt as an asset for a period of six months provided that reasonable efforts are made to sell the property ..."},
+    {"id": "status_ineligible_tourist", "source": "2.5", "kind": "deterministic",
+     "quote": "Tourists are people who are in Canada for a short period of time. They are not eligible for ODSP."},
+    {"id": "status_visitor", "source": "2.5", "kind": "deterministic",
+     "quote": "Visitors are not eligible for ODSP unless they have made a claim for refugee protection or applied for status as a permanent resident under IRPA."},
+    {"id": "status_eligible_classes", "source": "2.5", "kind": "deterministic",
+     "quote": "Acceptable documentation includes one of the following: Certificate of Canadian Citizenship; valid Canadian passport; Indian status card ...; Confirmation of Permanent Residence; Permanent Resident Card; ... proof of application for permanent residence status; Refugee Protection Claimant Document (IMM-1442) ..."},
+    {"id": "status_deportee", "source": "2.5", "kind": "discretionary",
+     "quote": "Deportees may be eligible for ODSP only in situations where: a pre-removal risk assessment is pending; the removal order has been stayed; the individual has been granted permission to stay ... for humanitarian, compassionate or other reasons; the removal order cannot be carried out for reasons entirely beyond the control of the individual ..."},
+    {"id": "sponsor_pursue_support", "source": "2.5", "kind": "discretionary",
+     "quote": "As a condition of eligibility, a sponsored person must pursue all available financial resources, including support from their sponsor (unless the requirement is waived)."}
+  ],
+  "flags_for_human_review": [
+    "2.5 lists 'Temporary Resident (IMM1442 or IMM1263)' as acceptable status documentation, yet also says visitors (temporary residents with a TRV, ETA, study or work permit) are NOT eligible unless they have claimed refugee protection or applied for PR. The two statements pull in different directions; the ministry or a legal clinic must say which governs.",
+    "4.1 cites a locked-in-funds low-income threshold of $31,466.67 'in 2010', which is stale. A tool must not reuse that figure.",
+    "Many outcomes turn on 'the Director is satisfied' or 'reasonable efforts'. These cannot be computed; the tool should answer 'unclear, ask a caseworker', not yes or no.",
+    "Cross-references to Directives 4.4, 4.5, 4.7, 4.8, 5.1 and 5.8 hold further detail (transfer of assets, gift treatment, income) that has not been extracted yet."
+  ]
+}

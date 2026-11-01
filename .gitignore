@@ -1,0 +1,5 @@
+# Downloaded Ontario government pages: not redistributed; re-download from the URLs in the rules files
+source_raw/
+source_text/
+__pycache__/
+*.pyc

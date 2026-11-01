@@ -1,0 +1,39 @@
+{
+  "program": "ODSP income support: chargeable earnings (Directive 5.3, April 2026)",
+  "retrieved": "2026-10-31",
+  "source": {"id": "5.3", "title": "Deductions from employment and training income", "directive_date": "April 2026 (page updated May 20, 2026)", "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/53-deductions"},
+  "status": "DRAFT: written by Claude from the directive text. Not yet reviewed by a human. Checked against the directive's two worked examples.",
+  "params": {
+    "disabled": {"flat_exemption": 1000, "partial_exemption_rate": 0.25},
+    "non_disabled_adult": {"flat_exemption": 200, "partial_exemption_rate": 0.50},
+    "disability_work_expense_max_per_month": 1000,
+    "unlicensed_child_care_max_per_child": 600,
+    "work_related_benefit_per_month": 100
+  },
+  "rules": [
+    {"id": "earn_order", "kind": "deterministic",
+     "quote": "The following income exemptions and deductions apply ... in the following order: all payroll deductions except (does not apply to business income): deductions for child or spousal support owed, and deductions for garnishments to pay a debt; full exemption of the first $1,000 of net earnings after payroll deductions for people with a disability in the benefit unit; partial exemption of 25% of net earnings greater than $1,000 for people with a disability in the benefit unit; for non-disabled adult members of the benefit unit, there is a full exemption of the first $200 per person per month and 50% partial exemption for earnings above $200; monthly child care expenses; and monthly disability-related employment expenses necessary to enable a person to be employed."},
+    {"id": "earn_negative_floor", "kind": "deterministic",
+     "quote": "If earnings are a negative amount due to work-related expenses, there is no reduction in income support."},
+    {"id": "earn_child_care", "kind": "deterministic",
+     "quote": "If child care is provided by a person licensed under the Child Care and Early Years Act, 2014, or by a board under the Education Act for an extended day program, the actual cost of child care is deducted from earnings. If child care is provided by an unlicensed person, the actual cost of child care up to $600 per child is deducted from earnings."},
+    {"id": "earn_disability_expenses", "kind": "discretionary",
+     "quote": "A maximum of $1,000 per month can be deducted from earnings if the expense is work-related and attributable to the person's disability. ... To qualify, the items or services purchased must be necessary for employment and not otherwise reimbursable. Verification of cost is required."},
+    {"id": "earn_secondary_student_exempt", "kind": "deterministic",
+     "quote": "Earnings of members of a benefit unit over the age of 18 who attend secondary school full-time are exempt as income."},
+    {"id": "earn_postsecondary_exempt", "kind": "deterministic",
+     "quote": "Earnings of, and amounts paid under a training program to, people in full-time attendance in an approved program of post-secondary study are exempt as income. ... be taking at least 60% of a full course load, or 40% of a full course load for people with disabilities on ODSP who meet the definition of people with a disability or who are members of a prescribed class."},
+    {"id": "work_related_benefit", "kind": "deterministic",
+     "quote": "A $100 work-related benefit is provided to all eligible members of the benefit unit, each month that they have earnings from employment or training, or net positive income from a business."},
+    {"id": "employment_transition_benefit", "kind": "discretionary",
+     "quote": "Recipients who exit ODSP due to earnings from employment or training, or income from the operation of a business, are entitled to a one-time payment of $500. A benefit unit must, in the opinion of the Director, be ineligible for income support for at least two months ..."},
+    {"id": "health_benefits_continue", "kind": "discretionary",
+     "quote": "If a benefit unit is ineligible for income support due to income in excess of budgetary requirements and the income includes income from employment, a training program, or a business, members of the benefit unit may be eligible to continue to receive drug, dental, and vision care benefits."}
+  ],
+  "flags_for_human_review": [
+    "Business income is out of scope here (Directive 5.4). Only employment and training earnings are computed.",
+    "The directive says to deduct payroll deductions first, then add back support/garnishment deductions. The calculator takes net earnings already adjusted that way as input.",
+    "The directive's Example 2 rounds the 25% exemption ($325.75) up to $326. I assume the partial exemption is rounded to the nearest dollar; unconfirmed.",
+    "Child care deduction is applied after exemptions (as in the directive's Example 2); I have not checked Directive 5.5 for caps beyond the unlicensed $600."
+  ]
+}

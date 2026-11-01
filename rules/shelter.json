@@ -1,0 +1,25 @@
+{
+  "program": "ODSP shelter allowance (Directive 6.2, July 2026)",
+  "retrieved": "2026-10-31",
+  "source": {"id": "6.2", "title": "Shelter calculation", "directive_date": "July 2026 (page updated June 30, 2026)", "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/62-shelter-calculation"},
+  "status": "DRAFT: transcribed by Claude. Not yet reviewed by a human. Maximums are indexed to inflation each July.",
+  "max_monthly_by_benefit_unit_size": {"1": 611, "2": 959, "3": 1038, "4": 1126, "5": 1215, "6_or_more": 1259},
+  "rules": [
+    {"id": "shelter_ontario_only", "kind": "deterministic", "quote": "The shelter allowance can only be paid for dwelling places in Ontario."},
+    {"id": "shelter_no_cost_none", "kind": "deterministic", "quote": "No Shelter Costs. People with no shelter costs do not receive a shelter allowance."},
+    {"id": "shelter_roommates", "kind": "deterministic", "quote": "When a recipient lives with roommates, the shelter allowance will reflect his/her actual share of the total shelter costs, up to the maximum allowable amount for his/her benefit unit."},
+    {"id": "shelter_joint_ownership_both", "kind": "deterministic", "quote": "Where a principal residence is jointly owned and both owners are living in the home, both owners are equally responsible for the shelter costs (50/50)."},
+    {"id": "shelter_parking_excluded", "kind": "deterministic", "quote": "Costs related to parking, even if the costs are mandatory, cannot be included in the shelter calculation."},
+    {"id": "shelter_heating_exceeds", "kind": "deterministic", "quote": "If heating costs on their own exceed the maximum amount payable for shelter, the amount payable will be the actual cost of heating."},
+    {"id": "shelter_second_residence", "kind": "discretionary", "quote": "Where a second residence is required temporarily to enable the applicant/recipient or spouse to participate in a training program to enhance employment prospects, an amount can be provided that is the lesser of: the cost to maintain the principal residence, and $455."},
+    {"id": "shelter_not_for_arrears", "kind": "deterministic", "quote": "the shelter allowance is not to be used for the payment of arrears that are related to rent, utilities or heating."},
+    {"id": "shelter_cohb_not_deducted", "kind": "deterministic", "quote": "For ODSP applicants/recipients, COHB should not be deducted when assessing actual shelter costs"},
+    {"id": "shelter_debt_consolidation_excluded", "kind": "deterministic", "quote": "Allowable shelter costs cannot be increased where a recipient has obtained a home equity loan or line of credit for the purposes of consolidating debt."},
+    {"id": "shelter_sponsored_with_sponsor", "kind": "discretionary", "quote": "If an applicant/recipient is living with a defaulting sponsor ... shelter costs can only be paid if: the sponsor is in receipt of Ontario Works, ODSP, the Guaranteed Income Supplement ... or GAINS; there is a breakdown in the sponsorship relationship due to family violence and/or abuse; the sponsored immigrant has a legal obligation to pay shelter costs ... or satisfies the Director that he/she will not be allowed to remain in the current residence unless he or she pays shelter costs."}
+  ],
+  "flags_for_human_review": [
+    "TPER (transplant expense reimbursement) cap is $650 per month in Directive 5.1 but $1,500 per month in Directive 6.2. The two directives disagree.",
+    "Directive 6.2 says 'The shelter allowance is intended for actual monthly shelter costs', so the estimate takes the lesser of actual verified costs and the maximum. Utilities and heating (9.3, 9.5) are not yet extracted.",
+    "Joint ownership with a non-ODSP non-resident: full shelter is paid. Boarding/lodging situations are in Directive 6.3 (not yet extracted)."
+  ]
+}
