@@ -93,6 +93,10 @@
       <div><label for="spousePayroll">Spouse's deductions ($)</label><input type="number" id="spousePayroll" min="0" step="1"></div>
     </div>
     <div class="row">
+      <div><label for="bizRevenue">If you are self-employed: money your business took in this month ($)</label><input type="number" id="bizRevenue" min="0" step="1"></div>
+      <div><label for="bizExpenses">Business expenses this month ($)<span class="hint">If you do not know, leave it blank. ODSP allows at least $100 without receipts.</span></label><input type="number" id="bizExpenses" min="0" step="1"></div>
+    </div>
+    <div class="row">
       <div><label for="childCare">Child care you pay so someone can work ($ a month)</label><input type="number" id="childCare" min="0" step="1"></div>
       <div id="disExpRow" hidden><label for="disExp">Work costs caused by your disability ($ a month)<span class="hint">For example special transit or equipment. Up to $1,000.</span></label><input type="number" id="disExp" min="0" step="1"></div>
     </div>
@@ -103,8 +107,11 @@
     <label class="check"><input type="checkbox" id="onAssistance"> <span>I have already been getting Ontario Works or ODSP for 3 months or more<span class="hint">The Ontario Works earnings exemption only starts after 3 months.</span></span></label>
 
     <h2 style="margin-top:20px">Housing</h2>
-    <label for="shelter">What you pay each month for your housing: rent or mortgage, property tax, insurance, heat, hydro, water ($)</label>
+    <label for="shelter">What you pay each month for your housing: rent or mortgage, property tax, insurance, heat, hydro, water ($)<span class="hint">Do not include phone, cable, internet or parking.</span></label>
     <input type="number" id="shelter" min="0" step="1">
+
+    <label class="check"><input type="checkbox" id="pregnant"> <span>Someone in my household is pregnant or breast-feeding a baby under 12 months</span></label>
+    <label class="check"><input type="checkbox" id="specialDiet"> <span>Someone in my household needs a special diet for a medical condition</span></label>
 
     <p style="margin-top:20px"><button type="submit">See my rough result</button></p>
   </form>
@@ -162,6 +169,7 @@
     const income = {
       yourGross: num("yourGross"), yourPayroll: num("yourPayroll"), spouseGross: num("spouseGross"), spousePayroll: num("spousePayroll"),
       childCare: num("childCare"), disabilityExpenses: num("disExp"), otherMonthly: num("otherMonthly"), unsureOther: $("unsureOther").checked,
+      bizRevenue: num("bizRevenue"), bizExpenses: num("bizExpenses"), pregnant: $("pregnant").checked, specialDiet: $("specialDiet").checked,
       shelterCost: num("shelter"), onAssistance3Months: $("onAssistance").checked
     };
     const r = Screener.screen(p, assets, income);

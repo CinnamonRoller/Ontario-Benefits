@@ -1,0 +1,149 @@
+{
+ "program": "ODSP add-ons: pregnancy/breast-feeding, special diet, heating, utilities, self-employment.",
+ "retrieved": "2026-10-31",
+ "status": "DRAFT: written by Claude from the directive text. Not yet reviewed by a human.",
+ "sources": {
+  "5.4": {
+   "title": "Self-employment",
+   "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/54-self-employment"
+  },
+  "6.4": {
+   "title": "Special diet",
+   "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/64-special-diet"
+  },
+  "6.5": {
+   "title": "Pregnancy/breast-feeding nutritional allowance",
+   "directive_date": "updated March 10, 2026",
+   "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/65-pregnancybreast"
+  },
+  "9.3": {
+   "title": "Heating costs",
+   "directive_date": "July 2026",
+   "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/93-heating-costs"
+  },
+  "9.5": {
+   "title": "Utilities",
+   "directive_date": "November 2019 (updated March 10, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support/95-utilities"
+  }
+ },
+ "rules": [
+  {
+   "id": "odsp_preg_amount",
+   "source": "6.5",
+   "kind": "deterministic",
+   "quote": "Women who are pregnant or who are breast-feeding receive $40 per month for a lactose tolerant diet and $50 per month for a lactose intolerant diet in addition to any Special Diet Allowance for which they are eligible."
+  },
+  {
+   "id": "odsp_preg_confirm",
+   "source": "6.5",
+   "kind": "deterministic",
+   "quote": "The Application for Pregnancy/Breast-feeding Nutritional Allowance (form 3109) is used to confirm that the member of the benefit unit is pregnant or, if the mother is breast-feeding, to confirm the need for a lactose intolerant diet."
+  },
+  {
+   "id": "odsp_preg_duration",
+   "source": "6.5",
+   "kind": "deterministic",
+   "quote": "Where the mother is breast-feeding an infant under the age of 12 months, she is entitled to receive the Pregnancy/Breast-feeding Nutritional Allowance up to and including the 12th month after the birth of the child."
+  },
+  {
+   "id": "odsp_preg_not_with_infant_diet",
+   "source": "6.5",
+   "kind": "deterministic",
+   "quote": "If a Special Diet Allowance is provided to the infant because it is not possible for the mother to breast-feed, a Pregnancy/Breast-feeding Nutritional Allowance cannot be provided to the mother."
+  },
+  {
+   "id": "odsp_diet_max",
+   "source": "6.4",
+   "kind": "deterministic",
+   "quote": "The maximum Special Diet Allowance is $250 per month, per member of the benefit unit."
+  },
+  {
+   "id": "odsp_heat_in_shelter",
+   "source": "9.3",
+   "kind": "deterministic",
+   "quote": "When heating costs are not included in the rental amount, they are added to the shelter calculation, up to the maximum shelter allowance, based on family size."
+  },
+  {
+   "id": "odsp_heat_exceeds_max",
+   "source": "9.3",
+   "kind": "deterministic",
+   "quote": "If the cost of heat alone exceeds the maximum shelter allowance, the actual heating cost is paid."
+  },
+  {
+   "id": "odsp_heat_shared",
+   "source": "9.3",
+   "kind": "deterministic",
+   "quote": "When a recipient is residing with another adult person(s), who is not a member of the benefit unit, the amount payable for heating is the total cost divided by the number of adults to derive an equal share for heating costs."
+  },
+  {
+   "id": "odsp_util_in_shelter",
+   "source": "9.5",
+   "kind": "deterministic",
+   "quote": "Verified utility costs can be included in the shelter calculation if they are not included in the rent or accommodation cost."
+  },
+  {
+   "id": "odsp_util_excluded",
+   "source": "9.5",
+   "kind": "deterministic",
+   "quote": "Utility costs do not include: refundable utility deposits; purchase associated with a hot water or propane tank; hook-up or monthly service charges for telephone or cable television unless these items are mandatory for a building's security system."
+  },
+  {
+   "id": "odsp_util_credits_exempt",
+   "source": "9.5",
+   "kind": "deterministic",
+   "quote": "All such credits/benefits are exempt as income for social assistance purposes and should not reduce the amount of shelter allowance otherwise payable to the benefit unit."
+  },
+  {
+   "id": "odsp_util_shared",
+   "source": "9.5",
+   "kind": "deterministic",
+   "quote": "The amount payable for utilities shall be divided by the number of adult persons and the costs equally shared when a recipient is residing with another adult person(s) who is not a member of the benefit unit."
+  },
+  {
+   "id": "odsp_se_net",
+   "source": "5.4",
+   "kind": "deterministic",
+   "quote": "allowable business expenses are deducted from the gross business income to calculate net income. The earnings exemptions, child care deductions and a deduction for disability-related expenses as appropriate, are then applied to the net income to determine chargeable income."
+  },
+  {
+   "id": "odsp_se_standard_expense",
+   "source": "5.4",
+   "kind": "deterministic",
+   "quote": "Standard expense deduction ($100): ODSP recipients reporting income from self-employment are allowed a basic deduction of $100 per month to cover miscellaneous expenses related to operating the business. ... Recipients must claim either the standard $100 per month expense deduction or actual business expenses, whichever is the greater amount."
+  },
+  {
+   "id": "odsp_se_assets_20000",
+   "source": "5.4",
+   "kind": "deterministic",
+   "quote": "Business assets of up to $20,000 can be allowed if necessary for the operation of a business. The business asset limit of $20,000 is per benefit unit member, not per business."
+  },
+  {
+   "id": "odsp_se_cash_5000",
+   "source": "5.4",
+   "kind": "deterministic",
+   "quote": "Cash is considered a business asset and cannot exceed $5,000 of the total business asset limit of $20,000."
+  },
+  {
+   "id": "odsp_se_loss_zero",
+   "source": "5.4",
+   "kind": "deterministic",
+   "quote": "a business loss is equivalent to a net income of $0.00. Losses reported after the first year may not be carried forward"
+  },
+  {
+   "id": "odsp_se_work_related_benefit",
+   "source": "5.4",
+   "kind": "deterministic",
+   "quote": "For each month that an ODSP recipient or eligible member of the benefit unit has a net positive income from the operation of a business, they are eligible for the $100 Work-Related Benefit."
+  }
+ ],
+ "flags_for_human_review": [
+  "The special diet allowance depends on a schedule of medical conditions with dollar amounts (Directive 6.4). Only the $250 monthly maximum is encoded; the screener tells users it exists and does not add it to the estimate.",
+  "The pregnancy/breast-feeding allowance is encoded at $40 (the $50 lactose-intolerant rate is mentioned in the text only). The screener adds it once to the budget even if more than one person qualifies.",
+  "For the double-disabled couple, the screener applies the $2,416 cap before adding the pregnancy allowance. Unclear whether the allowance sits inside or outside that cap.",
+  "Directive 9.5 is dated November 2019 on the page; the Ontario Electricity Rebate and related credits may have changed. Not material to eligibility.",
+  "The $100 Work-Related Benefit (Directive 9.18) was mentioned in 5.4 but 9.18 itself has not been read.",
+  "Self-employment: the screener only uses the monthly revenue minus max($100, actual expenses). ODSP assesses business income annually and has many specific allowed/disallowed expenses; real figures can differ a lot.",
+  "The same self-employment treatment is applied to Ontario Works in the screener as an approximation; OW's own business-income directive (Directive 5.4/4.4) has not been read and the screener flags this as unclear."
+ ]
+}

@@ -10,6 +10,7 @@
       alone: [825, 1280, 1514], spouse: [1189, 1422, 1681], bothDisabled: [1644, 1877, 2136], perExtraAdult: 260,
       soleSupportSupplement: 143, doubleDisabledCap: 2416, doubleDisabledShelterExtra: 90
     },
+    pregnancyAllowance: 40,                                                      // 6.5
     shelterMax: { 1: 611, 2: 959, 3: 1038, 4: 1126, 5: 1215, 6: 1259 },        // 6.2
     earnings: { disabled: { flat: 1000, rate: 0.25 }, other: { flat: 200, rate: 0.50 }, maxDisabilityExpenses: 1000 } // 5.3
   };
@@ -66,6 +67,12 @@
     return Math.max(round(rest), 0);
   }
 
+  // Directive 5.4 (ODSP): business net income = revenue minus the greater of $100 or actual expenses; earnings exemptions then apply.
+  function selfEmploymentNet(income) {
+    const rev = income.bizRevenue || 0;
+    return rev > 0 ? Math.max(rev - Math.max(100, income.bizExpenses || 0), 0) : 0;
+  }
+
   // ---- ODSP ----
   function odspBasicNeeds(p) {
     const t = p.spouse ? (p.spouseDisabled ? ODSP.basicNeeds.bothDisabled : ODSP.basicNeeds.spouse) : ODSP.basicNeeds.alone;
@@ -92,20 +99,25 @@
     // income
     let charged = (income.otherMonthly || 0);
     if (income.unsureOther) out.unclear.push("You have income you are not sure about. Some income is exempt and some is charged, so ask a caseworker.");
-    const disabledEarner = { gross: income.yourGross, payroll: income.yourPayroll, childCare: income.childCare, disabilityExpenses: income.disabilityExpenses };
+    const biz = selfEmploymentNet(income);
+    const disabledEarner = { gross: (income.yourGross || 0) + biz, payroll: income.yourPayroll, childCare: income.childCare, disabilityExpenses: income.disabilityExpenses };
     const spouseDisabled = p.spouse && p.spouseDisabled;
     charged += chargeableEarnings(disabledEarner, ODSP.earnings.disabled, { disabled: true });
     if (p.spouse) {
       charged += chargeableEarnings({ gross: income.spouseGross, payroll: income.spousePayroll }, spouseDisabled ? ODSP.earnings.disabled : ODSP.earnings.other, { disabled: spouseDisabled });
     }
     const bn = odspBasicNeeds(p);
+    if (biz > 0) out.details.push("Self-employment: your business income counts after subtracting expenses (at least $100 a month without receipts), then the same earnings exemptions apply. If your business makes at least $100 net in a month you may also get the $100 Work-Related Benefit (not included in the estimate).");
+    if (income.specialDiet) out.details.push("Special diet: ODSP can add up to $250 a month per person for certain medical conditions, confirmed on a form by a doctor, nurse practitioner, dietitian or similar. Not included in the estimate.");
     const shelter = Math.min(income.shelterCost || 0, ODSP.shelterMax[Math.min(size, 6)]);
     let budget = bn + shelter;
+    if ((income.shelterCost || 0) > ODSP.shelterMax[Math.min(size, 6)]) out.details.push("Your housing costs are over the ODSP shelter maximum, so only the maximum is counted. If heating alone costs more than the maximum, ODSP pays the actual heating cost (Directive 9.3).");
     if (p.spouse && p.spouseDisabled && p.children === 0 && p.adultDependants === 0) {
       budget = Math.min(bn + shelter + ODSP.basicNeeds.doubleDisabledShelterExtra, ODSP.basicNeeds.doubleDisabledCap);
     } else if (p.spouse && p.spouseDisabled) {
       out.unclear.push("The monthly amount for a couple who both have disabilities and also have dependants is not calculated yet.");
     }
+    if (income.pregnant) { budget += ODSP.pregnancyAllowance; out.details.push("Pregnancy / breast-feeding allowance of $" + ODSP.pregnancyAllowance + " a month is included ($50 if a lactose-free diet is needed; a health professional must confirm). Directive 6.5."); }
     const pay = Math.max(budget - charged, 0);
     out.estimate = pay;
     out.details.push("Basic needs about $" + bn.toLocaleString("en-CA") + " plus shelter about $" + shelter.toLocaleString("en-CA") + ", minus income counted against you about $" + Math.round(charged).toLocaleString("en-CA") + ".");
@@ -142,15 +154,24 @@
     if (p.sponsored) out.unclear.push("Sponsored immigrants have extra rules for Ontario Works (Directive 3.11). Ask a caseworker or legal clinic.");
 
     const limit = owAssetLimit(p);
+    let overOwLimit = false;
     const ca = countableAssets(assets);
-    // OW vehicle rule is the same shape as ODSP's (Directive 4.5); other exemptions assumed the same (Directive 4.1 not yet checked).
+    // OW exempt assets (Directive 4.1): home, first vehicle, locked-in RRSP/pension, RDSP, RESP, pre-paid funeral, personal items.
+    // The vehicle rule has the same shape as ODSP's (Directive 4.5), so countableAssets is shared.
     out.details.push("Your countable assets: about $" + ca.total.toLocaleString("en-CA") + ". The Ontario Works limit for your household: $" + limit.toLocaleString("en-CA") + ".");
+    out.details.push("Not counted as assets: your home, one vehicle, locked-in pensions and RRSPs, RDSP and RESP savings, a pre-paid funeral plan, and everyday household items (Directive 4.1).");
     ca.notes.forEach(function (n) { if (n.indexOf("UNCLEAR") === 0) out.unclear.push(n.replace("UNCLEAR: ", "")); else out.details.push(n); });
-    out.unclear.push("The list of assets Ontario Works does not count has not been fully checked yet. Ask a caseworker.");
-    if (ca.total > limit) { out.verdict = "no"; out.reasons.push("Your assets look over the Ontario Works limit ($" + limit.toLocaleString("en-CA") + ")."); return out; }
+    if (ca.total > limit) {
+      const odspLimit = (p.spouse ? ODSP.assetLimit.couple : ODSP.assetLimit.single) + ODSP.assetLimit.perDependant * (p.children + p.adultDependants);
+      if (p.hasDisability && ca.total <= odspLimit) {
+        overOwLimit = true;
+        out.unclear.push("Your assets are over the Ontario Works limit ($" + limit.toLocaleString("en-CA") + "), but if you are applying for ODSP you may be able to use the higher ODSP limit while you wait. This can only be used once in your life. Ask a caseworker.");
+      } else { out.verdict = "no"; out.reasons.push("Your assets look over the Ontario Works limit ($" + limit.toLocaleString("en-CA") + ")."); return out; }
+    }
 
     let charged = income.otherMonthly || 0;
     if (income.unsureOther) out.unclear.push("You have income you are not sure about. Ask a caseworker how it is treated.");
+    out.details.push("Not counted as income: Canada Child Benefit, Ontario Child Benefit, child support, GST/HST and Ontario Trillium credits, Canada Workers Benefit, Canada Disability Benefit, RDSP payments (Directive 5.1). Employment Insurance, CPP and most pensions do count.");
     const applyExemption = !!income.onAssistance3Months;
     function owEarn(e) {
       const net = (e.gross || 0) - (e.payroll || 0);
@@ -159,7 +180,10 @@
       const exemption = Math.min(OW.earnings.flat + rest * OW.earnings.rate, net);
       return Math.max(net - exemption - (e.childCare || 0), 0);
     }
-    charged += owEarn({ gross: income.yourGross, payroll: income.yourPayroll, childCare: income.childCare });
+    const owBiz = selfEmploymentNet(income);
+    if (owBiz > 0) out.unclear.push("Self-employment income is treated differently under Ontario Works (business expenses are checked more closely). The estimate uses your net business income after $100 of expenses; ask a caseworker.");
+    if (income.pregnant || income.specialDiet) out.unclear.push("Ontario Works also pays a pregnancy / breast-feeding allowance and a special diet allowance. The amounts are not checked yet. Ask a caseworker.");
+    charged += owEarn({ gross: (income.yourGross || 0) + owBiz, payroll: income.yourPayroll, childCare: income.childCare });
     if (p.spouse) charged += owEarn({ gross: income.spouseGross, payroll: income.spousePayroll });
     if (!applyExemption && (income.yourGross || income.spouseGross)) out.details.push("The Ontario Works earnings exemption only starts after you have received assistance for 3 months, so your first months of earnings count almost fully.");
     const bn = owBasicNeeds(p, income.age65Members);
@@ -169,8 +193,8 @@
     out.details.push("Basic needs about $" + bn.toLocaleString("en-CA") + " plus shelter about $" + shelter.toLocaleString("en-CA") + ", minus income counted against you about $" + Math.round(charged).toLocaleString("en-CA") + ".");
     out.unclear.push("Ontario Works also has participation requirements (like job search activities) and other eligibility rules this tool does not check.");
     if (pay <= 0) { out.verdict = "no"; out.reasons.push("Your income looks too high for a monthly payment, but you may still qualify for some benefits. Ask a caseworker."); }
-    else out.verdict = "unclear"; // the unchecked asset exemptions mean we never claim a firm yes
-    if (out.verdict === "unclear" && out.unclear.length <= 2 && st === "ok") out.verdict = "likely";
+    else out.verdict = "unclear";
+    if (out.verdict === "unclear" && out.unclear.length <= 1 && st === "ok" && !overOwLimit) out.verdict = "likely";
     return out;
   }
 

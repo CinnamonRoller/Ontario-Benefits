@@ -44,4 +44,14 @@ r = S.screen(P({ hasDisability: false }), { cash: 500 }, I({ shelterCost: 600, y
 check("OW earnings in first months: 733-1150 -> 0", r.ow.estimate, 0);
 r = S.screen(P({ hasDisability: false }), { secondProperty: true, cash: 0 }, I({ shelterCost: 300 }));
 check("second property is flagged unclear", r.ow.unclear.some((x) => /second property/.test(x)), true);
+r = S.screen(P({ hasDisability: false }), { cash: 500 }, I({ shelterCost: 600 }));
+check("OW plain single can now be a firm 'likely'", r.ow.verdict, "likely");
+r = S.screen(P({ hasDisability: true }), { cash: 20000 }, I({ shelterCost: 600 }));
+check("over OW limit but under ODSP limit with disability -> OW unclear, not no", r.ow.verdict, "unclear");
+r = S.screen(P({ hasDisability: false }), { cash: 20000 }, I({ shelterCost: 600 }));
+check("over OW limit, no disability -> no", r.ow.verdict, "no");
+r = S.screen(P({}), { cash: 0 }, I({ shelterCost: 600, pregnant: true }));
+check("ODSP pregnancy +40: 825+600+40", r.odsp.estimate, 1465);
+r = S.screen(P({}), { cash: 0 }, I({ shelterCost: 600, bizRevenue: 500, bizExpenses: 0 }));
+check("ODSP self-employed $500 revenue, $100 standard expense -> net 400, 25%? chargeable 300", r.odsp.estimate, 1425 - S.chargeableEarnings({ gross: 400 }, S.ODSP.earnings.disabled, { disabled: true }));
 process.exit(bad);

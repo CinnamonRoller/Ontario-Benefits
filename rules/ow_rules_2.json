@@ -1,0 +1,338 @@
+{
+ "program": "Ontario Works: residency/status, sponsored immigrants, exempt assets and income rules (second pass).",
+ "retrieved": "2026-10-31",
+ "status": "DRAFT: written by Claude from the directive text. Not yet reviewed by a human.",
+ "sources": {
+  "3.1": {
+   "title": "Residency requirements",
+   "directive_date": "December 2021 (updated April 14, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/31-residency-requirements"
+  },
+  "3.11": {
+   "title": "Sponsored immigrants",
+   "directive_date": "December 2021 (updated April 14, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/311-sponsored-immigrants"
+  },
+  "4.1": {
+   "title": "Summary of assets",
+   "directive_date": "April 2026 (updated May 20, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/41-summary-assets"
+  },
+  "5.1": {
+   "title": "Income and exemptions",
+   "directive_date": "April 2026 (updated May 20, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/51-income-and-exemptions"
+  }
+ },
+ "rules": [
+  {
+   "id": "ow_res_ontario",
+   "source": "3.1",
+   "kind": "deterministic",
+   "quote": "To be eligible for Ontario Works, an applicant or recipient must be a resident of Ontario, and must reside in the geographic area where they apply for or are receiving assistance."
+  },
+  {
+   "id": "ow_res_length_irrelevant",
+   "source": "3.1",
+   "kind": "deterministic",
+   "quote": "The length of time that an applicant has resided or plans to reside in a specific geographic area is not relevant for the purposes of eligibility."
+  },
+  {
+   "id": "ow_res_homeless",
+   "source": "3.1",
+   "kind": "deterministic",
+   "quote": "Assistance to a transient or homeless person cannot be refused on the basis that there is no fixed address or conventional, structural dwelling place."
+  },
+  {
+   "id": "ow_res_absence",
+   "source": "3.1",
+   "kind": "discretionary",
+   "quote": "If a recipient or member of the benefit unit is absent from Ontario for a period of more than seven days, assistance will be reduced or cancelled unless the Administrator has determined the absence to be necessary for health reasons or reasonable due to exceptional circumstances"
+  },
+  {
+   "id": "ow_status_tourist",
+   "source": "3.1",
+   "kind": "deterministic",
+   "quote": "Tourists are people who are in Canada for a short period of time. They are not eligible for Ontario Works."
+  },
+  {
+   "id": "ow_status_visitor",
+   "source": "3.1",
+   "kind": "deterministic",
+   "quote": "Visitors are not eligible for Ontario Works unless they have made a claim for refugee protection or applied for status as a permanent resident under the federal Immigration and Refugee Protection Act (IRPA)."
+  },
+  {
+   "id": "ow_status_refugee_claimant",
+   "source": "3.1",
+   "kind": "deterministic",
+   "quote": "In-Country (in-land and port of entry) refugee claimants with official documentation confirming they have made a claim for refugee protection are eligible for Ontario Works effective the date they initiated their claim with an immigration officer."
+  },
+  {
+   "id": "ow_status_convention_refugee_rap",
+   "source": "3.1",
+   "kind": "deterministic",
+   "quote": "Convention refugees are not eligible for Ontario Works during the period in which they are eligible for the RAP or the PSR and JAS programs. When the sponsorship/eligibility period for RAP expires or the private sponsorship concludes or breaks down, a convention refugee may be eligible for Ontario Works."
+  },
+  {
+   "id": "ow_status_deportee",
+   "source": "3.1",
+   "kind": "discretionary",
+   "quote": "Deportees may be eligible for Ontario Works only in situations where: a pre-removal risk assessment is pending; the removal order has been stayed; the individual has made an application to stay in Canada for humanitarian, compassionate or other reasons ...; the removal order cannot be carried out for reasons entirely beyond the control of the individual"
+  },
+  {
+   "id": "ow_sponsor_pursue",
+   "source": "3.11",
+   "kind": "deterministic",
+   "quote": "As a condition of eligibility, a sponsored person must pursue all available financial resources, including support from their sponsor."
+  },
+  {
+   "id": "ow_sponsor_not_ineligible",
+   "source": "3.11",
+   "kind": "deterministic",
+   "quote": "An applicant or participant cannot be declared ineligible because the sponsor refuses to honour their obligation to provide support or refuses to provide requested information."
+  },
+  {
+   "id": "ow_sponsor_partial_support",
+   "source": "3.11",
+   "kind": "deterministic",
+   "quote": "If a sponsor provides partial support to a sponsored immigrant on social assistance, the amount that is received as support is treated as income and is deducted from the sponsored immigrant's social assistance dollar-for-dollar."
+  },
+  {
+   "id": "ow_sponsor_waiver_temporary",
+   "source": "3.11",
+   "kind": "discretionary",
+   "quote": "The requirement to pursue support from a sponsor may be temporarily waived for a period of 3-12 months depending on the individual merits of the case."
+  },
+  {
+   "id": "ow_sponsor_waiver_permanent",
+   "source": "3.11",
+   "kind": "deterministic",
+   "quote": "A sponsored immigrant is permanently waived from the requirement to pursue support from their sponsor if: the sponsor is in receipt of a payment under Part II of the Old Age Security Act (Canada), known as the federal supplement, or a payment under the Ontario Guaranteed Annual Income Act; the sponsor is deceased and there is no co-signer; ..."
+  },
+  {
+   "id": "ow_sponsor_shelter_with_sponsor",
+   "source": "3.11",
+   "kind": "deterministic",
+   "quote": "Sponsored immigrants living with the sponsor or in a place owned or controlled by the sponsor: A shelter allowance is provided only if one of the following criteria is met: the sponsored immigrant has a legal obligation to pay shelter costs ...; the sponsored immigrant satisfies the Administrator that they cannot remain in the sponsor's residence ... unless they pay for shelter costs; the sponsor is in receipt of Ontario Works, ODSP, the Guaranteed Income Supplement (GIS) ... or GAINS"
+  },
+  {
+   "id": "ow_sponsor_apart",
+   "source": "3.11",
+   "kind": "deterministic",
+   "quote": "There is no sponsorship deduction for sponsored immigrants who are living apart from their sponsors unless the sponsor is providing actual support (money or in-kind)."
+  },
+  {
+   "id": "ow_sponsor_debt",
+   "source": "3.11",
+   "kind": "deterministic",
+   "quote": "Under IRPA, all social assistance received by a family class sponsored immigrant is considered a federal and provincial debt of the sponsor.",
+   "note": "Affects the sponsor, not the applicant's eligibility. Worth telling users plainly: the sponsor, not the applicant, owes this debt."
+  },
+  {
+   "id": "ow_asset_home_exempt",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "the principal residence for the benefit unit"
+  },
+  {
+   "id": "ow_asset_vehicle_first",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "one motor vehicle of any value"
+  },
+  {
+   "id": "ow_asset_tools_business",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "tools of the trade essential to the employment of a member of the benefit unit; for self-employed applicants or participants, business assets that are necessary to the operation of their business, up to the appropriate maximum"
+  },
+  {
+   "id": "ow_asset_pain_suffering",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "compensation for pain and suffering up to a maximum of $50,000"
+  },
+  {
+   "id": "ow_asset_resp",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "a Registered Education Savings Plan (RESP) held by a member of the benefit unit (as the 'subscriber') who is related to the beneficiary by blood, marriage or adoption"
+  },
+  {
+   "id": "ow_asset_locked_in",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "a locked-in Registered Retirement Savings Plan (RRSP) and/or pension"
+  },
+  {
+   "id": "ow_asset_rdsp",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "funds held in a Registered Disability Savings Plan (RDSP) as defined in subsection 146.4 (1) of the Income Tax Act (Canada)"
+  },
+  {
+   "id": "ow_asset_prepaid_funeral",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "a pre-paid funeral plan of any value"
+  },
+  {
+   "id": "ow_asset_trust_inaccessible",
+   "source": "4.1",
+   "kind": "discretionary",
+   "quote": "funds held in trust if they are not accessible to members of the benefit unit, and depending on the type of trust fund"
+  },
+  {
+   "id": "ow_asset_personal_use",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "Assets that are considered necessary for personal use such as furniture, clothing or a stove."
+  },
+  {
+   "id": "ow_asset_savings_counted",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "Assets may include cash, as well as bonds, debentures, stocks, certificates, the cash surrender value of a life insurance policy, interest in property, a beneficial interest in assets held in trust and other property which can be readily converted into cash, even if a financial penalty must be incurred to do so."
+  },
+  {
+   "id": "ow_asset_gift_home",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "Gifts or voluntary payments applied to the purchase of a principal residence - 12 months; applied to the purchase of an exempt vehicle or applied to first and last month's rent - 6 months"
+  },
+  {
+   "id": "ow_asset_odsp_limits",
+   "source": "4.1",
+   "kind": "deterministic",
+   "quote": "Ontario Works applicants and recipients who intend to apply for the ODSP can have ODSP asset limits and exemptions applied for the purposes of determining eligibility for Ontario Works if their non-exempt assets exceed Ontario Works asset limits. ... ODSP asset limits can only be applied once in a person's lifetime."
+  },
+  {
+   "id": "ow_asset_transfer_lookback",
+   "source": "4.1",
+   "kind": "discretionary",
+   "quote": "Applicants or recipients who dispose of assets inadequately (i.e., for less than fair market value) or dispose of assets solely to qualify for assistance within one year preceding the application may be ineligible ... A review period of up to three years ... may be used where the Administrator has reason to deem it appropriate"
+  },
+  {
+   "id": "ow_asset_income_before_month",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "All money received prior to the month in which a person applies for assistance is considered an asset"
+  },
+  {
+   "id": "ow_inc_definition",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "income includes all payments received by or on behalf of a recipient, spouse and any dependents in the benefit unit ... unless specifically exempted."
+  },
+  {
+   "id": "ow_inc_ccb_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "The CCB is exempt as income for the purposes of social assistance"
+  },
+  {
+   "id": "ow_inc_ocb_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "The Ontario Child Benefit (OCB), including the one-time down payment, is exempt as income for the purposes of social assistance."
+  },
+  {
+   "id": "ow_inc_child_support_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "Child support payments"
+  },
+  {
+   "id": "ow_inc_cdb_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "A Canada Disability Benefit payment under the Canada Disability Benefit Act."
+  },
+  {
+   "id": "ow_inc_cwb_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "the Canada Workers Benefit (CWB), formerly the Working Income Tax Benefit (WITB)"
+  },
+  {
+   "id": "ow_inc_tax_credits_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "Ontario Trillium Benefit ... Income Tax Act, section 122.5 (HST rebates) ... (Payments under the Ontario Income Tax Act, Income Tax Act, and Taxation Act, 2007 are exempt in the month received and considered assets in any following month.)"
+  },
+  {
+   "id": "ow_inc_rdsp_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "all payments/withdrawals from an RDSP for any purpose"
+  },
+  {
+   "id": "ow_inc_interest_30",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "interest and dividends earned to a maximum of $30 per year"
+  },
+  {
+   "id": "ow_inc_gifts_10000",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "gifts or voluntary payments up to a maximum of $10,000 over a 12-month period"
+  },
+  {
+   "id": "ow_inc_housing_benefit_exempt",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "All payments made under the Canada-Ontario Housing Benefit (COHB) program (e.g., housing allowances, payments for first/last month's rent)."
+  },
+  {
+   "id": "ow_inc_osap_education",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "the portion of a loan, grant, award, or bursary that is used for training or post-secondary education costs (e.g., tuition and books)"
+  },
+  {
+   "id": "ow_inc_ei_counts",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "Payments and benefits from Employment Insurance (EI) are considered as income."
+  },
+  {
+   "id": "ow_inc_rental_60",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "Rental: if an applicant or recipient rents out self-contained quarters ... then 60% of the monthly amount received is included as income.",
+   "note": "See OPEN_QUESTIONS.md item 4 (60%/40% wording)."
+  },
+  {
+   "id": "ow_inc_board_lodging",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "Board and lodging ... 40% of the monthly amount received, or a minimum of $100 for each adult, whichever is greater, is included as income. Lodging ... 60% of the monthly amount received, or a minimum of $100 for each adult, whichever is greater"
+  },
+  {
+   "id": "ow_inc_month_received",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "Generally, income is considered income in the month received, and actual monthly amounts should be used rather than estimates or averages wherever possible."
+  },
+  {
+   "id": "ow_inc_pursue_resources",
+   "source": "5.1",
+   "kind": "discretionary",
+   "quote": "applicants and recipients are required to make reasonable efforts to realize any financial resources to which they or their dependents may be owed or eligible to receive."
+  },
+  {
+   "id": "ow_inc_gross_govt_pension",
+   "source": "5.1",
+   "kind": "deterministic",
+   "quote": "The gross amount of government pensions are considered as income."
+  }
+ ],
+ "flags_for_human_review": [
+  "OW 5.1 lists dozens of specifically exempt payments (settlements, Indigenous programs, housing programs). Only the common ones are encoded as rules; the screener tells people to ask about anything else.",
+  "OW 3.1 residency: the page says December 2021 (updated April 2026). Confirm there have been no recent changes to who counts as a visitor.",
+  "The screener treats 'convention refugee in the resettlement period (RAP/PSR/JAS)' as unclear, not a firm no, because the status question does not ask about it.",
+  "OW 4.1 exempt assets: the screener only has input fields for the main asset types. A household with other assets (for example settlement money) is told to ask.",
+  "The $30/year interest and dividend exemption is not modelled (the screener asks for monthly income only; the effect is immaterial)."
+ ]
+}
