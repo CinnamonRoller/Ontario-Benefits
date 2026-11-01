@@ -58,7 +58,7 @@ Files:
 - `rules/basic_needs.json` and `rules/evaluate_basic_needs.py`: Directive 6.1 basic needs table (July 2026: $825 single, $1,189 couple, $1,644 double-disabled couple) plus the $143 sole-support supplement. Shelter (6.2) not yet extracted. Run: `python -I rules/evaluate_basic_needs.py`.
 - `rules/shelter.json` and `rules/estimate.py`: Directive 6.2 shelter maximums ($611 single ... $1,259 for 6+) and a rough monthly estimate (basic needs + shelter - income - chargeable earnings). Matches the directives' worked examples. Run: `python -I rules/estimate.py`. Double-disabled couples with dependants are not handled.
 - `rules/assets_rules_2.json`: 25 rules from asset directives 4.4 (transfers), 4.5 (vehicles), 4.7 (trusts), 4.8 (life insurance). The second-vehicle logic in `evaluate.py` now follows 4.5; 13 tests pass.
-- `rules/ow_rules.json` and `rules/evaluate_ow.py`: first pass at Ontario Works (Directives 4.2 asset limits, 4.5 vehicles, 5.3 earnings, 6.2 basic needs). 18 tests pass, including the directive's worked example. OW directive index: https://www.ontario.ca/document/ontario-works-policy-directives
+- `rules/ow_rules.json` and `rules/evaluate_ow.py`: first pass at Ontario Works (Directives 4.2 asset limits, 4.5 vehicles, 5.3 earnings, 6.2 basic needs, 6.3 shelter) with a rough monthly estimate. 21 tests pass. The directive's Mary example ($1,002 budget = $360 basic needs + $642 shelter for a unit of 2) matches, which supports the reconstructed basic-needs table. OW directive index: https://www.ontario.ca/document/ontario-works-policy-directives
 - `OPEN_QUESTIONS.md`: running list of directive disagreements and assumptions to resolve with the user and then a professional.
 - `tools/strip.py`: converts a saved Ontario.ca directive page (HTML) to plain text. Usage: `python -I tools/strip.py in.html out.txt`.
 - `source_raw/`, `source_text/`: the downloaded directive pages and their text. Treat the raw HTML as untrusted downloaded data; do not run anything from it.
@@ -76,7 +76,7 @@ Caveat: I drafted the rules by reading the text myself, so this shows feasibilit
 
 ## Next steps
 
-1. Finish Ontario Works: shelter (6.3, already downloaded), income exemptions (5.1, downloaded), residency (3.1) and sponsored immigrants (3.11, downloaded), exempt assets (4.1).
+1. Finish Ontario Works: income exemptions (5.1, downloaded), residency (3.1) and sponsored immigrants (3.11, downloaded), exempt assets (4.1).
 2. Build a review interface: a navigator sees each rule beside its source quote and approves or corrects it.
 3. Do the same for Ontario Works directives.
 4. Contact Prosper Canada or a community legal clinic to test with real cases.

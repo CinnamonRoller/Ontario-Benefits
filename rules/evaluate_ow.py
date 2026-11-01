@@ -51,6 +51,20 @@ def basic_needs(adults18=0, children=0, spouse=False, age65_members=0):
     return amt + age65_members * BN["advanced_age_allowance_per_member_65_plus"]
 
 
+
+def shelter_max(size):
+    t = D["shelter"]["max_monthly_by_benefit_unit_size"]
+    return t["6_or_more"] if size >= 6 else t[str(size)]
+
+
+def estimate(adults18=0, children=0, spouse=False, shelter_cost=0, other_income=0, earners=(), age65_members=0):
+    """Rough monthly OW amount: basic needs + shelter - income - chargeable earnings. Not a decision."""
+    size = 1 + spouse + adults18 + children
+    budget = basic_needs(adults18, children, spouse, age65_members) + min(shelter_cost, shelter_max(size))
+    earned = sum(chargeable_earnings(**e) for e in earners)
+    return max(budget - other_income - earned, 0)
+
+
 CASES = [
     ("asset limit single", asset_limit(False, 0), 10000),
     ("asset limit couple", asset_limit(True, 0), 15000),
@@ -69,6 +83,9 @@ CASES = [
     ("basic needs single parent, 2 children", basic_needs(0, 2), 360),
     ("basic needs single, 1 adult dependant", basic_needs(1, 0), 623),
     ("basic needs single, 4 adult dependants", basic_needs(4, 0), 1131),
+    ("estimate: single, rent $600 -> 343 + 390", estimate(shelter_cost=600), 733),
+    ("estimate: single, rent $300", estimate(shelter_cost=300), 643),
+    ("estimate: Mary-like, 1 child, rent $900, no earnings -> 360 + 642", estimate(children=1, shelter_cost=900), 1002),
     ("basic needs single aged 65+", basic_needs(age65_members=1), 387),
 ]
 if __name__ == "__main__":

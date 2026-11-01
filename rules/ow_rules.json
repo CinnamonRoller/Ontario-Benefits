@@ -1,80 +1,243 @@
 {
-  "program": "Ontario Works (OW): asset limits, vehicles, earnings exemptions and basic needs. First pass.",
-  "retrieved": "2026-10-31",
-  "sources": {
-    "4.2": {"title": "Asset limits", "directive_date": "September 2017 (page updated April 14, 2026)", "url": "https://www.ontario.ca/document/ontario-works-policy-directives/42-asset-limits"},
-    "4.5": {"title": "Motor vehicles", "directive_date": "September 2013 (page updated April 14, 2026)", "url": "https://www.ontario.ca/document/ontario-works-policy-directives/45-motor-vehicles"},
-    "5.3": {"title": "Earnings exemptions", "directive_date": "February 2019 (page updated April 14, 2026)", "url": "https://www.ontario.ca/document/ontario-works-policy-directives/53-earnings-exemptions"},
-    "6.2": {"title": "Basic needs", "directive_date": "October 2018 (page updated April 14, 2026)", "url": "https://www.ontario.ca/document/ontario-works-policy-directives/62-basic-needs"}
+ "program": "Ontario Works (OW): asset limits, vehicles, earnings exemptions and basic needs. First pass.",
+ "retrieved": "2026-10-31",
+ "sources": {
+  "4.2": {
+   "title": "Asset limits",
+   "directive_date": "September 2017 (page updated April 14, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/42-asset-limits"
   },
-  "status": "DRAFT: written by Claude from the directive text. Not yet reviewed by a human.",
-  "asset_limits": {
-    "single": 10000,
-    "couple": 15000,
-    "one_dependant_no_spouse": 10500,
-    "couple_one_dependant": 15500,
-    "per_additional_dependant": 500,
-    "child_in_temporary_care_or_dependant_of_dependant": 500
+  "4.5": {
+   "title": "Motor vehicles",
+   "directive_date": "September 2013 (page updated April 14, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/45-motor-vehicles"
   },
-  "basic_needs": {
-    "key": "adult_dependants(18+) -> [recipient_alone, recipient_with_spouse]; children 0-17 add $0",
-    "table": {"0": [343, 494], "1": [623, 652], "2": [781, 826], "3": [956, 1001]},
-    "children_only_one_dependant": [360, 494],
-    "per_additional_adult_dependant": 175,
-    "advanced_age_allowance_per_member_65_plus": 44,
-    "remote_allowance_recipient": [272, 430, 526],
-    "remote_allowance_recipient_and_spouse": [403, 502, 602],
-    "remote_per_additional_dependant": 102
+  "5.3": {
+   "title": "Earnings exemptions",
+   "directive_date": "February 2019 (page updated April 14, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/53-earnings-exemptions"
   },
-  "earnings": {
-    "flat_exemption": 200,
-    "partial_exemption_rate": 0.50,
-    "waiting_months": 3,
-    "grace_reapply_months": 6
+  "6.2": {
+   "title": "Basic needs",
+   "directive_date": "October 2018 (page updated April 14, 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/62-basic-needs"
   },
-  "rules": [
-    {"id": "ow_asset_limit", "source": "4.2", "kind": "deterministic",
-     "quote": "No person is eligible for income assistance if his/her non-exempt assets, and the non-exempt assets of his/her spouse and any other dependents, exceed the allowable asset limits."},
-    {"id": "ow_vehicle_one_exempt", "source": "4.5", "kind": "deterministic",
-     "quote": "One motor vehicle of any value is exempt as an asset."},
-    {"id": "ow_vehicle_additional", "source": "4.5", "kind": "discretionary",
-     "quote": "Additional motor vehicles are exempt as assets up to a maximum value of $15,000 each if the applicant or recipient can show that each additional vehicle is required to enable other members of the benefit unit to participate in employment assistance activities or to maintain employment."},
-    {"id": "ow_vehicle_calc", "source": "4.5", "kind": "deterministic",
-     "quote": "If the value of the vehicle is more than $15,000, any loans or encumbrances against the vehicle should be deducted from its value. ... an additional deduction of $500 should be applied to reflect the vehicle's depreciation. After deducting any loans, encumbrances and depreciation, any portion of the value of a vehicle over the maximum of $15,000 should be considered an asset."},
-    {"id": "ow_vehicle_six_months", "source": "4.5", "kind": "deterministic",
-     "quote": "the recipient will have six months to sell the vehicle. After six months, if the vehicle has not been sold, the vehicle will be considered as an asset."},
-    {"id": "ow_vehicle_leased_inoperative", "source": "4.5", "kind": "deterministic",
-     "quote": "A leased vehicle does not have equity, cannot be converted to cash, and is not considered an asset. ... A motor vehicle that is inoperative (e.g., a vehicle without a motor) is not considered an asset."},
-    {"id": "ow_earn_exemption", "source": "5.3", "kind": "deterministic",
-     "quote": "the first $200 in net earnings that each adult member of the benefit unit earns from employment, operating a business, or from a training program, is exempt as income ... If a member's earnings are in excess of $200, then an additional 50% partial exemption is applied to their reduced earnings amount."},
-    {"id": "ow_earn_waiting_period", "source": "5.3", "kind": "deterministic",
-     "quote": "Earnings exemptions cannot be applied on income declared when determining initial eligibility for financial assistance at the time of application or during the first three months of receipt of financial assistance. The earnings exemptions can only be applied after three continuous months of being in receipt of Ontario Works or ODSP financial assistance."},
-    {"id": "ow_earn_grace_reapply", "source": "5.3", "kind": "deterministic",
-     "quote": "For re-applicants who exited Ontario Works (or ODSP) with income from employment, a business, or from a training program, the earnings exemptions can be applied immediately, if the reapplication is made within six months of exiting assistance."},
-    {"id": "ow_earn_under_18_exempt", "source": "5.3", "kind": "deterministic",
-     "quote": "The earnings of, or amounts paid under a training program to, all members of the benefit under the age of 18 are fully exempt income and therefore not subject to the three month waiting period."},
-    {"id": "ow_earn_secondary_student_exempt", "source": "5.3", "kind": "deterministic",
-     "quote": "Earnings of, and amounts paid under a training program to, members of a benefit unit over the age of 18 attending secondary school full-time are exempt as income and therefore not subject to the three month waiting period."},
-    {"id": "ow_earn_postsecondary_exempt", "source": "5.3", "kind": "deterministic",
-     "quote": "Earnings of, and amounts paid under a training program to, persons in full-time attendance in an approved program of post-secondary study are exempt as income. ... full-time attendance means the student is enrolled in at least 60% of a full course load"},
-    {"id": "ow_single_postsecondary_ineligible", "source": "5.3", "kind": "deterministic",
-     "quote": "Single applicants or participants in full-time attendance at a certified post-secondary educational institution remain ineligible for Ontario Works assistance."},
-    {"id": "ow_child_care_deduction", "source": "5.3", "kind": "deterministic",
-     "quote": "The child care deduction is the sum of eligible monthly child care expenses incurred by participants that enable them to participate in employment or training programs. Participants do not need to be in receipt of assistance for three continuous months in order to qualify for child care deductions"},
-    {"id": "ow_dependent_adult_high_income", "source": "5.3", "kind": "deterministic",
-     "quote": "The earnings exemptions do not apply to dependent adults whose net monthly income is greater than the maximum amount of assistance for a single person. In these situations, the dependent adult is removed from the benefit unit for that month."},
-    {"id": "ow_ei_is_income", "source": "5.3", "kind": "deterministic",
-     "quote": "Payments from EI should be treated as income. However, if these payments are clearly designated as a 'training allowance' ... and specifically received to participate in a training program, then the earnings exemptions may be applied."},
-    {"id": "ow_basic_needs_purpose", "source": "6.2", "kind": "deterministic",
-     "quote": "For each additional dependent, add $175 if dependent is 18 years or older."},
-    {"id": "ow_advanced_age", "source": "6.2", "kind": "deterministic",
-     "quote": "Each member of the benefit unit who is 65 years of age or older receives an Advanced Age Allowance of $44 per month."}
+  "6.3": {
+   "title": "Shelter",
+   "directive_date": "July 2024 (page updated April 2026)",
+   "url": "https://www.ontario.ca/document/ontario-works-policy-directives/63-shelter"
+  }
+ },
+ "status": "DRAFT: written by Claude from the directive text. Not yet reviewed by a human.",
+ "asset_limits": {
+  "single": 10000,
+  "couple": 15000,
+  "one_dependant_no_spouse": 10500,
+  "couple_one_dependant": 15500,
+  "per_additional_dependant": 500,
+  "child_in_temporary_care_or_dependant_of_dependant": 500
+ },
+ "basic_needs": {
+  "key": "adult_dependants(18+) -> [recipient_alone, recipient_with_spouse]; children 0-17 add $0",
+  "table": {
+   "0": [
+    343,
+    494
+   ],
+   "1": [
+    623,
+    652
+   ],
+   "2": [
+    781,
+    826
+   ],
+   "3": [
+    956,
+    1001
+   ]
+  },
+  "children_only_one_dependant": [
+   360,
+   494
   ],
-  "flags_for_human_review": [
-    "The OW basic needs table lost its column labels when the page was converted to text. I reconstructed it from the number sequence: children add $0, and 1/2/3 adult dependants give $623/$781/$956 (recipient) and $652/$826/$1,001 (with spouse), a single recipient with no dependants $343 and with a spouse $494. This is an inference and must be checked against the live page.",
-    "Directive 4.5 (OW) example 2 uses a $5,000 asset limit, which does not match 4.2 ($10,000 to $15,500). Likely an old example; the limit table in 4.2 is used.",
-    "OW motor vehicle rules: the loan and $500 depreciation deductions are only stated when the vehicle's value is over $15,000.",
-    "Not yet extracted: OW exempt assets list (Directive 4.1), real property (4.3), the 6.3 shelter table, income exemptions (5.1), residency and eligibility (3.x), sponsored immigrants (3.11), employment participation requirements (2.5).",
-    "OW rule worth checking: the earnings exemption does not apply for the first three months of assistance, unlike ODSP where the exemptions apply from the start. The ODSP calculator does not include a waiting period; confirm that is right."
-  ]
+  "per_additional_adult_dependant": 175,
+  "advanced_age_allowance_per_member_65_plus": 44,
+  "remote_allowance_recipient": [
+   272,
+   430,
+   526
+  ],
+  "remote_allowance_recipient_and_spouse": [
+   403,
+   502,
+   602
+  ],
+  "remote_per_additional_dependant": 102
+ },
+ "earnings": {
+  "flat_exemption": 200,
+  "partial_exemption_rate": 0.5,
+  "waiting_months": 3,
+  "grace_reapply_months": 6
+ },
+ "rules": [
+  {
+   "id": "ow_asset_limit",
+   "source": "4.2",
+   "kind": "deterministic",
+   "quote": "No person is eligible for income assistance if his/her non-exempt assets, and the non-exempt assets of his/her spouse and any other dependents, exceed the allowable asset limits."
+  },
+  {
+   "id": "ow_vehicle_one_exempt",
+   "source": "4.5",
+   "kind": "deterministic",
+   "quote": "One motor vehicle of any value is exempt as an asset."
+  },
+  {
+   "id": "ow_vehicle_additional",
+   "source": "4.5",
+   "kind": "discretionary",
+   "quote": "Additional motor vehicles are exempt as assets up to a maximum value of $15,000 each if the applicant or recipient can show that each additional vehicle is required to enable other members of the benefit unit to participate in employment assistance activities or to maintain employment."
+  },
+  {
+   "id": "ow_vehicle_calc",
+   "source": "4.5",
+   "kind": "deterministic",
+   "quote": "If the value of the vehicle is more than $15,000, any loans or encumbrances against the vehicle should be deducted from its value. ... an additional deduction of $500 should be applied to reflect the vehicle's depreciation. After deducting any loans, encumbrances and depreciation, any portion of the value of a vehicle over the maximum of $15,000 should be considered an asset."
+  },
+  {
+   "id": "ow_vehicle_six_months",
+   "source": "4.5",
+   "kind": "deterministic",
+   "quote": "the recipient will have six months to sell the vehicle. After six months, if the vehicle has not been sold, the vehicle will be considered as an asset."
+  },
+  {
+   "id": "ow_vehicle_leased_inoperative",
+   "source": "4.5",
+   "kind": "deterministic",
+   "quote": "A leased vehicle does not have equity, cannot be converted to cash, and is not considered an asset. ... A motor vehicle that is inoperative (e.g., a vehicle without a motor) is not considered an asset."
+  },
+  {
+   "id": "ow_earn_exemption",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "the first $200 in net earnings that each adult member of the benefit unit earns from employment, operating a business, or from a training program, is exempt as income ... If a member's earnings are in excess of $200, then an additional 50% partial exemption is applied to their reduced earnings amount."
+  },
+  {
+   "id": "ow_earn_waiting_period",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "Earnings exemptions cannot be applied on income declared when determining initial eligibility for financial assistance at the time of application or during the first three months of receipt of financial assistance. The earnings exemptions can only be applied after three continuous months of being in receipt of Ontario Works or ODSP financial assistance."
+  },
+  {
+   "id": "ow_earn_grace_reapply",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "For re-applicants who exited Ontario Works (or ODSP) with income from employment, a business, or from a training program, the earnings exemptions can be applied immediately, if the reapplication is made within six months of exiting assistance."
+  },
+  {
+   "id": "ow_earn_under_18_exempt",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "The earnings of, or amounts paid under a training program to, all members of the benefit under the age of 18 are fully exempt income and therefore not subject to the three month waiting period."
+  },
+  {
+   "id": "ow_earn_secondary_student_exempt",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "Earnings of, and amounts paid under a training program to, members of a benefit unit over the age of 18 attending secondary school full-time are exempt as income and therefore not subject to the three month waiting period."
+  },
+  {
+   "id": "ow_earn_postsecondary_exempt",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "Earnings of, and amounts paid under a training program to, persons in full-time attendance in an approved program of post-secondary study are exempt as income. ... full-time attendance means the student is enrolled in at least 60% of a full course load"
+  },
+  {
+   "id": "ow_single_postsecondary_ineligible",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "Single applicants or participants in full-time attendance at a certified post-secondary educational institution remain ineligible for Ontario Works assistance."
+  },
+  {
+   "id": "ow_child_care_deduction",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "The child care deduction is the sum of eligible monthly child care expenses incurred by participants that enable them to participate in employment or training programs. Participants do not need to be in receipt of assistance for three continuous months in order to qualify for child care deductions"
+  },
+  {
+   "id": "ow_dependent_adult_high_income",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "The earnings exemptions do not apply to dependent adults whose net monthly income is greater than the maximum amount of assistance for a single person. In these situations, the dependent adult is removed from the benefit unit for that month."
+  },
+  {
+   "id": "ow_ei_is_income",
+   "source": "5.3",
+   "kind": "deterministic",
+   "quote": "Payments from EI should be treated as income. However, if these payments are clearly designated as a 'training allowance' ... and specifically received to participate in a training program, then the earnings exemptions may be applied."
+  },
+  {
+   "id": "ow_basic_needs_purpose",
+   "source": "6.2",
+   "kind": "deterministic",
+   "quote": "For each additional dependent, add $175 if dependent is 18 years or older."
+  },
+  {
+   "id": "ow_advanced_age",
+   "source": "6.2",
+   "kind": "deterministic",
+   "quote": "Each member of the benefit unit who is 65 years of age or older receives an Advanced Age Allowance of $44 per month."
+  },
+  {
+   "id": "ow_shelter_actual_up_to_max",
+   "source": "6.3",
+   "kind": "deterministic",
+   "quote": "the shelter amount issued is the sum of the actual verified costs of shelter paid by him/her, up to the maximum amount for shelter (i.e., if actual shelter costs are less than the established maximum, then the lesser actual costs are paid)."
+  },
+  {
+   "id": "ow_shelter_ontario_area_only",
+   "source": "6.3",
+   "kind": "deterministic",
+   "quote": "The shelter allowance can only be paid for the dwelling place in the geographic area where an individual is receiving assistance."
+  },
+  {
+   "id": "ow_shelter_renter_vs_boarder",
+   "source": "6.3",
+   "kind": "deterministic",
+   "quote": "If the applicant or recipient purchases and prepares their own food, he/she is considered a renter. If the landlord purchases and prepares the food, the applicant or recipient is considered a boarder."
+  },
+  {
+   "id": "ow_shelter_parking_cable_excluded",
+   "source": "6.3",
+   "kind": "deterministic",
+   "quote": "Rent does not include the cost of parking or cable if these items are billed as unique and separate items from the rent."
+  },
+  {
+   "id": "ow_shelter_electricity_credits_exempt",
+   "source": "6.3",
+   "kind": "deterministic",
+   "quote": "All such credits/benefits are exempt as income for social assistance purposes and should not reduce the amount of shelter allowance otherwise payable to the benefit unit."
+  }
+ ],
+ "flags_for_human_review": [
+  "The OW basic needs table lost its column labels when the page was converted to text. I reconstructed it from the number sequence: children add $0, and 1/2/3 adult dependants give $623/$781/$956 (recipient) and $652/$826/$1,001 (with spouse), a single recipient with no dependants $343 and with a spouse $494. This is an inference and must be checked against the live page.",
+  "Directive 4.5 (OW) example 2 uses a $5,000 asset limit, which does not match 4.2 ($10,000 to $15,500). Likely an old example; the limit table in 4.2 is used.",
+  "OW motor vehicle rules: the loan and $500 depreciation deductions are only stated when the vehicle's value is over $15,000.",
+  "Not yet extracted: OW exempt assets list (Directive 4.1), real property (4.3), the 6.3 shelter table, income exemptions (5.1), residency and eligibility (3.x), sponsored immigrants (3.11), employment participation requirements (2.5).",
+  "OW rule worth checking: the earnings exemption does not apply for the first three months of assistance, unlike ODSP where the exemptions apply from the start. The ODSP calculator does not include a waiting period; confirm that is right.",
+  "OW shelter maximums ($390 single ... $844 for 6+) are far below ODSP's ($611 ... $1,259). Directive 6.3 text is dated July 2024; confirm these are the current amounts. RGI rent scales are not yet transcribed."
+ ],
+ "shelter": {
+  "max_monthly_by_benefit_unit_size": {
+   "1": 390,
+   "2": 642,
+   "3": 697,
+   "4": 756,
+   "5": 815,
+   "6_or_more": 844
+  },
+  "rgi_rent_scale_note": "In rent-geared-to-income housing, rent is set by the housing service manager (social assistance rent scale or about 30% of non-benefit income). Scale tables are in Directive 6.3 and not yet transcribed."
+ }
 }
