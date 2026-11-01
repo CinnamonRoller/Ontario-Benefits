@@ -25,7 +25,13 @@ For you and Claude to resolve together, then confirm with a navigator, legal cli
 
 - OW basic needs table lost its labels in conversion; I reconstructed the amounts from the number pattern ($343 single, $494 couple, adults add $623/$781/$956, children add $0).
 
+## Added 2026-10-31 (see flags in the rules files and on docs/review.html)
+- Pregnancy allowance is added once even if two people qualify, and its position relative to the $2,416 double-disabled cap is unclear (ODSP 6.5).
+- Special diet: only the $250 maximum is encoded, not the schedule of conditions (ODSP 6.4).
+- Self-employment: the OW screener reuses the ODSP net-income method as an approximation; OW's own business-income directive has not been read.
+- OW residency/status page is dated December 2021 (updated April 2026): confirm no recent change to who counts as a visitor.
+
 ## Not yet done
-- Benefit add-ons: special diet (6.4), pregnancy nutrition (6.5), heating (9.3), utilities (9.5), board and lodge (6.3).
-- Self-employment income (5.4), child care deductions (5.5), gifts (5.8), spousal and child support (5.15).
+- Ontario Works: RGI rent scales and board and lodging (6.3/6.4), business income, participation requirements (2.x), OW pregnancy and special diet allowances.
+- ODSP: board and lodge (6.3), child care deductions (5.5), gifts (5.8), spousal and child support (5.15), Work-Related Benefit (9.18).
 - Disability adjudication (1.2) is intentionally out of scope.
