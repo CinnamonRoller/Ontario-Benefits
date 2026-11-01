@@ -179,7 +179,7 @@
     out.appendChild(card(r.ow));
     const next = document.createElement("div");
     next.className = "card";
-    next.innerHTML = "<h2>What to do next</h2><ul><li>Apply through your local Ontario Works office, or ask a community legal clinic for free help. A rough result here is not a reason to skip applying.</li><li>If you are unsure about anything marked unclear, ask a caseworker or a legal clinic before deciding.</li><li>Do not give up assets or move money because of this tool. Some transfers can make you ineligible (ODSP Directive 4.4).</li></ul><p><button type=\"button\" class=\"secondary\" id=\"again\">Change my answers</button></p>";
+    next.innerHTML = "<h2>What to do next</h2><ul><li>You can apply online for Ontario Works or ODSP with one application (about 20 to 30 minutes) at <a href=\"https://www.ontario.ca/page/ontario-works\" rel=\"noopener\">ontario.ca/page/ontario-works</a>, or through your local office. A community legal clinic can help for free. A rough result here is not a reason to skip applying.</li><li>If you are unsure about anything marked unclear, ask a caseworker or a legal clinic before deciding.</li><li>Do not give up assets or move money because of this tool. Some transfers can make you ineligible (ODSP Directive 4.4).</li></ul><p><button type=\"button\" class=\"secondary\" id=\"again\">Change my answers</button></p>";
     out.appendChild(next);
     out.hidden = false;
     $("again").addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
