@@ -17,7 +17,7 @@
 - Done when: ODSP and OW financial and status eligibility are covered and the tests pass.
 
 ### G2. Human verification (Human, Claude supports)
-- Claude builds a simple review page (rule beside source quote, approve/correct).
+- Claude builds a simple review page (rule beside source quote, approve/correct). DONE: `docs/review.html` (regenerate its data with `python tools/build_review.py` after any rule change).
 - Human finds 1-2 reviewers: a community legal clinic, a Prosper Canada navigator, or a caseworker. Claude drafts the email.
 - Resolve the open questions in `flags_for_human_review` (e.g. the directive 2.5 contradiction).
 - Done when: at least one qualified person has reviewed the core rules.
@@ -52,7 +52,7 @@
 | Flagging when a question needs a professional | Public outreach, community trust |
 
 ## Immediate next actions
-1. Claude: finish Ontario Works (shelter, income, residency, sponsored immigrants, exempt assets). Human: review OPEN_QUESTIONS.md with Claude when ready. (5.1, 5.3, 6.1 and 6.2 done 2026-10-31.)
+1. Claude: Ontario Works first pass is complete (residency, sponsored immigrants, exempt assets, income exemptions done 2026-10-31); remaining OW items are RGI rent scales, board and lodging, business income. Human: review OPEN_QUESTIONS.md with Claude when ready. (5.1, 5.3, 6.1 and 6.2 done 2026-10-31.)
 2. Human: nothing yet. When G2 starts, Claude will provide a draft outreach email.
 
 ## Principles

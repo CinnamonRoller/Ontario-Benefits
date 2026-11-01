@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rule review (draft) - Ontario Benefits Check</title>
+<style>
+  :root { --ink:#1b1f23; --muted:#5a636d; --line:#d6dbe0; --bg:#f6f7f9; --card:#fff; --accent:#0b5cad; --good:#13652f; --goodbg:#e8f5ec; --bad:#9b1c1c; --badbg:#fdeceb; --unsure:#7a5200; --unsurebg:#fff6e0; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color:var(--ink); background:var(--bg); }
+  main { max-width: 900px; margin: 0 auto; padding: 16px; }
+  h1 { font-size:1.5rem; margin:8px 0; }
+  h2 { font-size:1.15rem; margin:28px 0 6px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin:10px 0; }
+  .card.done-ok { border-left:6px solid var(--good); } .card.done-wrong { border-left:6px solid var(--bad); } .card.done-unsure { border-left:6px solid #d9a21b; }
+  blockquote { margin:8px 0; padding:8px 12px; background:#f1f4f8; border-left:4px solid #9aa4ae; white-space:pre-wrap; }
+  .meta { font-size:.85rem; color:var(--muted); }
+  .tag { display:inline-block; font-size:.78rem; font-weight:700; padding:1px 8px; border-radius:999px; border:1px solid var(--muted); color:var(--muted); margin-right:6px; }
+  .tag.disc { color:var(--unsure); border-color:var(--unsure); }
+  .btns { display:flex; gap:8px; flex-wrap:wrap; margin:8px 0; }
+  button, .btn { font:inherit; font-weight:600; padding:8px 14px; border-radius:8px; border:1px solid var(--accent); background:#fff; color:var(--accent); cursor:pointer; text-decoration:none; display:inline-block; }
+  button.sel-ok { background:var(--good); color:#fff; border-color:var(--good); }
+  button.sel-wrong { background:var(--bad); color:#fff; border-color:var(--bad); }
+  button.sel-unsure { background:#d9a21b; color:#000; border-color:#d9a21b; }
+  button.primary { background:var(--accent); color:#fff; }
+  textarea { width:100%; min-height:44px; font:inherit; padding:8px; border:1px solid #9aa4ae; border-radius:6px; }
+  input[type=text], select { font:inherit; padding:8px; border:1px solid #9aa4ae; border-radius:6px; }
+  .bar { position:sticky; top:0; background:var(--bg); padding:8px 0; z-index:5; border-bottom:1px solid var(--line); }
+  .progress { height:10px; background:#e1e5ea; border-radius:5px; overflow:hidden; }
+  .progress > div { height:100%; background:var(--good); width:0; }
+  .banner { background:#fff6e0; border:1px solid #e6c36a; color:#6b4700; padding:10px 14px; border-radius:8px; }
+  details summary { cursor:pointer; font-weight:600; }
+  .flag { background:#fff; border:1px dashed #d9a21b; }
+  [hidden] { display:none !important; }
+  button:focus-visible, textarea:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible { outline:3px solid #7fb2ee; outline-offset:2px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Rule review</h1>
+  <p class="banner"><strong>Draft.</strong> These rules were written by an AI from Ontario's published policy directives. Nobody has checked them yet. Thank you for helping.</p>
+
+  <div class="card">
+    <h2 style="margin-top:0">How to review (about 15 minutes for a first pass)</h2>
+    <ol>
+      <li>Each card shows one rule, <strong>the exact sentence copied from the directive</strong>, and a link to the official page.</li>
+      <li>Ask: <em>Is this sentence copied correctly, and does it still match the live directive? Is the rule it describes right in practice?</em></li>
+      <li>Press <strong>Looks right</strong>, <strong>Wrong</strong> or <strong>Not sure</strong>. Add a note if it helps, especially for Wrong. Notes like "in practice caseworkers do X" are very valuable.</li>
+      <li>Your answers are saved <strong>only in this browser</strong>. When you are done (or want to stop), press <strong>Download my review</strong> and send the file to the project. You can come back later and load it again.</li>
+    </ol>
+    <p class="meta">Some rules are marked <span class="tag disc">discretionary</span>: the directive leaves the decision to a caseworker. For these, the tool only says "ask a caseworker". Tell us if that is the right way to handle them.</p>
+  </div>
+
+  <div class="bar">
+    <label>Your name or organization (optional): <input type="text" id="who" size="28"></label>
+    <div class="progress" aria-hidden="true"><div id="pbar"></div></div>
+    <div class="meta" id="ptext" role="status"></div>
+    <div class="btns">
+      <label>Show: <select id="filter">
+        <option value="all">everything</option>
+        <option value="todo">not yet reviewed</option>
+        <option value="wrong">marked Wrong</option>
+        <option value="unsure">marked Not sure</option>
+      </select></label>
+      <button class="primary" id="download" type="button">Download my review</button>
+      <button id="copy" type="button">Copy as text</button>
+      <label class="btn">Load a saved review <input type="file" id="load" accept=".json" hidden></label>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+<script src="review-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  const KEY = "ontario-benefits-review-v1";
+  const data = window.REVIEW_DATA;
+  let state = { who: "", answers: {} };
+  try { state = Object.assign(state, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+  const $ = (id) => document.getElementById(id);
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+  function el(tag, attrs, kids) {
+    const n = document.createElement(tag);
+    Object.keys(attrs || {}).forEach((k) => {
+      if (k === "text") n.textContent = attrs[k]; else if (k === "class") n.className = attrs[k]; else n.setAttribute(k, attrs[k]);
+    });
+    (kids || []).forEach((c) => n.appendChild(c));
+    return n;
+  }
+
+  // every reviewable item gets a stable key
+  const items = [];
+  data.numbers.forEach((n, i) => items.push({ key: "num:" + i, type: "number", n: n }));
+  data.sections.forEach((s) => {
+    s.rules.forEach((r) => items.push({ key: "rule:" + s.file + ":" + r.id, type: "rule", r: r, s: s }));
+    s.flags.forEach((f, i) => items.push({ key: "flag:" + s.file + ":" + i, type: "flag", f: f, s: s }));
+  });
+
+  function ans(key) { return state.answers[key] || { v: "", note: "" }; }
+
+  function buttons(key, card) {
+    const wrap = el("div", { class: "btns" });
+    const defs = [["ok", "Looks right"], ["wrong", "Wrong"], ["unsure", "Not sure"]];
+    defs.forEach((d) => {
+      const b = el("button", { type: "button", text: d[1], "aria-pressed": String(ans(key).v === d[0]) });
+      if (ans(key).v === d[0]) b.classList.add("sel-" + d[0]);
+      b.addEventListener("click", () => {
+        const a = ans(key);
+        a.v = a.v === d[0] ? "" : d[0];
+        state.answers[key] = a; save(); render();
+      });
+      wrap.appendChild(b);
+    });
+    return wrap;
+  }
+
+  function noteBox(key) {
+    const t = el("textarea", { "aria-label": "Note (optional)", placeholder: "Note (optional)" });
+    t.value = ans(key).note || "";
+    t.addEventListener("input", () => { const a = ans(key); a.note = t.value; state.answers[key] = a; save(); });
+    return t;
+  }
+
+  function cardFor(it) {
+    const a = ans(it.key);
+    const card = el("div", { class: "card" + (a.v ? " done-" + a.v : "") });
+    if (it.type === "rule") {
+      const r = it.r;
+      const head = el("div", {}, [
+        el("span", { class: "tag" + (r.kind === "discretionary" ? " disc" : ""), text: r.kind }),
+        el("strong", { text: "Directive " + r.directive + (r.directive_title ? " - " + r.directive_title : "") })
+      ]);
+      card.appendChild(head);
+      card.appendChild(el("blockquote", { text: r.quote }));
+      if (r.note) card.appendChild(el("div", { class: "meta", text: "Note from the drafter: " + r.note }));
+      const meta = el("div", { class: "meta" });
+      meta.appendChild(document.createTextNode("Rule id: " + r.id + "  "));
+      if (/^https:\/\/www\.ontario\.ca\//.test(r.url)) meta.appendChild(el("a", { href: r.url, target: "_blank", rel: "noopener noreferrer", text: "Open the official page" }));
+      card.appendChild(meta);
+    } else if (it.type === "number") {
+      card.appendChild(el("div", {}, [el("span", { class: "tag", text: "number" }), el("strong", { text: it.n.label })]));
+      card.appendChild(el("blockquote", { text: it.n.value }));
+      const meta = el("div", { class: "meta" });
+      meta.appendChild(document.createTextNode("Check this against the current official page.  "));
+      if (/^https:\/\/www\.ontario\.ca\//.test(it.n.url)) meta.appendChild(el("a", { href: it.n.url, target: "_blank", rel: "noopener noreferrer", text: "Open the official page" }));
+      card.appendChild(meta);
+    } else {
+      card.classList.add("flag");
+      card.appendChild(el("div", {}, [el("span", { class: "tag disc", text: "question from the drafter" })]));
+      card.appendChild(el("div", { text: it.f }));
+    }
+    card.appendChild(buttons(it.key));
+    card.appendChild(noteBox(it.key));
+    return card;
+  }
+
+  function visible(it) {
+    const f = $("filter").value, v = ans(it.key).v;
+    if (f === "todo") return !v;
+    if (f === "wrong") return v === "wrong";
+    if (f === "unsure") return v === "unsure";
+    return true;
+  }
+
+  function render() {
+    const keep = window.scrollY;
+    const root = $("content");
+    root.textContent = "";
+    // numbers first (quick wins), then each section: its questions, then its rules
+    const numbersItems = items.filter((i) => i.type === "number" && visible(i));
+    if (numbersItems.length) {
+      root.appendChild(el("h2", { text: "Key dollar amounts (quick check)" }));
+      numbersItems.forEach((i) => root.appendChild(cardFor(i)));
+    }
+    data.sections.forEach((s) => {
+      const mine = items.filter((i) => i.s === s && visible(i));
+      if (!mine.length) return;
+      root.appendChild(el("h2", { text: s.title }));
+      mine.filter((i) => i.type === "flag").forEach((i) => root.appendChild(cardFor(i)));
+      mine.filter((i) => i.type === "rule").forEach((i) => root.appendChild(cardFor(i)));
+    });
+    if (!root.firstChild) root.appendChild(el("p", { class: "meta", text: "Nothing to show with this filter." }));
+    const done = items.filter((i) => ans(i.key).v).length;
+    $("pbar").style.width = (100 * done / items.length) + "%";
+    $("ptext").textContent = done + " of " + items.length + " reviewed. " +
+      items.filter((i) => ans(i.key).v === "wrong").length + " marked Wrong, " + items.filter((i) => ans(i.key).v === "unsure").length + " Not sure.";
+    window.scrollTo(0, keep);
+  }
+
+  function describe(it) {
+    if (it.type === "rule") return "Directive " + it.r.directive + " - " + it.r.id + ": " + it.r.quote.slice(0, 160);
+    if (it.type === "number") return "Number: " + it.n.label + " = " + it.n.value;
+    return "Question: " + it.f;
+  }
+
+  function report() {
+    const out = { reviewer: state.who || "", reviewed_at: new Date().toISOString(), tool: "ontario-benefits review v1", results: [] };
+    items.forEach((it) => {
+      const a = ans(it.key);
+      if (a.v || a.note) out.results.push({ key: it.key, verdict: a.v || "no answer", note: a.note || "", about: describe(it) });
+    });
+    return out;
+  }
+
+  $("who").value = state.who || "";
+  $("who").addEventListener("input", () => { state.who = $("who").value; save(); });
+  $("filter").addEventListener("change", render);
+
+  $("download").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(report(), null, 1)], { type: "application/json" });
+    const a = el("a", { href: URL.createObjectURL(blob), download: "ontario-benefits-review.json" });
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+  $("copy").addEventListener("click", () => {
+    const r = report();
+    const text = ["Reviewer: " + (r.reviewer || "(not given)")].concat(r.results.map((x) => "[" + x.verdict.toUpperCase() + "] " + x.about + (x.note ? "\n    Note: " + x.note : ""))).join("\n");
+    const done = () => { $("ptext").textContent = "Copied. Paste it into an email."; };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, () => window.prompt("Copy this:", text)); else window.prompt("Copy this:", text);
+  });
+  $("load").addEventListener("change", (e) => {
+    const f = e.target.files[0]; if (!f) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      try {
+        const j = JSON.parse(rd.result);
+        state.who = j.reviewer || state.who;
+        (j.results || []).forEach((x) => { state.answers[x.key] = { v: x.verdict === "no answer" ? "" : x.verdict, note: x.note || "" }; });
+        $("who").value = state.who; save(); render();
+      } catch (err) { alert("That file could not be read."); }
+    };
+    rd.readAsText(f);
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
