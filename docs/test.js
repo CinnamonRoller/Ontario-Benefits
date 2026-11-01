@@ -1,4 +1,4 @@
-// Run: node site/test.js
+// Run: node docs/test.js
 const S = require("./screener.js");
 let bad = 0;
 function check(name, got, exp) {
