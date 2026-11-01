@@ -1,0 +1,9 @@
+[
+ {"id":"A","desc":"Single adult, no income, rent $700, $500 savings","spouse":false,"kids":0,"adults":0,"disability":false,"rent":700,"cash":500,"gross":0,"payroll":0,"net":0,"onAssist3":true},
+ {"id":"B","desc":"Single parent, 2 children, no income, rent $1,100","spouse":false,"kids":2,"adults":0,"disability":false,"rent":1100,"cash":300,"gross":0,"payroll":0,"net":0,"onAssist3":true},
+ {"id":"C","desc":"Single adult, rent $700, working: $450 gross, $50 deductions ($400 net), on assistance 3+ months","spouse":false,"kids":0,"adults":0,"disability":false,"rent":700,"cash":500,"gross":450,"payroll":50,"net":400,"onAssist3":true},
+ {"id":"D","desc":"Couple, no children, no income, rent $900, $12,000 savings (under the $15,000 couple limit)","spouse":true,"kids":0,"adults":0,"disability":false,"rent":900,"cash":12000,"gross":0,"payroll":0,"net":0,"onAssist3":true},
+ {"id":"E","desc":"Single adult, rent $600, $15,000 savings (over the $10,000 OW limit)","spouse":false,"kids":0,"adults":0,"disability":false,"rent":600,"cash":15000,"gross":0,"payroll":0,"net":0,"onAssist3":true},
+ {"id":"F","desc":"Single adult with a disability (ODSP), no income, rent $800","spouse":false,"kids":0,"adults":0,"disability":true,"rent":800,"cash":1000,"gross":0,"payroll":0,"net":0,"onAssist3":true},
+ {"id":"G","desc":"Single adult with a disability (ODSP), rent $800, working: $1,500 gross, $100 deductions ($1,400 net)","spouse":false,"kids":0,"adults":0,"disability":true,"rent":800,"cash":1000,"gross":1500,"payroll":100,"net":1400,"onAssist3":true}
+]

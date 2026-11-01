@@ -12,3 +12,6 @@
 - Try each tool with the same test households as ours and compare results (assets, vehicles, earnings, couples, dependants).
 - Note what they do not show: source quotes, "unclear" handling, open rules, privacy.
 - Decide: differentiate, improve, or partner.
+
+## Results (2026-11-01)
+See `comparison/FINDINGS.md`. Summary: Calculatorplus matches our amounts exactly on 7 households; only we flagged the over-asset-limit case; the Navigator gives generic ranges and never asks about assets. Our difference is asset testing, source quotes and honesty about uncertainty, not the payment arithmetic.

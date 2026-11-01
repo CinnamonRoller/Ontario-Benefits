@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ontario Works Eligibility Calculator | Current OW Rates</title>
+<meta name="description" content="Estimate Ontario Works assistance from household size, shelter cost and income, using the basic needs and shelter maximums from the current OW directives.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<link rel="canonical" href="https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/">
+<link rel="alternate" hreflang="en-CA" href="https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/">
+<link rel="alternate" hreflang="x-default" href="https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/">
+<meta property="og:title" content="Ontario Works Eligibility Calculator | Current OW Rates">
+<meta property="og:description" content="Estimate Ontario Works assistance from household size, shelter cost and income, using the basic needs and shelter maximums from the current OW directives.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/">
+<meta property="og:site_name" content="CalculatorPlus">
+<meta property="og:locale" content="en_CA">
+<meta property="og:image" content="https://calculatorplus.ca/assets/images/og/ontario-works-eligibility-calculator.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ontario Works eligibility calculator on CalculatorPlus">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ontario Works Eligibility Calculator | Current OW Rates">
+<meta name="twitter:description" content="Estimate Ontario Works assistance from household size, shelter cost and income, using the basic needs and shelter maximums from the current OW directives.">
+<meta name="twitter:image" content="https://calculatorplus.ca/assets/images/og/ontario-works-eligibility-calculator.png">
+<meta name="google-site-verification" content="jndbj-L7P3iOblll_eC2Hj8suN0OCvham820nW56DLk">
+<meta name="theme-color" content="#2E4057">
+<script>/* Theme choice: dark (default) or light, remembered in this browser. Runs in the head so the page never flashes the wrong theme. */
+(function () {
+  "use strict";
+  var KEY = "cp-theme", root = document.documentElement;
+  function saved() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function apply(t) {
+    if (t === "light") root.setAttribute("data-theme", "light"); else root.removeAttribute("data-theme");
+    var b = document.querySelector("[data-theme-toggle]");
+    if (b) { b.setAttribute("aria-pressed", t === "light" ? "true" : "false"); b.setAttribute("aria-label", t === "light" ? "Switch to dark theme" : "Switch to light theme"); }
+    var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", t === "light" ? "#F3F6FB" : "#070C16");
+  }
+  apply(saved() === "light" ? "light" : "dark");
+  document.addEventListener("DOMContentLoaded", function () {
+    var b = document.querySelector("[data-theme-toggle]"); apply(root.getAttribute("data-theme") === "light" ? "light" : "dark");
+    if (!b) return;
+    b.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      apply(next); try { localStorage.setItem(KEY, next); } catch (e) { /* private mode: the choice just is not remembered */ }
+    });
+  });
+})();</script>
+<link rel="icon" href="/assets/images/favicon.svg?v=e5261b6e" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?v=894d4b87">
+<link rel="manifest" href="/assets/manifest.webmanifest">
+<meta name="color-scheme" content="dark light">
+<style>:root{--bg:#070C16;--bg-2:#0B1322;--bg-3:#101A2C;--panel:rgba(17,27,45,.72);--panel-solid:#111B2D;--panel-hi:rgba(28,42,66,.78);--border:rgba(148,171,204,.16);--border-hi:rgba(148,171,204,.32);--text:#E9EEF7;--text-muted:#9AABC2;--text-dim:#6E819B;--lime:#A3E635;--teal:#38BDF8;--brand:linear-gradient(135deg,#A3E635 0%,#38BDF8 100%);--c-tax-a:#FF7A6B;--c-tax-b:#FF9F45;--c-benefits-a:#4FACFE;--c-benefits-b:#22E1FF;--c-legal-a:#A78BFA;--c-legal-b:#D8B4FE;--c-gpa-a:#FBBF24;--c-gpa-b:#FDE047;--c-money-a:#34D399;--c-money-b:#6EE7B7;--c-math-a:#22D3EE;--c-math-b:#67E8F9;--c-trades-a:#FB923C;--c-trades-b:#FDBA74;--c-sport-a:#F472B6;--c-sport-b:#F9A8D4;--c-everyday-a:#818CF8;--c-everyday-b:#A5B4FC;--acc-a:var(--lime);--acc-b:var(--teal);--acc:linear-gradient(135deg,var(--acc-a) 0%,var(--acc-b) 100%);--ok:#34D399;--warn:#FBBF24;--bad:#FB7185;--ink:7,12,22;--ink2:16,26,44;--strong:#fff;--label:#CFDDF0;--hi:#DCE7F5;--on-acc:#071018;--ok-text:#6EE7B7;--warn-text:#FDE7B0;--bad-text:#FF9F8F;--glass:rgba(255,255,255,.04);color-scheme:dark;--font-head:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;--font-body:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;--font-num:"SF Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;--fs-display:clamp(1.9rem,3.6vw,2.85rem);--fs-h1:clamp(1.6rem,2.7vw,2.15rem);--fs-h2:clamp(1.2rem,1.9vw,1.55rem);--fs-h3:1.02rem;--fs-body:.975rem;--fs-sm:.855rem;--fs-xs:.755rem;--sp-1:.5rem;--sp-2:1rem;--sp-3:1.4rem;--sp-4:2.2rem;--sp-5:3.4rem;--sp-6:4.6rem;--r-sm:10px;--r-md:16px;--r-lg:22px;--r-xl:28px;--r-full:999px;--sh-md:0 10px 34px rgba(0,0,0,.42);--sh-lg:0 28px 70px rgba(0,0,0,.55);--wrap:1320px}.t-tax,.t-benefits,.t-legal,.t-gpa,.t-money,.t-math,.t-trades,.t-sport,.t-everyday{--acc:linear-gradient(135deg,var(--acc-a) 0%,var(--acc-b) 100%)}.t-tax{--acc-a:var(--c-tax-a);--acc-b:var(--c-tax-b)}.t-benefits{--acc-a:var(--c-benefits-a);--acc-b:var(--c-benefits-b)}.t-legal{--acc-a:var(--c-legal-a);--acc-b:var(--c-legal-b)}.t-gpa{--acc-a:var(--c-gpa-a);--acc-b:var(--c-gpa-b)}.t-money{--acc-a:var(--c-money-a);--acc-b:var(--c-money-b)}.t-math{--acc-a:var(--c-math-a);--acc-b:var(--c-math-b)}.t-trades{--acc-a:var(--c-trades-a);--acc-b:var(--c-trades-b)}.t-sport{--acc-a:var(--c-sport-a);--acc-b:var(--c-sport-b)}.t-everyday{--acc-a:var(--c-everyday-a);--acc-b:var(--c-everyday-b)}*,*::before,*::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;font-size:87%}body{margin:0;background:var(--bg);color:var(--text);font:var(--fs-body)/1.62 var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}img,svg{max-width:100%;height:auto;display:block}h1,h2,h3,h4{margin:0 0 var(--sp-2);font-family:var(--font-head);line-height:1.16;letter-spacing:-.02em;color:var(--strong);font-weight:700}h1{font-size:var(--fs-h1)}h2{font-size:var(--fs-h2)}h3{font-size:var(--fs-h3)}p,ul,ol{margin:0 0 var(--sp-2)}a{color:var(--teal);text-underline-offset:.16em}a:hover{color:var(--lime)}:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}code{font-family:var(--font-num);font-size:.95em}.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(1200px 700px at 12% -10%,rgba(56,189,248,.13),transparent 60%),radial-gradient(1000px 600px at 88% 6%,rgba(163,230,53,.10),transparent 60%),radial-gradient(900px 900px at 50% 110%,rgba(129,140,248,.12),transparent 60%),var(--bg)}.bg__orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;will-change:transform}.bg__orb--1{width:44vmax;height:44vmax;left:-14vmax;top:-12vmax;background:radial-gradient(circle,rgba(56,189,248,.55),transparent 68%);animation:drift1 34s ease-in-out infinite}.bg__orb--2{width:38vmax;height:38vmax;right:-12vmax;top:8vmax;background:radial-gradient(circle,rgba(163,230,53,.42),transparent 68%);animation:drift2 42s ease-in-out infinite}.bg__orb--3{width:40vmax;height:40vmax;left:24vmax;bottom:-18vmax;background:radial-gradient(circle,rgba(129,140,248,.45),transparent 68%);animation:drift3 38s ease-in-out infinite}.bg__orb--4{width:26vmax;height:26vmax;right:16vmax;bottom:2vmax;background:radial-gradient(circle,rgba(244,114,182,.30),transparent 68%);animation:drift2 48s ease-in-out infinite reverse}@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(9vw,7vh,0) scale(1.14)}66%{transform:translate3d(4vw,-6vh,0) scale(.92)}}@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-11vw,9vh,0) scale(1.18)}}@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(1)}40%{transform:translate3d(7vw,-9vh,0) scale(.88)}75%{transform:translate3d(-6vw,-4vh,0) scale(1.1)}}.bg__grid{position:absolute;inset:-2px;opacity:.5;overflow:hidden;mask-image:radial-gradient(ellipse 90% 65% at 50% 30%,#000 35%,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 90% 65% at 50% 30%,#000 35%,transparent 78%)}.bg__grid::before{content:"";position:absolute;inset:-64px;background-image:linear-gradient(rgba(148,171,204,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(148,171,204,.055) 1px,transparent 1px);background-size:64px 64px;animation:gridpan 24s linear infinite;will-change:transform}@keyframes gridpan{from{transform:translate3d(0,0,0)}to{transform:translate3d(64px,64px,0)}}.bg__glyphs{position:absolute;inset:0}.bg__glyphs span{position:absolute;bottom:-12vh;font-family:var(--font-num);font-weight:700;color:rgba(148,171,204,.16);user-select:none;animation:rise linear infinite;will-change:transform,opacity}.bg__glyphs span:nth-child(1){left:6%;font-size:2.6rem;animation-duration:29s;animation-delay:0s}.bg__glyphs span:nth-child(2){left:19%;font-size:1.7rem;animation-duration:37s;animation-delay:5s}.bg__glyphs span:nth-child(3){left:33%;font-size:3.1rem;animation-duration:33s;animation-delay:11s}.bg__glyphs span:nth-child(4){left:47%;font-size:1.9rem;animation-duration:41s;animation-delay:3s}.bg__glyphs span:nth-child(5){left:61%;font-size:2.4rem;animation-duration:31s;animation-delay:15s}.bg__glyphs span:nth-child(6){left:74%;font-size:1.6rem;animation-duration:44s;animation-delay:8s}.bg__glyphs span:nth-child(7){left:86%;font-size:2.9rem;animation-duration:35s;animation-delay:19s}.bg__glyphs span:nth-child(8){left:93%;font-size:1.8rem;animation-duration:39s;animation-delay:23s}@keyframes rise{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-118vh) rotate(220deg);opacity:0}}.wrap{width:min(100% - 2.5rem,var(--wrap));margin-inline:auto}.section{padding:var(--sp-4) 0;position:relative}.section--tight{padding:var(--sp-3) 0}.section--surface{background:linear-gradient(180deg,rgba(var(--ink2),.5),rgba(var(--ink2),0))}.section__lead{color:var(--text-muted);max-width:140ch;margin-bottom:var(--sp-3)}.grid{display:grid;gap:var(--sp-2)}.grid--2,.grid--3,.grid--4{grid-template-columns:1fr}.skip{position:absolute;left:-9999px}.skip:focus{left:var(--sp-2);top:var(--sp-2);z-index:99;background:var(--lime);color:#08111C;padding:.7rem 1.1rem;border-radius:var(--r-sm);font-weight:700}.site-header{position:sticky;top:0;z-index:60;padding:.75rem 0;background:linear-gradient(180deg,rgba(var(--ink),.92),rgba(var(--ink),.55) 70%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.header__inner{display:flex;align-items:center;gap:.9rem;justify-content:space-between;flex-wrap:nowrap;background:var(--panel);border:1px solid var(--border);border-radius:var(--r-full);padding:.4rem .4rem .4rem 1rem;box-shadow:var(--sh-md);position:relative}.logo img{width:164px;height:auto}.header__inner::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--brand);border-radius:var(--r-full) 0 0 var(--r-full)}.logo{display:flex;flex-shrink:0;align-items:center}.nav{display:none}.nav ul{list-style:none;display:flex;gap:.1rem;margin:0;padding:0;align-items:center;flex-wrap:nowrap}.nav a{color:var(--text-muted);text-decoration:none;font-weight:600;font-size:var(--fs-sm);padding:.45rem .68rem;border-radius:var(--r-full);display:block;white-space:nowrap;transition:color .18s,background .18s}.nav a:hover{color:var(--strong);background:rgba(148,171,204,.12)}.btn.header__cta{display:none}.nav-toggle{display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 11px;border-radius:var(--r-full);background:rgba(148,171,204,.10);border:1px solid var(--border);cursor:pointer}.nav-toggle span{display:block;height:2px;background:var(--text);border-radius:2px;transition:transform .2s,opacity .2s}.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.nav.is-open{display:block;position:absolute;top:calc(100% + .6rem);left:0;right:0;background:var(--panel-solid);border:1px solid var(--border);border-radius:var(--r-md);padding:.5rem;box-shadow:var(--sh-lg);z-index:70}.nav.is-open ul{flex-direction:column;gap:.1rem;align-items:stretch}.nav.is-open a{padding:.8rem 1rem;border-radius:var(--r-sm)}.crumbs{padding:var(--sp-3) 0 0}.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin:0;padding:0;font-size:var(--fs-xs);color:var(--text-dim)}.crumbs li+li::before{content:"›";margin-right:.4rem;color:var(--text-dim)}.crumbs a{color:var(--text-dim);text-decoration:none}.crumbs a:hover{color:var(--teal)}.hero{padding:var(--sp-5) 0 var(--sp-4)}.hero__inner{display:grid;gap:var(--sp-4);align-items:center;grid-template-columns:1fr}.hero__copy{min-width:0}.hero h1{font-size:var(--fs-display);letter-spacing:-.03em;margin-bottom:.7rem}.hero h1 em{font-style:normal;background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent}.hero__sub{font-size:1.02rem;color:var(--text-muted);margin-bottom:var(--sp-3);max-width:56ch}.hero__proof{list-style:none;display:flex;flex-wrap:wrap;gap:.45rem;padding:0;margin:var(--sp-3) 0 0;font-size:var(--fs-xs)}.hero__proof li{padding:.36rem .8rem;border-radius:var(--r-full);background:rgba(148,171,204,.08);border:1px solid var(--border);color:var(--text-muted)}.picks{background:var(--panel);border:1px solid var(--border-hi);border-radius:var(--r-xl);padding:var(--sp-3);box-shadow:var(--sh-lg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);position:relative;overflow:hidden}.picks::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--brand)}.picks__h{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);margin-bottom:var(--sp-2);font-weight:700}.picks__list{list-style:none;margin:0;padding:0;display:grid;gap:.35rem}.picks__list a{display:flex;align-items:center;gap:.7rem;padding:.6rem .7rem;border-radius:var(--r-md);text-decoration:none;color:inherit;border:1px solid transparent;transition:background .16s,border-color .16s}.picks__list a:hover{background:rgba(148,171,204,.08);border-color:color-mix(in srgb,var(--acc-a) 40%,transparent)}.picks__ico{width:2.05rem;height:2.05rem;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.05rem;background:color-mix(in srgb,var(--acc-a) 16%,rgba(148,171,204,.08));border:1px solid color-mix(in srgb,var(--acc-a) 30%,transparent)}.picks__txt{display:flex;flex-direction:column;min-width:0}.picks__txt b{font-size:var(--fs-sm);color:var(--strong);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.picks__txt span{font-size:var(--fs-xs);color:var(--text-dim)}.picks__all{display:block;margin-top:var(--sp-2);padding-top:var(--sp-2);border-top:1px solid var(--border);font-size:var(--fs-sm);font-weight:700;text-decoration:none;background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent}.eyebrow{font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:var(--sp-1);background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent}.eyebrow a{color:inherit;text-decoration:none}.lead{font-size:1.05rem;color:var(--text-muted);max-width:140ch}.tool-hero{padding:var(--sp-3) 0 var(--sp-2)}.tool-hero__icon{font-size:2.6rem;line-height:1;display:block;margin-bottom:.6rem}.badge-row{display:flex;flex-wrap:wrap;gap:.45rem;margin:var(--sp-2) 0 0}.badge{display:inline-flex;align-items:center;gap:.4rem;font-size:var(--fs-xs);font-weight:600;padding:.35rem .75rem;border-radius:var(--r-full);background:rgba(148,171,204,.09);border:1px solid var(--border);color:var(--text-muted);text-decoration:none}.badge--verified{border-color:rgba(52,211,153,.35);color:var(--ok-text);background:rgba(52,211,153,.10)}.badge--verified::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px rgba(52,211,153,.18)}a.badge--verified:hover{background:rgba(52,211,153,.18);color:var(--ok-text)}.tool{background:var(--panel);border:1px solid var(--border-hi);border-radius:var(--r-xl);padding:var(--sp-3);position:relative;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--sh-lg)}.tool::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(160deg,var(--acc-a),transparent 42%,transparent 60%,var(--acc-b));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55;pointer-events:none}.tool__grid{display:grid;gap:var(--sp-2);grid-template-columns:1fr}.tool__row{display:flex;flex-direction:column;gap:.4rem}.tool__row label,.tool__legend{font-size:var(--fs-sm);font-weight:600;color:var(--label)}.tool__hint{font-size:var(--fs-xs);color:var(--text-dim);margin:0}.tool input[type=number],.tool input[type=text],.tool input[type=date],.tool select,.tool textarea{width:100%;font:inherit;padding:.7rem .85rem;color:var(--text);border:1px solid var(--border-hi);border-radius:var(--r-sm);background:rgba(var(--ink),.62);transition:border-color .16s,box-shadow .16s}.tool input:focus,.tool select:focus,.tool textarea:focus{outline:none;border-color:var(--acc-a);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc-a) 22%,transparent)}.tool select{appearance:none;-webkit-appearance:none;padding-right:2.2rem;background-image:linear-gradient(45deg,transparent 50%,var(--text-muted) 50%),linear-gradient(135deg,var(--text-muted) 50%,transparent 50%);background-position:calc(100% - 19px) 1.25rem,calc(100% - 14px) 1.25rem;background-size:5px 5px,5px 5px;background-repeat:no-repeat}.tool fieldset{border:0;padding:0;margin:0 0 var(--sp-1);min-width:0}.tool input[type=checkbox]{width:auto;margin-right:.5rem;accent-color:var(--acc-a)}.seg{display:inline-flex;background:rgba(var(--ink),.6);border:1px solid var(--border);border-radius:var(--r-full);padding:4px;gap:3px;flex-wrap:wrap}.seg label{position:relative;cursor:pointer;margin:0}.seg input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}.seg span{display:block;padding:.45rem .95rem;border-radius:var(--r-full);font-size:var(--fs-xs);font-weight:700;color:var(--text-muted);white-space:nowrap;transition:color .16s,background .16s}.seg input:checked+span{background:var(--acc);color:var(--on-acc)}.seg input:focus-visible+span{outline:2px solid var(--teal);outline-offset:2px}.tool__out{display:block;margin-top:var(--sp-3);padding:var(--sp-3);border-radius:var(--r-lg);position:relative;overflow:hidden;background:linear-gradient(150deg,rgba(var(--ink),.85),rgba(var(--ink2),.7));border:1px solid var(--border-hi)}.tool__out::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--acc)}.tool__out::after{content:"";position:absolute;width:220px;height:220px;right:-90px;top:-90px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,color-mix(in srgb,var(--acc-a) 26%,transparent),transparent 70%)}.out__label{display:block;font-size:var(--fs-xs);letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--text-dim);margin-bottom:.35rem}.out__value{display:block;font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:clamp(2rem,5.5vw,2.9rem);font-weight:700;line-height:1.08;background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent;word-break:break-word;position:relative;z-index:1}.out__sub{display:block;margin-top:.65rem;font-size:var(--fs-sm);color:var(--text-muted);position:relative;z-index:1}.out__rows{list-style:none;margin:var(--sp-2) 0 0;padding:var(--sp-2) 0 0;border-top:1px solid var(--border);display:grid;gap:.45rem;position:relative;z-index:1}.out__rows li{display:flex;justify-content:space-between;gap:var(--sp-2);font-size:var(--fs-sm);color:var(--text-muted)}.out__rows b{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-weight:600;color:var(--hi)}.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.45rem}.chip{border:1px solid var(--border);background:rgba(var(--ink),.6);color:var(--text-muted);border-radius:var(--r-full);padding:.3rem .8rem;font:inherit;font-size:var(--fs-xs);font-weight:700;cursor:pointer;transition:color .16s,background .16s}.chip:hover{border-color:var(--border-hi);color:var(--text)}.chip[aria-pressed="true"]{background:var(--acc);color:var(--on-acc);border-color:transparent}.chip:focus-visible{outline:2px solid var(--teal);outline-offset:2px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin-top:var(--sp-2);position:relative;z-index:1}.kpi{padding:.7rem .85rem;border:1px solid var(--border);border-radius:var(--r-md);background:rgba(var(--ink),.45)}.kpi b{display:block;font-family:var(--font-num);font-variant-numeric:tabular-nums;font-size:1.1rem;color:var(--hi)}.kpi span{display:block;font-size:var(--fs-xs);color:var(--text-dim);margin-top:.15rem}.stack{display:flex;height:16px;border-radius:var(--r-full);overflow:hidden;background:rgba(148,171,204,.12);margin:var(--sp-2) 0 .6rem;position:relative;z-index:1}.stack i{display:block;min-width:2px;transition:flex-grow .3s}.stack-legend{list-style:none;display:flex;flex-wrap:wrap;gap:.35rem 1rem;margin:0;padding:0;font-size:var(--fs-xs);color:var(--text-muted);position:relative;z-index:1}.stack-legend li::before{content:"";display:inline-block;width:.6rem;height:.6rem;border-radius:3px;background:var(--sc);margin-right:.35rem}.chart{display:block;width:100%;height:auto;margin:var(--sp-2) 0 .4rem;position:relative;z-index:1}.chart__t{fill:var(--text-dim);font-size:9px}.adv{margin-top:var(--sp-2);border:1px solid var(--border);border-radius:var(--r-md);background:rgba(var(--ink),.35)}.adv summary{cursor:pointer;padding:.7rem var(--sp-3);font-weight:600;font-size:var(--fs-sm);list-style:none;color:var(--text-muted)}.adv summary::-webkit-details-marker{display:none}.adv summary::after{content:"+";float:right;font-size:1.2rem;line-height:1}.adv[open] summary::after{content:"−"}.adv .tool__grid{padding:0 var(--sp-3) var(--sp-3)}@media (prefers-reduced-motion:reduce){.stack i,.chip{transition:none}}.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25rem;text-align:center;padding:var(--sp-4) var(--sp-3);border:2px dashed var(--border-hi);border-radius:var(--r-lg);background:rgba(var(--ink),.45);color:var(--text-muted);cursor:pointer;transition:border-color .16s,background .16s}.drop b{color:var(--text);font-size:var(--fs-md,1.05rem)}.drop span{font-size:var(--fs-sm)}.drop:hover,.drop.is-over,.drop:focus-visible{border-color:var(--acc);background:rgba(var(--ink),.7);outline:none}.drop.is-over{border-style:solid}.files{list-style:none;margin:var(--sp-2) 0 0;padding:0;display:grid;gap:.5rem;position:relative;z-index:1}.files li{display:grid;grid-template-columns:auto 1fr auto;gap:.2rem .75rem;align-items:center;padding:.55rem .7rem;border:1px solid var(--border);border-radius:var(--r-md);background:rgba(var(--ink),.45);font-size:var(--fs-sm);color:var(--text-muted)}.files img{width:44px;height:44px;object-fit:cover;border-radius:6px;background:rgba(148,171,204,.12);grid-row:span 2}.files .f-name{color:var(--text);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.files .f-meta{font-size:var(--fs-xs);grid-column:2}.files a.btn,.files button{grid-column:3;grid-row:1/span 2;align-self:center}.files .f-err{color:var(--bad-text)}.tool textarea{width:100%;min-height:9rem;resize:vertical;font:inherit;color:var(--text);background:rgba(var(--ink),.6);border:1px solid var(--border);border-radius:var(--r-md);padding:.7rem .85rem}.tool textarea:focus{outline:2px solid var(--teal);outline-offset:1px}.tool input[type=range]{width:100%;accent-color:var(--acc)}.btnrow{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:var(--sp-2);position:relative;z-index:1}.tool__note{font-size:var(--fs-xs);color:var(--text-dim);margin:var(--sp-2) 0 .4rem}.tool__note strong{color:var(--text-muted);text-transform:uppercase;letter-spacing:.09em}.tool__table{width:100%;border-collapse:collapse;margin-top:var(--sp-2);font-size:var(--fs-sm)}.punnett{border-collapse:separate;border-spacing:4px;margin-top:var(--sp-2);font-family:var(--font-num)}.punnett caption{caption-side:top;text-align:left;color:var(--text-dim);font-size:var(--fs-xs);padding-bottom:.4rem}.punnett th,.punnett td{padding:.55rem .65rem;text-align:center;min-width:3.4rem;border-radius:8px}.punnett th{background:rgba(148,171,204,.14);font-weight:700;color:var(--strong)}.punnett td{background:rgba(var(--ink),.6);border:1px solid var(--border);color:var(--text)}.gpa__wrap{overflow-x:auto;margin-bottom:var(--sp-2)}.gpa__table{width:100%;border-collapse:collapse;font-size:var(--fs-sm);min-width:31rem}.gpa__table th{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.07em;color:var(--text-dim);text-align:left;padding:0 .4rem .45rem;font-weight:700}.gpa__table td{padding:.25rem .4rem;border:0;vertical-align:middle}.gpa__table input,.gpa__table select{padding:.55rem .65rem;font-size:var(--fs-sm)}.gpa__table td:first-child{width:40%}.gpa__table td:last-child{width:2.6rem}.gpa__del{width:2.1rem;height:2.1rem;border:1px solid var(--border);background:rgba(148,171,204,.08);border-radius:var(--r-sm);color:var(--text-dim);cursor:pointer;font-size:1.1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:color .16s,border-color .16s}.gpa__del:hover{color:var(--bad);border-color:var(--bad)}.share{margin-top:var(--sp-4);padding:var(--sp-3);background:var(--panel);border:1px solid var(--border);border-radius:var(--r-md)}.share__head{margin-bottom:var(--sp-2)}.share__h{font-size:var(--fs-h4);margin:0 0 .2rem;color:var(--strong)}.share__sub{margin:0;font-size:var(--fs-xs);color:var(--text-dim)}.share__list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}.share__btn{display:inline-flex;align-items:center;gap:.45rem;font:inherit;font-size:var(--fs-xs);font-weight:600;line-height:1;padding:.55rem .8rem;border-radius:999px;cursor:pointer;text-decoration:none;color:var(--text);background:var(--glass);border:1px solid var(--border-hi);transition:background .16s,border-color .16s,color .16s,transform .16s}.share__btn:hover,.share__btn:focus-visible{transform:translateY(-2px);color:#fff;background:var(--brand,var(--accent));border-color:var(--brand,var(--accent))}.share__btn:focus-visible{outline:2px solid #fff;outline-offset:2px}.share__ico{display:inline-flex;width:1.05rem;height:1.05rem;flex:0 0 auto}.share__ico svg{width:100%;height:100%;display:block}.share__btn--whatsapp{--brand:#25D366}.share__btn--facebook{--brand:#1877F2}.share__btn--x{--brand:#000}.share__btn--pinterest{--brand:#E60023}.share__btn--reddit{--brand:#FF4500}.share__btn--linkedin{--brand:#0A66C2}.share__btn--telegram{--brand:#229ED9}.share__btn--email{--brand:#5B6B82}.share__btn--copy{--brand:#8CC63F}.share__btn--native{--brand:#3E7CA6}.share__btn--x:hover,.share__btn--x:focus-visible{border-color:#fff}.share__btn--copy.is-done{background:#8CC63F;border-color:#8CC63F;color:#0A0F1A}.share__note{margin:var(--sp-2) 0 0;font-size:var(--fs-xs);color:var(--text-dim)}@media (max-width:520px){.share__list{display:grid;grid-template-columns:repeat(2,1fr);gap:.45rem}.share__list>li{display:block}.share__btn{display:flex;width:100%;justify-content:center;min-height:44px;padding:.7rem .5rem}}@media (prefers-reduced-motion:reduce){.share__btn,.share__btn:hover,.share__btn:focus-visible{transform:none}}.rateedit{margin-top:var(--sp-2);background:var(--panel);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;transition:border-color .18s}.rateedit--custom{border-color:var(--warn)}.rateedit summary{cursor:pointer;padding:.8rem var(--sp-3);list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem}.rateedit summary::-webkit-details-marker{display:none}.rateedit summary::after{content:"+";margin-left:auto;font-size:1.3rem;line-height:1;background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent}.rateedit[open] summary::after{content:"−"}.rateedit__title{font-weight:600;color:var(--strong);font-size:var(--fs-sm)}.rateedit__hint{font-size:var(--fs-xs);color:var(--text-dim)}.rateedit__body{padding:0 var(--sp-3) var(--sp-3);border-top:1px solid var(--border)}.rateedit__intro{font-size:var(--fs-xs);color:var(--text-dim);margin:var(--sp-2) 0}.rateedit__grid{display:grid;gap:var(--sp-2);grid-template-columns:1fr}.rateedit__grid input{width:100%;font:inherit;padding:.55rem .7rem;color:var(--text);border:1px solid var(--border-hi);border-radius:var(--r-sm);background:rgba(var(--ink),.62)}.rateedit__grid input:focus{outline:none;border-color:var(--acc-a);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc-a) 22%,transparent)}.rateedit__reset{margin-top:var(--sp-2);font-size:var(--fs-xs);padding:.5rem 1rem}.rateedit__warn{margin:.6rem 0 0;padding:.6rem .9rem;border-radius:var(--r-sm);font-size:var(--fs-xs);font-weight:600;color:var(--warn-text);background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3)}.rateedit__warn::before{content:"⚠ "}@media (min-width:640px){.rateedit__grid{grid-template-columns:repeat(2,1fr)}}.tool-disclaimer{margin-top:var(--sp-2);padding:var(--sp-2) var(--sp-3);border-radius:var(--r-md);font-size:var(--fs-sm);color:var(--warn-text);background:rgba(251,191,36,.09);border:1px solid rgba(251,191,36,.28)}.tool-disclaimer strong{color:var(--warn-text);display:block;margin-bottom:.2rem}.answer-box{background:var(--panel);border:1px solid var(--border-hi);border-left:4px solid var(--acc-a);border-radius:var(--r-md);padding:var(--sp-3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.answer-box__h{font-size:1.1rem;margin-bottom:.5rem;color:var(--strong)}.answer-box p:last-child{margin-bottom:0}.answer-box--warn{border-left-color:var(--warn);background:rgba(251,191,36,.07)}.formula{background:rgba(var(--ink),.82);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--sp-3);margin:var(--sp-2) 0;overflow-x:auto;position:relative}.formula::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--acc)}.formula__list{list-style:none;margin:0;padding:0;display:grid;gap:.55rem}.formula__list li{font-family:var(--font-num);font-size:.94rem;line-height:1.55;color:var(--ok-text)}.formula__list code{color:inherit;white-space:pre-wrap}.worked{background:var(--panel);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--sp-3);margin:var(--sp-2) 0}.worked__steps{list-style:none;counter-reset:w;margin:0;padding:0;display:grid;gap:.5rem}.worked__steps li{counter-increment:w;display:flex;justify-content:space-between;gap:var(--sp-2);padding-bottom:.5rem;border-bottom:1px dashed var(--border);align-items:baseline;flex-wrap:wrap}.worked__label{color:var(--text-muted);font-size:var(--fs-sm)}.worked__label::before{content:counter(w);display:inline-flex;align-items:center;justify-content:center;width:1.35rem;height:1.35rem;margin-right:.55rem;border-radius:50%;background:var(--acc);color:var(--on-acc);font-size:.7rem;font-weight:800}.worked__value{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-weight:600;color:var(--hi);overflow-wrap:anywhere;max-width:100%}.worked__result{margin:var(--sp-2) 0 0;padding-top:var(--sp-2);border-top:2px solid var(--acc-a);font-size:1.05rem;color:var(--strong)}.sources{background:var(--panel);border:1px solid var(--border-hi);border-radius:var(--r-lg);padding:var(--sp-3);position:relative;overflow:hidden;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.sources::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--acc)}.sources__h{font-size:1.08rem;margin-bottom:var(--sp-2)}.sources__list{list-style:none;margin:0 0 var(--sp-2);padding:0;display:grid;gap:.65rem}.sources__list li{padding-left:1.5rem;position:relative;font-size:var(--fs-sm)}.sources__list li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:2px;background:var(--acc);transform:rotate(45deg)}.sources__note{display:block;color:var(--text-dim);font-size:var(--fs-xs)}.sources__stamp{margin:0;font-size:var(--fs-sm);color:var(--text-muted);padding-top:var(--sp-2);border-top:1px solid var(--border)}.sources__stamp .badge{margin-right:.5rem}.card{display:flex;flex-direction:column;gap:.45rem;padding:var(--sp-3);background:var(--panel);border:1px solid var(--border);border-radius:var(--r-lg);text-decoration:none;color:inherit;position:relative;overflow:hidden;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .2s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .2s}.card::after{content:"";position:absolute;width:170px;height:170px;right:-70px;top:-70px;border-radius:50%;opacity:0;transition:opacity .25s;pointer-events:none;background:radial-gradient(circle,color-mix(in srgb,var(--acc-a) 30%,transparent),transparent 70%)}.card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--acc-a) 45%,var(--border));box-shadow:0 18px 44px rgba(0,0,0,.45);color:inherit}.card:hover::after{opacity:1}.card__icon{width:2.9rem;height:2.9rem;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:.35rem;background:color-mix(in srgb,var(--acc-a) 15%,rgba(148,171,204,.08));border:1px solid color-mix(in srgb,var(--acc-a) 30%,transparent);transition:transform .2s cubic-bezier(.2,.8,.2,1)}.card:hover .card__icon{transform:scale(1.09) rotate(-5deg)}.card h3,.card__h{font-size:1.06rem;margin:0;color:var(--strong);position:relative;z-index:1}.card p{margin:0;color:var(--text-muted);font-size:var(--fs-sm);flex:1;position:relative;z-index:1}.card__link{font-size:var(--fs-sm);font-weight:700;margin-top:.45rem;background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative;z-index:1}.card__link::after{content:" →";-webkit-text-fill-color:var(--acc-a)}.card__tag{font-size:var(--fs-xs);font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-dim)}.card__meta{display:flex;justify-content:space-between;align-items:center;gap:var(--sp-1);flex-wrap:wrap;margin-top:.5rem;position:relative;z-index:1}.card--cat .card__icon{font-size:1.7rem}.card[hidden]{display:none}.link-list{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}.link-list a{display:flex;flex-direction:column;gap:.15rem;padding:var(--sp-2) var(--sp-3);background:var(--panel);border:1px solid var(--border);border-radius:var(--r-md);text-decoration:none;color:inherit;transition:border-color .18s,transform .18s}.link-list a:hover{border-color:var(--acc-a);transform:translateX(4px)}.link-list strong{color:var(--strong)}.link-list span{color:var(--text-muted);font-size:var(--fs-sm)}.tool-promo{display:flex;flex-direction:column;gap:.3rem;padding:var(--sp-3);background:linear-gradient(140deg,rgba(var(--ink2),.9),rgba(var(--ink),.9));border:1px solid var(--border-hi);border-radius:var(--r-lg);text-decoration:none;position:relative;overflow:hidden}.tool-promo::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--acc)}.tool-promo__label{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.1em;font-weight:700;background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent}.tool-promo__title{font-family:var(--font-head);font-size:1.22rem;font-weight:700;color:var(--strong)}.tool-promo__line{color:var(--text-muted);font-size:var(--fs-sm)}.glossary{display:grid;gap:.6rem;margin:0}.glossary__item{background:var(--panel);border:1px solid var(--border);border-radius:var(--r-md);padding:var(--sp-2) var(--sp-3)}.glossary dt{font-weight:700;color:var(--strong);font-size:var(--fs-sm);margin-bottom:.2rem}.glossary dd{margin:0;color:var(--text-muted);font-size:var(--fs-sm)}.ratelog{list-style:none;margin:var(--sp-2) 0 0;padding:0 0 0 1.4rem;position:relative}.ratelog::before{content:"";position:absolute;left:.32rem;top:.5rem;bottom:.5rem;width:2px;background:linear-gradient(180deg,var(--acc-a),transparent)}.ratelog__item{position:relative;padding:0 0 var(--sp-2) .3rem;display:grid;gap:.15rem}.ratelog__item::before{content:"";position:absolute;left:-1.18rem;top:.42rem;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--border-hi)}.ratelog__item--now::before{background:var(--acc);border-color:transparent;box-shadow:0 0 0 4px color-mix(in srgb,var(--acc-a) 20%,transparent)}.ratelog__when{font-family:var(--font-num);font-size:var(--fs-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent}.ratelog__item:not(.ratelog__item--now) .ratelog__when{background:none;color:var(--text-dim);-webkit-text-fill-color:var(--text-dim)}.ratelog__what{color:var(--text-muted);font-size:var(--fs-sm)}.ad{margin:var(--sp-4) auto;text-align:center;max-width:100%;overflow:hidden;min-height:var(--ad-h,280px);display:flex;flex-direction:column;align-items:center;justify-content:center;contain:layout size}.ad::before{content:"Advertisement";font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);opacity:.65;margin-bottom:.5rem;align-self:center}.ad--leaderboard{--ad-h:110px}.ad--rect{--ad-h:280px}.ad--inarticle{--ad-h:250px}.ad ins{display:block;width:100%}.filter{background:var(--panel);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--sp-3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}.filter__label{display:block;font-size:var(--fs-sm);font-weight:600;margin-bottom:.45rem;color:var(--label)}.filter input{width:100%;font:inherit;padding:.8rem 1rem;color:var(--text);border:1px solid var(--border-hi);border-radius:var(--r-md);background:rgba(var(--ink),.62)}.filter input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(56,189,248,.22)}.filter__count{margin:.55rem 0 0;font-size:var(--fs-xs);color:var(--text-dim);min-height:1.2em}[data-catblock][hidden]{display:none}.band{padding:var(--sp-4) var(--sp-3);border-radius:var(--r-xl);text-align:center;position:relative;overflow:hidden;background:linear-gradient(140deg,rgba(var(--ink2),.92),rgba(var(--ink),.92));border:1px solid var(--border-hi)}.band::before{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--acc)}.band::after{content:"";position:absolute;width:360px;height:360px;left:50%;top:-220px;transform:translateX(-50%);border-radius:50%;pointer-events:none;background:radial-gradient(circle,color-mix(in srgb,var(--acc-a) 16%,transparent),transparent 70%)}.band h2{color:var(--strong);position:relative;z-index:1}.band p{color:var(--text-muted);max-width:58ch;margin-inline:auto;position:relative;z-index:1}.band .btn{position:relative;z-index:1}.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-height:44px;padding:.78rem 1.5rem;border-radius:var(--r-full);font-weight:700;font-size:var(--fs-sm);text-decoration:none;border:1px solid transparent;cursor:pointer;position:relative;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s,filter .18s}.btn--accent{background:var(--acc);color:var(--on-acc);box-shadow:0 8px 24px color-mix(in srgb,var(--acc-a) 28%,transparent)}.btn--accent:hover{color:var(--on-acc);transform:translateY(-2px);filter:saturate(1.15);box-shadow:0 14px 34px color-mix(in srgb,var(--acc-a) 40%,transparent)}.btn--ghost{border-color:var(--border-hi);color:var(--text);background:rgba(148,171,204,.07)}.btn--ghost:hover{border-color:var(--acc-a);color:var(--strong);transform:translateY(-2px);background:rgba(148,171,204,.13)}.btn--lg{padding:.95rem 1.9rem;font-size:1rem}.btn-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:var(--sp-2)}.header__cta.btn--accent{padding:.6rem 1.2rem}.ticks{list-style:none;padding:0;display:grid;gap:.65rem}.ticks li{position:relative;padding-left:1.75rem;color:var(--text-muted)}.ticks li::before{content:"";position:absolute;left:0;top:.5em;width:9px;height:9px;border-radius:2px;background:var(--acc);transform:rotate(45deg)}.steps{padding-left:0;list-style:none;display:grid;gap:.9rem;counter-reset:s}.steps li{counter-increment:s;position:relative;padding-left:2.5rem}.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:1.7rem;height:1.7rem;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--acc);color:var(--on-acc);font-size:.78rem;font-weight:800}.steps li strong{display:block;color:var(--strong)}.steps li span{color:var(--text-muted)}.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r-md);background:rgba(var(--ink),.5)}table{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}caption{caption-side:top;text-align:left;padding:var(--sp-2) var(--sp-2) 0;color:var(--text-dim);font-size:var(--fs-xs)}th,td{padding:.75rem .85rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text-muted)}thead th{background:rgba(148,171,204,.08);font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.07em;color:var(--label);white-space:nowrap}tbody th{font-weight:600;color:var(--strong)}tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}tbody tr:hover td,tbody tr:hover th{background:rgba(148,171,204,.04)}.table--sources td{font-size:var(--fs-xs)}.faq{display:grid;gap:.65rem}.faq__item{background:var(--panel);border:1px solid var(--border);border-radius:var(--r-md);overflow:hidden;transition:border-color .18s}.faq__item[open]{border-color:var(--border-hi)}.faq__item summary{cursor:pointer;padding:var(--sp-2) var(--sp-3);font-weight:600;color:var(--strong);list-style:none;display:flex;justify-content:space-between;gap:var(--sp-2);align-items:center}.faq__item summary::-webkit-details-marker{display:none}.faq__item summary::after{content:"+";font-size:1.45rem;font-weight:400;line-height:1;flex-shrink:0;background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent;transition:transform .2s}.faq__item[open] summary::after{content:"−"}.faq__item[open] summary{border-bottom:1px solid var(--border)}.faq__a{padding:var(--sp-3)}.faq__a p{color:var(--text-muted)}.faq__a p:last-child{margin-bottom:0}.site-footer{margin-top:var(--sp-6);padding:var(--sp-5) 0 var(--sp-3);position:relative;background:linear-gradient(180deg,rgba(var(--ink),0),rgba(var(--ink),.85) 22%)}.site-footer::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,var(--lime),var(--teal),transparent);opacity:.55}.footer__grid{display:grid;gap:var(--sp-3);grid-template-columns:1fr}.footer__brand p{color:var(--text-dim);font-size:var(--fs-sm);max-width:42ch}.footer__brand img{margin-bottom:.8rem}.footer__tagline{background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent!important;font-weight:700;font-size:var(--fs-sm);margin-bottom:.5rem}.footer__contact{margin-top:var(--sp-2);font-size:var(--fs-xs);padding:.55rem 1.1rem}.footer__contact:hover{padding-left:1.1rem}.footer__h{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--strong);margin-bottom:var(--sp-2)}.site-footer ul{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}.site-footer a{color:var(--text-muted);text-decoration:none;font-size:var(--fs-sm);transition:color .16s,padding-left .16s}.site-footer a:hover{color:var(--lime);padding-left:.25rem}.footer__cat{display:flex;align-items:center;gap:.5rem}.footer__bottom{border-top:1px solid var(--border);margin-top:var(--sp-4);padding-top:var(--sp-3);display:flex;flex-wrap:wrap;gap:.6rem;justify-content:space-between;align-items:center}.footer__bottom p{margin:0;color:var(--text-dim);font-size:var(--fs-xs)}.footer__privacy{display:inline-flex;align-items:center;gap:.45rem;padding:.35rem .8rem;border-radius:var(--r-full);background:rgba(52,211,153,.09);border:1px solid rgba(52,211,153,.26);color:var(--ok-text)!important;font-size:var(--fs-xs);font-weight:600}.muted{color:var(--text-muted)}[hidden]{display:none!important}@media (min-width:640px){.grid--2{grid-template-columns:repeat(2,1fr)}.tool__grid--2{grid-template-columns:repeat(2,1fr)}.footer__grid{grid-template-columns:repeat(2,1fr)}.grid--3{grid-template-columns:repeat(2,1fr)}}@media (min-width:980px){.grid--3{grid-template-columns:repeat(3,1fr)}.nav{display:block}.nav-toggle{display:none}.btn.header__cta{display:inline-flex}.footer__grid{grid-template-columns:1.5fr 1fr 1fr 1fr}.tool{padding:var(--sp-4)}.tool__grid--3{grid-template-columns:repeat(3,1fr)}.hero__inner{grid-template-columns:1.4fr .78fr;gap:var(--sp-5)}}@media (min-width:1240px){.grid--3{grid-template-columns:repeat(3,1fr)}.grid--4{grid-template-columns:repeat(4,1fr)}}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.bg__orb,.bg__grid::before,.bg__glyphs span{animation:none!important}.bg__glyphs{display:none}.card:hover{transform:none}.btn:hover{transform:none}}@media print{.bg,.site-header,.site-footer,.crumbs,.band,.btn{display:none}body{background:#fff;color:#000}.tool,.sources,.worked,.answer-box,.card{box-shadow:none;border:1px solid #999;background:#fff;backdrop-filter:none}h1,h2,h3,.out__value,.card__link{color:#000!important;-webkit-text-fill-color:#000!important}.formula__list li{color:#000}}.tool [hidden]{display:none!important}.files .f-act{grid-column:3;grid-row:1/span 2;display:flex;gap:.3rem;align-self:center}.files .f-act .btn{padding:.35rem .7rem;min-width:2.2rem}.files .f-act .btn[disabled]{opacity:.35;pointer-events:none}.diff{white-space:pre-wrap;word-break:break-word;margin:var(--sp-2) 0 0;padding:.8rem 1rem;border:1px solid var(--border);border-radius:var(--r-md);background:rgba(var(--ink),.55);font:inherit;font-size:var(--fs-sm);line-height:1.6;color:var(--text);position:relative;z-index:1}.diff ins{background:rgba(52,211,153,.22);text-decoration:underline;text-decoration-color:rgba(52,211,153,.8)}.diff del{background:rgba(255,122,107,.22);text-decoration:line-through}.tool__out textarea{margin-top:var(--sp-2);position:relative;z-index:1}.serp{background:#fff;border-radius:var(--r-md);padding:.9rem 1rem;margin:var(--sp-2) 0 0;font-family:Arial,Helvetica,sans-serif;position:relative;z-index:1;max-width:100%;overflow:hidden}.serp__url{color:#202124;font-size:12px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.serp__title{color:#1a0dab;font-size:20px;line-height:1.3;margin:.1rem 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.serp__desc{color:#4d5156;font-size:14px;line-height:1.58}.faqrow{display:grid;grid-template-columns:1fr auto;gap:.5rem;margin-bottom:.8rem;padding:.7rem;border:1px solid var(--border);border-radius:var(--r-md);background:rgba(var(--ink),.35)}.faqrow input{grid-column:1/-1}.faqrow textarea{min-height:4.5rem}.faqrow .btn{align-self:start}.tool input[type=text],.tool input[type=date]{width:100%}.rec__video{display:block;width:100%;max-height:420px;margin-top:var(--sp-2);border-radius:var(--r-md);background:#000;position:relative;z-index:1}.tool audio{display:block;width:100%;margin-top:var(--sp-2);position:relative;z-index:1}.meter{height:12px;border-radius:var(--r-full);background:rgba(148,171,204,.14);overflow:hidden;margin-top:var(--sp-2);position:relative;z-index:1}.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ok),#FBBF24 70%,#FF7A6B);transition:width .08s linear}.calc{max-width:460px;margin-inline:auto}.calc--sci{max-width:560px}.calc__screen{background:rgba(var(--ink),.7);border:1px solid var(--border-hi);border-radius:var(--r-md);padding:.75rem 1rem;margin-bottom:.7rem;text-align:right;overflow:hidden}.calc__expr{min-height:1.3rem;font-family:var(--font-num);font-size:var(--fs-sm);color:var(--text-muted);white-space:nowrap;overflow-x:auto}.calc__val{font-family:var(--font-num);font-size:clamp(1.7rem,6vw,2.4rem);font-weight:600;line-height:1.25;word-break:break-all;color:var(--text)}.calc__in{width:100%;background:transparent;border:0;outline:0;text-align:right;font-family:var(--font-num);font-size:clamp(1.15rem,4vw,1.5rem);color:var(--text);padding:.15rem 0}.calc__res{min-height:1.9rem;font-family:var(--font-num);font-size:clamp(1.4rem,5vw,1.9rem);font-weight:600;color:var(--lime);word-break:break-all}.calc__res--err{color:var(--bad);font-size:var(--fs-body);font-weight:500}.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;margin-bottom:.45rem}.keys--5{grid-template-columns:repeat(5,1fr)}.keys--sm .key{min-height:2.45rem;font-size:.84rem}.key{min-height:3rem;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--panel-solid);color:var(--text);font:600 1.05rem var(--font-body);cursor:pointer;transition:background .12s,transform .06s,border-color .12s;padding:0 .2rem}.key:hover{background:var(--panel-hi);border-color:var(--border-hi)}.key:active{transform:scale(.96)}.key:focus-visible{outline:2px solid var(--teal);outline-offset:2px}.key--op{color:var(--lime)}.key--fn{color:var(--teal)}.key--clr{color:var(--bad)}.key--eq{background:var(--acc);color:var(--on-acc);border-color:transparent}.key--eq:hover{background:var(--acc);filter:saturate(1.15)}.key--w2{grid-column:span 2}.key--w3{grid-column:span 3}.calc__hist{list-style:none;margin:.8rem 0 0;padding:0;display:grid;gap:.3rem;font-family:var(--font-num);font-size:var(--fs-sm)}.calc__hist button{width:100%;text-align:right;background:transparent;border:0;border-bottom:1px solid var(--border);color:var(--text-muted);padding:.3rem .2rem;cursor:pointer;font:inherit}.calc__hist button:hover{color:var(--text)}@media (prefers-reduced-motion:reduce){.key{transition:none}}.hsearch__lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.hsearch__btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;margin-left:auto;border-radius:var(--r-full);background:rgba(148,171,204,.10);border:1px solid var(--border);color:var(--text);cursor:pointer;flex-shrink:0}.hsearch__btn:hover,.hsearch__btn[aria-expanded="true"]{border-color:var(--border-hi);background:rgba(148,171,204,.18)}.hsearch__panel{display:none}.hsearch.is-open .hsearch__panel{display:block;position:absolute;top:calc(100% + .6rem);left:0;right:0;z-index:75}.hsearch__form{display:flex;align-items:center;gap:.55rem;background:var(--panel-solid);border:1px solid var(--border-hi);border-radius:var(--r-full);padding:0 1rem;color:var(--text-muted);box-shadow:var(--sh-md)}.hsearch__form:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px rgba(56,189,248,.2)}.hsearch__form input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:var(--text);font:inherit;font-size:var(--fs-body);padding:.7rem 0;-webkit-appearance:none;appearance:none}.hsearch__form input::-webkit-search-cancel-button{-webkit-appearance:none}.hsearch__list{margin-top:.45rem;padding:.35rem;background:var(--panel-solid);border:1px solid var(--border-hi);border-radius:var(--r-md);box-shadow:var(--sh-lg);max-height:min(68vh,28rem);overflow-y:auto;overscroll-behavior:contain}.hsearch__list[hidden]{display:none}.hsearch__opt{display:flex;align-items:center;gap:.7rem;padding:.55rem .7rem;border-radius:var(--r-sm);color:var(--text);text-decoration:none}.hsearch__opt:hover,.hsearch__opt[aria-selected="true"]{background:rgba(148,171,204,.16);color:var(--text)}.hsearch__opt[aria-selected="true"]{box-shadow:inset 3px 0 0 var(--lime)}.hsearch__ico{flex:0 0 1.7rem;text-align:center;font-size:1.25rem;line-height:1}.hsearch__txt{display:flex;flex-direction:column;min-width:0;flex:1}.hsearch__t{font-weight:600;font-size:var(--fs-sm);line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hsearch__t mark{background:rgba(163,230,53,.28);color:inherit;border-radius:3px;padding:0 1px}.hsearch__g{font-size:var(--fs-xs);color:var(--text-dim)}.hsearch__tag{flex-shrink:0;font-size:var(--fs-xs);color:var(--teal);border:1px solid var(--border);border-radius:var(--r-full);padding:.05rem .5rem}.hsearch__all{justify-content:center;color:var(--lime);font-weight:600;font-size:var(--fs-sm)}.hsearch__none{padding:.9rem 1rem;color:var(--text-muted);font-size:var(--fs-sm)}.hsearch__none a{color:var(--lime)}@media (min-width:1240px){.hsearch__btn{display:none}.hsearch{position:relative;flex:0 1 250px;min-width:190px}.hsearch__panel{display:block;position:relative}.hsearch__form{box-shadow:none;background:rgba(var(--ink),.55)}.hsearch__list{position:absolute;top:100%;right:0;width:min(430px,92vw);z-index:80}}@media (max-width:1239px){.hsearch{margin-left:auto}.hsearch__btn{margin-left:0}}@media (min-width:980px) and (max-width:1099px){.nav li:last-child{display:none}}.rec__count{font-size:clamp(3rem,12vw,6rem);font-weight:700;line-height:1;text-align:center;color:var(--lime);padding:.4rem 0;font-family:var(--font-num)}.rec__count[hidden]{display:none}.ann__bar{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:.9rem 0 .6rem}.ann__bar .chip{padding:.35rem .65rem}.ann__sep{width:1px;align-self:stretch;background:var(--border);margin:0 .2rem}.ann__sw{width:1.55rem;height:1.55rem;border-radius:50%;border:2px solid var(--border-hi);cursor:pointer;padding:0}.ann__sw[aria-pressed="true"]{outline:2px solid var(--lime);outline-offset:2px}.ann__bar input[type=color]{width:2rem;height:1.7rem;padding:0;border:1px solid var(--border-hi);border-radius:6px;background:transparent;cursor:pointer}.ann__bar select{max-width:7.5rem}.ann__stage{position:relative;background:repeating-conic-gradient(#0f1a2d 0 25%,#0b1322 0 50%) 0 0/18px 18px;border:1px solid var(--border);border-radius:var(--r-md);overflow:auto;max-height:78vh}.ann__stage canvas{display:block;max-width:100%;height:auto;margin:0 auto;touch-action:none;cursor:crosshair}.ann__text{position:absolute;min-width:9rem;max-width:80%;background:rgba(var(--ink),.55);border:1px dashed var(--lime);border-radius:6px;padding:.1rem .3rem;resize:none;outline:0;line-height:1.25;overflow:hidden}.pgrid{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem}.pgcard{background:var(--panel-solid);border:1px solid var(--border);border-radius:var(--r-sm);padding:.5rem;cursor:grab;display:flex;flex-direction:column;gap:.35rem}.pgcard.is-drag{opacity:.45}.pgcard.is-over{border-color:var(--lime);box-shadow:0 0 0 2px rgba(163,230,53,.35)}.pgcard__img{height:170px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border-radius:4px}.pgcard__img canvas{display:block;transition:transform .2s}.pgcard__bar{display:flex;justify-content:space-between;font-size:var(--fs-xs);color:var(--text-muted)}.pgcard__n{font-weight:700;color:var(--text)}.pgcard__btns{display:flex;gap:.25rem;flex-wrap:wrap}.pgcard__b{flex:1;min-width:1.9rem;border:1px solid var(--border);background:rgba(148,171,204,.08);color:var(--text);border-radius:6px;padding:.25rem 0;cursor:pointer;font-size:.85rem}.pgcard__b:hover{border-color:var(--border-hi);background:rgba(148,171,204,.18)}.sgstage{position:relative;display:block;width:fit-content;max-width:100%;margin:.8rem auto;border:1px solid var(--border-hi);background:#fff}.sgstage canvas{display:block;max-width:100%}.sgover{position:absolute;left:0;top:0;pointer-events:none}.sgel{position:absolute;pointer-events:auto;cursor:move;touch-action:none;border:1px dashed transparent;padding:2px;user-select:none;-webkit-user-select:none}.sgel.is-sel{border-color:#0ea5e9;background:rgba(14,165,233,.08)}.sgel img{display:block;max-width:none}.sgpad{display:block;width:100%;max-width:560px;height:auto;background:#fff;border:1px solid var(--border-hi);border-radius:var(--r-sm);touch-action:none;cursor:crosshair}.pk__row{display:flex;align-items:center;gap:.8rem}.pk__sw{width:56px;height:56px;border-radius:12px;border:2px solid var(--border-hi);background:#888;flex-shrink:0}.pk__loupe{position:absolute;right:8px;top:8px;width:90px;height:90px;border:2px solid #fff;border-radius:8px;box-shadow:var(--sh-md);image-rendering:pixelated;pointer-events:none;background:#000}.pk__loupe[hidden]{display:none}.pk__pal{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0}.pal{display:flex;flex-direction:column;align-items:center;gap:.2rem;border:1px solid var(--border);background:var(--panel-solid);color:var(--text);border-radius:var(--r-sm);padding:.4rem;cursor:pointer;font-size:var(--fs-xs)}.pal:hover{border-color:var(--border-hi)}.pal__c{width:64px;height:44px;border-radius:6px;border:1px solid var(--border-hi)}.pal b{font-family:var(--font-num)}.pal small{color:var(--text-muted)}.scanres{display:flex;flex-direction:column;gap:.3rem;align-items:flex-start;padding:.6rem .8rem;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--panel-solid)}.scanres__k{font-size:var(--fs-xs);color:var(--teal);text-transform:uppercase;letter-spacing:.04em}.scanres__t{display:block;max-width:100%;word-break:break-all;white-space:pre-wrap;font-family:var(--font-num);font-size:var(--fs-sm)}.scanres__n{font-size:var(--fs-sm);color:var(--text-muted)}.rowgrid{display:grid;gap:.6rem;grid-template-columns:1fr 1fr;margin:0 0 .9rem;padding-bottom:.9rem;border-bottom:1px solid var(--border)}.rowgrid>:first-child{grid-column:1/-1}.rowgrid__day{font-weight:600;margin:0}@media (min-width:700px){.rowgrid--debt{grid-template-columns:1.4fr 1fr 1fr 1fr;border-bottom:0;padding-bottom:0;margin-bottom:.4rem}.rowgrid--tc{grid-template-columns:.7fr 1fr 1fr 1fr;border-bottom:0;padding-bottom:0;margin-bottom:.4rem;align-items:end}.rowgrid>:first-child{grid-column:auto}}.tool__chk{display:inline-flex;align-items:center;gap:.3rem;margin:0 .8rem .3rem 0;cursor:pointer}.tool-hero{padding:var(--sp-2) 0 var(--sp-1)}.tool-hero .lead{font-size:1rem;max-width:140ch;margin-bottom:.6rem}.tool-hero h1{margin-bottom:.35rem}.tool-hero .badge-row{margin-bottom:0}.section--tool{padding-top:.4rem}@media (min-width:700px){.tool-hero .wrap{display:grid;grid-template-columns:auto 1fr;column-gap:1rem;align-items:center}.tool-hero__icon{grid-row:1/span 4;margin:0;font-size:2.2rem}.tool-hero .wrap>:not(.tool-hero__icon){grid-column:2}.tool-hero .eyebrow{margin-bottom:.1rem}}@media (min-width:980px){.tool{padding:var(--sp-2) var(--sp-3)}.tool__grid--2,.tool__grid--3{grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}}.theme-btn{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:var(--r-full);background:rgba(148,171,204,.10);border:1px solid var(--border);color:var(--text);cursor:pointer;flex-shrink:0}.theme-btn:hover{border-color:var(--border-hi);background:rgba(148,171,204,.18)}.theme-btn svg{display:block;width:20px;height:20px}.theme-btn .ico-moon{display:none}html[data-theme="light"] .theme-btn .ico-sun{display:none}html[data-theme="light"] .theme-btn .ico-moon{display:block}.logo .logo--dark,.footer__brand .logo--dark{display:none}html[data-theme="light"] .logo--light{display:none}html[data-theme="light"] .logo .logo--dark,html[data-theme="light"] .footer__brand .logo--dark{display:block}html[data-theme="light"]{color-scheme:light;--bg:#F3F6FB;--bg-2:#E9EFF8;--bg-3:#DFE8F4;--panel:rgba(255,255,255,.9);--panel-solid:#fff;--panel-hi:rgba(238,243,250,.96);--border:rgba(51,65,85,.18);--border-hi:rgba(51,65,85,.34);--text:#142033;--text-muted:#46566E;--text-dim:#5A6A82;--strong:#0A1424;--label:#2B3A52;--hi:#1B2A41;--on-acc:#fff;--ink:236,242,250;--ink2:228,236,247;--lime:#3F7D0C;--teal:#0369A1;--brand:linear-gradient(135deg,#3F8F0F 0%,#0369A1 100%);--acc-a:#3F8F0F;--acc-b:#0369A1;--ok-text:#047857;--warn-text:#7A4A00;--bad-text:#B4233A;--glass:rgba(15,27,45,.05);--c-tax-a:#D13B28;--c-tax-b:#C96A0A;--c-benefits-a:#1D6FD1;--c-benefits-b:#0A7FA6;--c-legal-a:#6D4ADB;--c-legal-b:#9333EA;--c-gpa-a:#A86B00;--c-gpa-b:#8F5A06;--c-money-a:#0E8F67;--c-money-b:#0B7A5A;--c-math-a:#0B8BA8;--c-math-b:#0E7490;--c-trades-a:#C25A0B;--c-trades-b:#A8480A;--c-sport-a:#C93684;--c-sport-b:#A8195F;--c-everyday-a:#4C5DE0;--c-everyday-b:#4338CA;--sh-md:0 10px 30px rgba(30,50,90,.14);--sh-lg:0 24px 60px rgba(30,50,90,.18)}html[data-theme="light"] .bg__orb{opacity:.28}html[data-theme="light"] .bg__grid::before{background-image:linear-gradient(rgba(51,65,85,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(51,65,85,.07) 1px,transparent 1px)}html[data-theme="light"] .bg__glyphs span{color:rgba(51,65,85,.13)}html[data-theme="light"] .nav a:hover{background:rgba(51,65,85,.08)}html[data-theme="light"] .site-header{background:linear-gradient(180deg,rgba(243,246,251,.94),rgba(243,246,251,.6) 70%,transparent)}html[data-theme="light"] .badge--verified{background:rgba(4,120,87,.1)}html[data-theme="light"] .tool{box-shadow:var(--sh-md)}html[data-theme="light"] .tool::before{opacity:.35}html[data-theme="light"] .card:hover{box-shadow:0 14px 34px rgba(30,50,90,.16)}html[data-theme="light"] .footer__privacy{color:var(--ok-text)!important;background:rgba(4,120,87,.1);border-color:rgba(4,120,87,.3)}html[data-theme="light"] .site-footer a{color:var(--text-muted)}html[data-theme="light"] .site-footer a:hover{color:var(--lime)}html[data-theme="light"] .site-footer .footer__h{color:var(--strong)}html[data-theme="light"] .rec__video{background:#000}html[data-theme="light"] .hsearch__form{background:#fff}@media (max-width:420px){.header__inner{gap:.35rem;padding:.3rem .3rem .3rem .7rem}.logo img{width:118px}.hsearch__btn,.theme-btn,.nav-toggle{width:38px;height:38px}.nav-toggle{padding:0 9px;gap:4px}}@media (max-width:340px){.logo img{width:100px}.hsearch__btn,.theme-btn,.nav-toggle{width:34px;height:34px}.nav-toggle{padding:0 8px}}@media (max-width:719px){main table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}}main code,.tool li,.tool output,.formula__list li{overflow-wrap:anywhere}.tool,.tool *{min-width:0}main strong,main b,main a{overflow-wrap:anywhere}.footer__brand .footer__privacy{align-self:flex-start;margin-top:var(--sp-2)}@media (min-width:980px){.footer__grid{align-items:stretch}.footer__grid>div{display:flex;flex-direction:column}.footer__grid>div>ul{flex:1;grid-auto-rows:1fr;align-content:stretch}.footer__grid>div>ul>li{display:flex;align-items:center}.footer__brand .footer__privacy{margin-top:auto}}@media (min-width:520px) and (max-width:979px){.footer__grid{grid-template-columns:repeat(2,1fr)}}</style>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RRMD8LPQTJ');
+  (function(){
+    var done = false;
+    function load(){
+      if (done) return;
+      done = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-RRMD8LPQTJ';
+      document.head.appendChild(s);
+    }
+    ['pointerdown','keydown','touchstart','scroll'].forEach(function(e){
+      addEventListener(e, load, {once:true, passive:true});
+    });
+    addEventListener('load', function(){ setTimeout(load, 1200); }, {once:true});
+  })();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"Organization",
+ "@id":"https://calculatorplus.ca/#organization",
+ "name":"CalculatorPlus",
+ "url":"https://calculatorplus.ca/",
+ "slogan":"Clear insight. Precise results.",
+ "logo":{"@type":"ImageObject","url":"https://calculatorplus.ca/assets/images/logo.svg"},
+ "address":{"@type":"PostalAddress","addressCountry":"CA"},
+ "areaServed":{"@type":"Country","name":"Canada"},
+ "knowsLanguage":"en-CA",
+ "contactPoint":{"@type":"ContactPoint","contactType":"customer support",
+   "url":"https://calculatorplus.ca/contact/","availableLanguage":"English"}
+},
+{"@type":"WebSite",
+ "@id":"https://calculatorplus.ca/#website",
+ "name":"CalculatorPlus",
+ "url":"https://calculatorplus.ca/",
+ "inLanguage":"en-CA",
+ "publisher":{"@id":"https://calculatorplus.ca/#organization"},
+ "potentialAction":{"@type":"SearchAction",
+   "target":{"@type":"EntryPoint","urlTemplate":"https://calculatorplus.ca/tools/?q={search_term_string}"},
+   "query-input":"required name=search_term_string"}
+}
+]}
+</script><script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication",
+"name":"Ontario Works eligibility calculator",
+"applicationCategory":"FinanceApplication",
+"applicationSubCategory":"Calculator",
+"operatingSystem":"Any",
+"browserRequirements":"Requires JavaScript",
+"description":"Estimate Ontario Works assistance from household size, shelter cost and income, using the basic needs and shelter maximums from the current OW directives.",
+"url":"https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/",
+"inLanguage":"en-CA",
+"isAccessibleForFree":true,
+"publisher":{"@id":"https://calculatorplus.ca/#organization"},
+"offers":{"@type":"Offer","price":"0","priceCurrency":"CAD"}
+,"dateModified":"2026-10-23"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo",
+"name":"How to estimate your Ontario Works assistance",
+"description":"A single person with no dependants can receive up to $343 a month for basic needs plus a shelter allowance of up to $390, for a maximum of $733. Shelter is paid at your actual cost up to that maximum. Employment income reduces assistance after the first $200 is exempted, plus half of the remainder.",
+"inLanguage":"en-CA",
+"step":[{"@type":"HowToStep","position":1,"name":"Find your basic needs amount","text":"This is set by household composition \u2014 $343 for a single adult with no dependants, $494 for a couple."},{"@type":"HowToStep","position":2,"name":"Add shelter, capped at the maximum","text":"Shelter is paid at your actual cost up to $390 for one person, rising to $844 for six or more."},{"@type":"HowToStep","position":3,"name":"Work out your earnings exemption","text":"The first $200 of monthly net employment income is exempt, plus half of anything above that."},{"@type":"HowToStep","position":4,"name":"Subtract chargeable income","text":"Take the non-exempt portion of your income off the combined basic needs and shelter total."}]}
+</script>
+</head>
+<body class="t-benefits">
+<div class="bg" aria-hidden="true">
+  <span class="bg__orb bg__orb--1"></span>
+  <span class="bg__orb bg__orb--2"></span>
+  <span class="bg__orb bg__orb--3"></span>
+  <span class="bg__orb bg__orb--4"></span>
+  <span class="bg__grid"></span>
+  <span class="bg__glyphs">
+    <span>+</span><span>%</span><span>&divide;</span><span>&radic;</span>
+    <span>&times;</span><span>&pi;</span><span>=</span><span>&minus;</span>
+  </span>
+</div><a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header__inner">
+    <a class="logo" href="/" aria-label="CalculatorPlus home">
+      <img class="logo--light" src="/assets/images/logo-light.svg?v=53280225" alt="CalculatorPlus" width="188" height="32"><img class="logo--dark" src="/assets/images/logo.svg?v=1fc3dda2" alt="" width="188" height="32">
+    </a>
+    <nav class="nav" id="mnav" aria-label="Main">
+      <ul>
+<li><a href="/tools/">All tools</a></li><li><a href="/categories/canadian-tax/">Canadian tax</a></li><li><a href="/categories/benefits-immigration/">Benefits</a></li><li><a href="/categories/pdf-tools/">PDF tools</a></li><li><a href="/categories/image-tools/">Image tools</a></li><li><a href="/categories/university-gpa/">University GPA</a></li><li><a href="/blog/">Guides</a></li><li><a href="/sources/">Our sources</a></li>      </ul>
+    </nav>
+    <div class="hsearch" data-hsearch data-index="/assets/data/search-index.6853ee37.json">
+      <div class="hsearch__panel">
+        <form class="hsearch__form" role="search" action="/tools/" method="get">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label class="hsearch__lbl" for="hs-q">Search tools</label>
+          <input id="hs-q" name="q" type="search" placeholder="Search tools…" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" role="combobox" aria-expanded="false" aria-controls="hs-list" aria-autocomplete="list">
+        </form>
+        <div class="hsearch__list" id="hs-list" role="listbox" aria-label="Search results" hidden></div>
+        <p class="hsearch__live hsearch__lbl" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <button class="hsearch__btn" type="button" aria-label="Search tools" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+    <button class="theme-btn" type="button" aria-label="Switch to light theme" aria-pressed="false" data-theme-toggle><svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header><main id="main">
+<nav class="crumbs wrap" aria-label="Breadcrumb"><ol>
+<li><a href="/">Home</a></li><li><a href="/tools/">Calculators</a></li><li><a href="/categories/benefits-immigration/">Benefits</a></li><li><span aria-current="page">Ontario Works calculator</span></li></ol></nav>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://calculatorplus.ca/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://calculatorplus.ca/tools/"},{"@type":"ListItem","position":3,"name":"Benefits","item":"https://calculatorplus.ca/categories/benefits-immigration/"},{"@type":"ListItem","position":4,"name":"Ontario Works calculator","item":"https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/"}]}</script>
+<section class="tool-hero">
+  <div class="wrap">
+    <span class="tool-hero__icon" aria-hidden="true">🤝</span>
+    <p class="eyebrow"><a href="/categories/benefits-immigration/">🛂 Benefits</a></p>
+    <h1>Ontario Works eligibility calculator</h1>
+<p class="lead">Enter your household, rent and any employment income to see an estimate built from the published directive rates.</p>    <p class="badge-row">
+      <span class="badge">Free &middot; no signup</span>
+      <span class="badge">Runs in your browser</span>
+    </p>
+  </div>
+</section>
+
+<section class="section section--tight section--tool">
+  <div class="wrap">
+    <div class="tool" id="tool" data-tool="ontario-works-eligibility-calculator">
+      <div class="tool__grid tool__grid--2"><div class="tool__row"><label for="ow-house">Your household</label><select id="ow-house"><option value="single" selected>Single adult</option><option value="couple">Couple</option></select></div><div class="tool__row"><label for="ow-kids">Dependent children under 18</label><input id="ow-kids" type="number" min="0" max="6" step="1" value="0" inputmode="numeric"></div><div class="tool__row"><label for="ow-adults">Dependants aged 18 or over</label><input id="ow-adults" type="number" min="0" max="3" step="1" value="0" inputmode="numeric"></div><div class="tool__row"><label for="ow-rent">Monthly shelter cost</label><input id="ow-rent" type="number" min="0" step="10" value="700" inputmode="decimal"><p class="tool__hint">Rent or mortgage, plus heating and utilities.</p></div><div class="tool__row"><label for="ow-income">Monthly net employment income</label><input id="ow-income" type="number" min="0" step="50" value="400" inputmode="decimal"></div></div><output class="tool__out"><span class="out__label">Estimated monthly assistance</span><span class="out__value" id="ow-out">&mdash;</span><ul class="out__rows" id="ow-rows"></ul><span class="out__sub" id="ow-sub"></span></output>
+    </div>
+    <noscript>
+      <div class="answer-box answer-box--warn">
+        <p><strong>This calculator needs JavaScript to run.</strong> Nothing is sent to a server &mdash; the maths happens on your own device, which is why the script is required.</p>
+<p>You can work it out by hand instead:</p>
+        <ul class="formula__list"><li><code>basic needs   =  fixed amount for your household composition</code></li><li><code>shelter       =  the lower of your actual shelter cost and the maximum</code></li><li><code>               1 person $390    4 people $756</code></li><li><code>               2 people $642    5 people $815</code></li><li><code>               3 people $697    6 or more $844</code></li><li><code></code></li><li><code>earnings exemption  =  first $200, plus 50% of the remainder</code></li><li><code>assistance          =  basic needs + shelter − (income − exemption)</code></li></ul>      </div>
+    </noscript>
+
+<details class="rateedit">
+  <summary>
+    <span class="rateedit__title">Working with a different rate?</span>
+    <span class="rateedit__hint">Edit the rates this calculator uses</span>
+  </summary>
+  <div class="rateedit__body" data-rates>
+    <p class="rateedit__intro">
+      These are the figures we verified on 2026-10-23. Change them to work with a
+      historic period, or with a new rate that has been announced but which we have not published yet.
+    </p>
+    <div class="rateedit__grid">
+      <div class="tool__row">
+        <label for="rate-owadj">Change every basic needs and shelter amount by (%)</label>
+        <input id="rate-owadj" type="number" step="0.1"
+               min="0" value="0" data-default="0" inputmode="decimal">
+<p class="tool__hint">For a yearly increase or a figure you have been told. 1.9 means 1.9% higher.</p>      </div>
+      <div class="tool__row">
+        <label for="rate-owexempt">Monthly earnings that are fully exempt ($)</label>
+        <input id="rate-owexempt" type="number" step="1"
+               min="0" value="200" data-default="200" inputmode="decimal">
+      </div>
+      <div class="tool__row">
+        <label for="rate-owshare">Share of earnings above that which is also exempt (%)</label>
+        <input id="rate-owshare" type="number" step="1"
+               min="0" value="50" data-default="50" inputmode="decimal">
+      </div>
+    </div>
+    <button type="button" class="btn btn--ghost rateedit__reset" data-ratereset>
+      Reset to verified rates
+    </button>
+  </div>
+</details>
+<p class="rateedit__warn" data-ratewarn hidden></p>
+
+    <div class="tool-disclaimer" role="note">
+      <strong>An estimate, not an eligibility decision.</strong>Ontario Works eligibility depends on asset limits, residency, participation requirements and a full review of your circumstances by a caseworker. This tool estimates a payment amount from published rates only, and cannot tell you whether you qualify. Apply through your local Ontario Works office.
+    </div>
+
+
+<section class="share" aria-labelledby="share-h">
+  <div class="share__head">
+    <h2 class="share__h" id="share-h">Know someone this would help?</h2>
+    <p class="share__sub">Send it on. It is free, needs no account, and works on any phone.</p>
+  </div>
+
+  <ul class="share__list">
+    <li>
+      <a class="share__btn share__btn--whatsapp"
+         href="https://api.whatsapp.com/send?text=Ontario%20Works%20eligibility%20calculator%20%E2%80%94%20free%2C%20runs%20in%20your%20browser%2C%20and%20shows%20the%20formula%20it%20used.%20CalculatorPlus%20https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/"
+         target="_blank" rel="noopener nofollow">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35M12.04 21.5h-.01a9.5 9.5 0 0 1-4.83-1.32l-.35-.21-3.59.94.96-3.5-.23-.36a9.44 9.44 0 0 1-1.45-5.05c0-5.23 4.27-9.49 9.51-9.49a9.44 9.44 0 0 1 6.72 2.79 9.4 9.4 0 0 1 2.78 6.71c0 5.23-4.27 9.49-9.51 9.49M20.5 3.49A11.44 11.44 0 0 0 12.04 0C5.7 0 .54 5.15.53 11.49c0 2.02.53 4 1.53 5.74L.43 24l6.9-1.81a11.5 11.5 0 0 0 5.49 1.4h.01c6.34 0 11.5-5.15 11.5-11.49a11.4 11.4 0 0 0-3.37-8.12"/></svg>
+        </span>
+        <span>WhatsApp</span>
+      </a>
+    </li>
+    <li>
+      <a class="share__btn share__btn--facebook"
+         href="https://www.facebook.com/sharer/sharer.php?u=https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/"
+         target="_blank" rel="noopener nofollow">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07"/></svg>
+        </span>
+        <span>Facebook</span>
+      </a>
+    </li>
+    <li>
+      <a class="share__btn share__btn--x"
+         href="https://twitter.com/intent/tweet?url=https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/&amp;text=Ontario%20Works%20eligibility%20calculator%20%E2%80%94%20free%2C%20runs%20in%20your%20browser%2C%20and%20shows%20the%20formula%20it%20used.%20CalculatorPlus"
+         target="_blank" rel="noopener nofollow">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.22-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23zm-1.16 17.52h1.83L7.08 4.13H5.11z"/></svg>
+        </span>
+        <span>X</span>
+      </a>
+    </li>
+    <li>
+      <a class="share__btn share__btn--pinterest"
+         href="https://pinterest.com/pin/create/button/?url=https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/&amp;media=https%3A//calculatorplus.ca/assets/images/og/ontario-works-eligibility-calculator.png&amp;description=Ontario%20Works%20eligibility%20calculator%20%E2%80%94%20free%2C%20runs%20in%20your%20browser%2C%20and%20shows%20the%20formula%20it%20used.%20CalculatorPlus"
+         target="_blank" rel="noopener nofollow">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.43 7.63 11.17-.11-.95-.2-2.41.04-3.44.22-.94 1.4-5.96 1.4-5.96s-.36-.72-.36-1.78c0-1.67.97-2.91 2.17-2.91 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-1 4-.28 1.19.6 2.16 1.77 2.16 2.13 0 3.76-2.24 3.76-5.48 0-2.86-2.06-4.87-5-4.87-3.41 0-5.41 2.55-5.41 5.19 0 1.03.4 2.13.89 2.73.1.12.11.22.08.34-.09.38-.29 1.19-.33 1.35-.05.22-.17.27-.4.16-1.5-.7-2.43-2.89-2.43-4.65 0-3.79 2.75-7.27 7.93-7.27 4.16 0 7.4 2.97 7.4 6.93 0 4.14-2.61 7.47-6.23 7.47-1.22 0-2.36-.63-2.75-1.38l-.75 2.85c-.27 1.04-1 2.35-1.49 3.15 1.12.35 2.31.53 3.55.53 6.63 0 12-5.37 12-12S18.63 0 12 0"/></svg>
+        </span>
+        <span>Pinterest</span>
+      </a>
+    </li>
+    <li>
+      <a class="share__btn share__btn--reddit"
+         href="https://www.reddit.com/submit?url=https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/&amp;title=Ontario%20Works%20eligibility%20calculator"
+         target="_blank" rel="noopener nofollow">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M24 11.78a2.6 2.6 0 0 0-4.4-1.86 12.8 12.8 0 0 0-6.96-2.22l1.18-5.56 3.85.82a1.85 1.85 0 1 0 .2-1.11L13.5.93a.56.56 0 0 0-.66.43l-1.32 6.21a12.85 12.85 0 0 0-7.05 2.22 2.6 2.6 0 1 0-2.87 4.25 5.1 5.1 0 0 0-.06.8c0 4.07 4.73 7.37 10.57 7.37s10.57-3.3 10.57-7.37c0-.27-.02-.54-.06-.8A2.6 2.6 0 0 0 24 11.78M6 13.63a1.86 1.86 0 1 1 3.72 0 1.86 1.86 0 0 1-3.72 0m10.36 4.9c-1.27 1.27-3.7 1.37-4.41 1.37s-3.14-.1-4.41-1.37a.48.48 0 0 1 .68-.68c.8.8 2.52 1.09 3.73 1.09s2.92-.29 3.73-1.09a.48.48 0 1 1 .68.68m-.34-3.04a1.86 1.86 0 1 1 0-3.72 1.86 1.86 0 0 1 0 3.72"/></svg>
+        </span>
+        <span>Reddit</span>
+      </a>
+    </li>
+    <li>
+      <a class="share__btn share__btn--linkedin"
+         href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/"
+         target="_blank" rel="noopener nofollow">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14m1.78 13.02H3.55V9h3.57zM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0"/></svg>
+        </span>
+        <span>LinkedIn</span>
+      </a>
+    </li>
+    <li>
+      <a class="share__btn share__btn--telegram"
+         href="https://t.me/share/url?url=https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/&amp;text=Ontario%20Works%20eligibility%20calculator%20%E2%80%94%20free%2C%20runs%20in%20your%20browser%2C%20and%20shows%20the%20formula%20it%20used.%20CalculatorPlus"
+         target="_blank" rel="noopener nofollow">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24m5.56 8.22-1.86 8.76c-.14.62-.5.78-1.02.48l-2.82-2.08-1.36 1.31c-.15.15-.28.28-.57.28l.2-2.88 5.24-4.74c.23-.2-.05-.32-.35-.12l-6.48 4.08-2.79-.87c-.6-.19-.62-.61.13-.9l10.9-4.2c.5-.18.94.12.78.87"/></svg>
+        </span>
+        <span>Telegram</span>
+      </a>
+    </li>
+    <li>
+      <a class="share__btn share__btn--email"
+         href="mailto:?subject=Ontario%20Works%20eligibility%20calculator&amp;body=Ontario%20Works%20eligibility%20calculator%20%E2%80%94%20free%2C%20runs%20in%20your%20browser%2C%20and%20shows%20the%20formula%20it%20used.%20CalculatorPlus%20https%3A//calculatorplus.ca/tools/ontario-works-eligibility-calculator/">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 4.24-8 4.99-8-4.99V6l8 5 8-5z"/></svg>
+        </span>
+        <span>Email</span>
+      </a>
+    </li>
+    <li>
+      <button type="button" class="share__btn share__btn--copy" data-share-copy
+              data-url="https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M3.9 12a3.1 3.1 0 0 1 3.1-3.1h4V7H7a5 5 0 0 0 0 10h4v-1.9H7A3.1 3.1 0 0 1 3.9 12M8 13h8v-2H8zm9-6h-4v1.9h4a3.1 3.1 0 0 1 0 6.2h-4V17h4a5 5 0 0 0 0-10"/></svg>
+        </span>
+        <span data-share-copylabel>Copy link</span>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="share__btn share__btn--copy" data-share-print>
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M19 8H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3m-3 11H8v-5h8zm3-7a1 1 0 1 1 0-2 1 1 0 0 1 0 2M18 3H6v4h12z"/></svg>
+        </span>
+        <span>Print or save as PDF</span>
+      </button>
+    </li>
+    <li hidden data-share-native-wrap>
+      <button type="button" class="share__btn share__btn--native" data-share-native
+              data-title="Ontario Works eligibility calculator" data-text="Ontario Works eligibility calculator — free, runs in your browser, and shows the formula it used. CalculatorPlus" data-url="https://calculatorplus.ca/tools/ontario-works-eligibility-calculator/">
+        <span class="share__ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" focusable="false"><path d="M18 16.08a2.9 2.9 0 0 0-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.5.47 1.17.77 1.91.77a2.83 2.83 0 1 0-2.83-2.83c0 .24.04.47.09.7L8.04 9.94a2.83 2.83 0 1 0 0 4.12l7.12 4.16c-.05.21-.08.43-.08.65a2.75 2.75 0 1 0 2.92-2.79"/></svg>
+        </span>
+        <span>More apps</span>
+      </button>
+    </li>
+  </ul>
+
+  <p class="share__note">
+    Nothing is loaded from these networks until you tap a button, so opening this page
+    does not tell any of them you were here.
+  </p>
+</section>  </div>
+</section>
+
+<section class="section section--tight"><div class="wrap">
+  <div class="answer-box">
+    <h2 class="answer-box__h">How much does Ontario Works pay?</h2>
+    <p>A single person with no dependants can receive up to $343 a month for basic needs plus a shelter allowance of up to $390, for a maximum of $733. Shelter is paid at your actual cost up to that maximum. Employment income reduces assistance after the first $200 is exempted, plus half of the remainder.</p>
+  </div>
+</div></section>
+
+
+  <section class="section section--surface">
+    <div class="wrap">
+<h2>Two amounts, added together</h2><p>Ontario Works assistance is built from a basic needs amount and a shelter allowance, and they behave differently.</p><p>Basic needs is a fixed figure set by household composition — it covers food, clothing, transportation and personal items, and you receive the whole amount regardless of what you actually spend. Shelter is paid at your actual housing cost, but only up to a maximum that rises with household size.</p><p>That means a single person paying $300 rent receives $300 of shelter, not the $390 maximum. Anyone paying above the maximum absorbs the difference out of their basic needs money, which is why the shelter cap matters more than the headline figure.</p>    </div>
+  </section>
+
+
+<section class="section section--surface"><div class="wrap">
+  <h2>How the calculation works</h2>
+<p>Add the two components, then subtract chargeable income.</p>  <div class="formula">
+    <ul class="formula__list">
+<li><code>basic needs   =  fixed amount for your household composition</code></li><li><code>shelter       =  the lower of your actual shelter cost and the maximum</code></li><li><code>               1 person $390    4 people $756</code></li><li><code>               2 people $642    5 people $815</code></li><li><code>               3 people $697    6 or more $844</code></li><li><code></code></li><li><code>earnings exemption  =  first $200, plus 50% of the remainder</code></li><li><code>assistance          =  basic needs + shelter − (income − exemption)</code></li>    </ul>
+  </div>
+<p>The earnings exemption is why part-time work does not simply cancel out assistance. On $800 of monthly employment income, $200 is exempt outright and half of the remaining $600 is exempt too, so $500 is exempt in total and only $300 reduces your cheque.</p><p>Shelter costs include rent, mortgage payments, property taxes, home insurance, heating and utilities. The directive gives a worked example totalling those into a single monthly shelter figure.</p></div></section>
+
+<section class="section"><div class="wrap">
+  <h2>Worked example: a single person paying $700 rent</h2>
+  <p>You live alone, pay $700 a month in rent including utilities, and earn $400 a month part time.</p>
+  <div class="worked">
+    <ol class="worked__steps">
+      <li><span class="worked__label">Basic needs, single, no dependants</span><span class="worked__value">$343.00</span></li>
+      <li><span class="worked__label">Shelter, capped at the 1-person maximum</span><span class="worked__value">$390.00</span></li>
+      <li><span class="worked__label">Maximum before income</span><span class="worked__value">$733.00</span></li>
+      <li><span class="worked__label">Earnings exemption: $200 + 50% of $200</span><span class="worked__value">$300.00</span></li>
+      <li><span class="worked__label">Chargeable income</span><span class="worked__value">$100.00</span></li>
+    </ol>
+    <p class="worked__result"><strong>About $633 a month in assistance, plus your $400 in earnings.</strong></p>
+  </div>
+<p>The $700 rent exceeds the $390 shelter maximum by $310, and that gap is not covered — it comes out of the basic needs amount meant for food and transport. This is the single biggest gap between the published rates and what recipients experience.</p></div></section>
+
+
+  <section class="section">
+    <div class="wrap">
+<h2>What this estimate does not check</h2><ul class="ticks"><li>Asset limits, which apply separately and can disqualify an application outright</li><li>Residency and immigration status requirements</li><li>Participation requirements, including the participation agreement</li><li>Whether other income sources such as EI or CPP must be pursued first</li><li>Board and lodging situations, which use a different rate structure</li><li>Additional benefits such as drug, dental and employment-related expenses</li></ul>    </div>
+  </section>
+  <section class="section section--surface">
+    <div class="wrap">
+<h2>Ontario Works and ODSP are different programmes</h2><p>Ontario Works is for people in financial need who are available for work. The Ontario Disability Support Program is for people with a substantial disability that is expected to last a year or more.</p><p>ODSP pays considerably more — $825 basic needs and up to $611 shelter for a single person, against $343 and $390 on Ontario Works. It also has a far more generous earnings exemption, at $1,000 a month plus 25% of the remainder.</p><p>People often start on Ontario Works while an ODSP application is assessed, then transfer if approved.</p>    </div>
+  </section>
+
+
+
+<section class="section"><div class="wrap">
+  <h2>What has changed, and when</h2>
+  <p>Rates on this page have not always been what they are today. If you are working on an earlier period, use the figure that applied at the time rather than the current one.</p>
+  <ol class="ratelog">
+    <li class="ratelog__item ratelog__item--now">
+      <span class="ratelog__when">Current</span>
+      <span class="ratelog__what">Basic needs of $343 for a single person and $494 for a couple, with shelter maximums from $390 to $844, per the policy directives last updated April 14, 2026.</span>
+    </li>
+    <li class="ratelog__item">
+      <span class="ratelog__when">Ongoing</span>
+      <span class="ratelog__what">The directives do not state a schedule for changing these amounts. We re-check them every quarter, and the figures on this page are only as current as that check.</span>
+    </li>
+  </ol>
+</div></section>
+<section class="section section--surface" id="faqs">
+  <div class="wrap">
+    <h2>Common questions</h2>
+    <div class="faq">
+      <details class="faq__item" open>
+        <summary>How much does Ontario Works pay a single person?</summary>
+        <div class="faq__a"><p>Up to $733 a month, made up of $343 for basic needs and a shelter allowance of up to $390. Shelter is paid at your actual cost, so someone with lower housing costs receives less than the maximum.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Does working reduce my Ontario Works payment?</summary>
+        <div class="faq__a"><p>Partly. The first $200 of monthly net employment income is fully exempt, and half of anything above that is exempt too. Only the remainder is deducted, so working always leaves you better off than not working.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>What if my rent is more than the shelter maximum?</summary>
+        <div class="faq__a"><p>The excess is not covered. Ontario Works pays shelter up to the maximum for your household size, and anything above that has to come out of your basic needs amount. For a single person paying more than $390, that gap is immediate.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>What is the difference between Ontario Works and ODSP?</summary>
+        <div class="faq__a"><p>Ontario Works supports people in financial need who are available for work. ODSP supports people with a substantial disability expected to last a year or more, and pays significantly more — $825 basic needs and up to $611 shelter for a single person, with a $1,000 monthly earnings exemption.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary>Are there asset limits for Ontario Works?</summary>
+        <div class="faq__a"><p>Yes, and they are assessed separately from income. This calculator estimates a payment amount from the rate tables only and does not test assets. Your local Ontario Works office applies the full eligibility rules.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does Ontario Works pay a single person?","acceptedAnswer":{"@type":"Answer","text":"Up to $733 a month, made up of $343 for basic needs and a shelter allowance of up to $390. Shelter is paid at your actual cost, so someone with lower housing costs receives less than the maximum."}},{"@type":"Question","name":"Does working reduce my Ontario Works payment?","acceptedAnswer":{"@type":"Answer","text":"Partly. The first $200 of monthly net employment income is fully exempt, and half of anything above that is exempt too. Only the remainder is deducted, so working always leaves you better off than not working."}},{"@type":"Question","name":"What if my rent is more than the shelter maximum?","acceptedAnswer":{"@type":"Answer","text":"The excess is not covered. Ontario Works pays shelter up to the maximum for your household size, and anything above that has to come out of your basic needs amount. For a single person paying more than $390, that gap is immediate."}},{"@type":"Question","name":"What is the difference between Ontario Works and ODSP?","acceptedAnswer":{"@type":"Answer","text":"Ontario Works supports people in financial need who are available for work. ODSP supports people with a substantial disability expected to last a year or more, and pays significantly more \u2014 $825 basic needs and up to $611 shelter for a single person, with a $1,000 monthly earnings exemption."}},{"@type":"Question","name":"Are there asset limits for Ontario Works?","acceptedAnswer":{"@type":"Answer","text":"Yes, and they are assessed separately from income. This calculator estimates a payment amount from the rate tables only and does not test assets. Your local Ontario Works office applies the full eligibility rules."}}]}</script>
+<section class="section"><div class="wrap">
+  <h2>What to work out next</h2>
+  <ul class="link-list">
+    <li><a href="/tools/odsp-calculator/"><strong>ODSP calculator</strong><span>Have a disability? Compare Ontario Disability Support Program income.</span></a></li>
+    <li><a href="/tools/ccb-calculator/"><strong>Canada Child Benefit</strong><span>Children in the household? Check the Canada Child Benefit.</span></a></li>
+    <li><a href="/tools/benefit-payment-dates/"><strong>Benefit payment dates</strong><span>See when benefits are paid in 2026.</span></a></li>
+  </ul>
+</div></section>
+<section class="section" id="sources"><div class="wrap">
+  <div class="sources">
+    <h2 class="sources__h">Where these numbers come from</h2>
+    <ul class="sources__list">
+      <li>
+        <a href="https://www.ontario.ca/document/ontario-works-policy-directives/62-basic-needs" rel="noopener nofollow" target="_blank">Ontario Works policy directives — 6.2 Basic needs</a>
+<span class="sources__note">The basic needs rate table by household composition.</span>      </li>
+      <li>
+        <a href="https://www.ontario.ca/document/ontario-works-policy-directives/63-shelter" rel="noopener nofollow" target="_blank">Ontario Works policy directives — 6.3 Shelter</a>
+<span class="sources__note">Maximum monthly shelter by benefit unit size. Updated April 14, 2026.</span>      </li>
+      <li>
+        <a href="https://www.ontario.ca/document/ontario-works-policy-directives/61-calculating-assistance" rel="noopener nofollow" target="_blank">Ontario Works policy directives — 6.1 Calculating assistance</a>
+<span class="sources__note">How the components are combined and income is applied.</span>      </li>
+      <li>
+        <a href="https://www.ontario.ca/page/financial-assistance-ontario-works" rel="noopener nofollow" target="_blank">Government of Ontario — Financial assistance through Ontario Works</a>
+<span class="sources__note">Programme overview and how to apply.</span>      </li>
+    </ul>
+    <p class="sources__stamp">
+      <span class="badge badge--verified">Last verified 2026-10-23</span>
+Rates on this page are checked against the sources above at least once a year, and whenever the governing authority announces a change.      Spotted something out of date? <a href="/contact/">Tell us</a> and we will fix it.
+    </p>
+  </div>
+</div></section>
+
+<section class="section section--surface"><div class="wrap">
+  <h2>Related calculators</h2>
+  <div class="grid grid--3">
+    <a class="card t-benefits" href="/tools/odsp-calculator/">
+      <span class="card__icon" aria-hidden="true">♿</span>
+      <h3>ODSP calculator</h3>
+      <p>Ontario Disability Support Program income support, from the current policy directives.</p>
+      <span class="card__link">Open calculator</span>
+    </a>
+    <a class="card t-benefits" href="/tools/ei-calculator/">
+      <span class="card__icon" aria-hidden="true">💼</span>
+      <h3>EI benefits calculator</h3>
+      <p>Estimate your weekly Employment Insurance benefit from your best weeks of insurable earnings.</p>
+      <span class="card__link">Open calculator</span>
+    </a>
+    <a class="card t-benefits" href="/tools/oas-gis-calculator/">
+      <span class="card__icon" aria-hidden="true">🧓</span>
+      <h3>OAS + GIS calculator</h3>
+      <p>Old Age Security and the Guaranteed Income Supplement, including the recovery tax.</p>
+      <span class="card__link">Open calculator</span>
+    </a>
+    <a class="card t-benefits" href="/tools/clb-calculator/">
+      <span class="card__icon" aria-hidden="true">🗣️</span>
+      <h3>CLB converter</h3>
+      <p>Convert CELPIP, IELTS or PTE Core scores to Canadian Language Benchmarks.</p>
+      <span class="card__link">Open calculator</span>
+    </a>
+    <a class="card t-benefits" href="/tools/canada-workers-benefit-calculator/">
+      <span class="card__icon" aria-hidden="true">💼</span>
+      <h3>Canada Workers Benefit</h3>
+      <p>Estimate the Canada Workers Benefit for a single person or a family, with the income phase-out.</p>
+      <span class="card__link">Open calculator</span>
+    </a>
+    <a class="card t-benefits" href="/tools/express-entry-crs-calculator/">
+      <span class="card__icon" aria-hidden="true">🍁</span>
+      <h3>Express Entry CRS</h3>
+      <p>Your Comprehensive Ranking System score, on today&#39;s grid or on the new rules that start on November 3, 2026.</p>
+      <span class="card__link">Open calculator</span>
+    </a>
+  </div>
+</div></section>
+
+
+<section class="section"><div class="wrap">
+  <h2>Read the guide</h2>
+  <ul class="link-list">
+    <li><a href="/blog/ontario-works-vs-odsp/"><strong>Ontario Works and ODSP are not the same programme</strong><span>Different eligibility tests, different rates, and very different treatment of earned income.</span></a></li>
+  </ul>
+</div></section>
+
+<section class="section"><div class="wrap band">
+  <h2>🛂 Benefit and immigration calculators</h2>
+  <p>Government publishes the rules and the rates. It rarely publishes a calculator. These fill that gap.</p>
+  <a class="btn btn--accent btn--lg" href="/categories/benefits-immigration/">See all 24 calculators in this section</a>
+</div></section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <img class="logo--light" src="/assets/images/logo-light.svg?v=53280225" alt="CalculatorPlus" width="164" height="28"><img class="logo--dark" src="/assets/images/logo.svg?v=1fc3dda2" alt="" width="164" height="28">
+      <p class="footer__tagline">Clear insight. Precise results.</p>
+      <p>Canadian calculators that show their working, name their sources and tell you when the numbers were last checked, plus free PDF, image and web tools that never upload your files. Spotted something wrong?
+        <a href="/contact/">Send us a correction</a>.</p>
+      <span class="footer__privacy">🔒 Nothing you type leaves your device</span>
+    </div>
+    <div>
+      <h2 class="footer__h">By subject</h2>
+      <ul>        <li><a class="footer__cat" href="/categories/canadian-tax/"><span aria-hidden="true">🍁</span>Canadian tax</a></li>
+        <li><a class="footer__cat" href="/categories/registered-accounts/"><span aria-hidden="true">🏛️</span>Registered accounts</a></li>
+        <li><a class="footer__cat" href="/categories/home-buying/"><span aria-hidden="true">🏡</span>Mortgages &amp; homes</a></li>
+        <li><a class="footer__cat" href="/categories/work-pay/"><span aria-hidden="true">💼</span>Work &amp; pay</a></li>
+        <li><a class="footer__cat" href="/categories/benefits-immigration/"><span aria-hidden="true">🛂</span>Benefits</a></li>
+        <li><a class="footer__cat" href="/categories/legal-estate/"><span aria-hidden="true">⚖️</span>Estate &amp; DTC</a></li>
+        <li><a class="footer__cat" href="/categories/university-gpa/"><span aria-hidden="true">🎓</span>University GPA</a></li>
+        <li><a class="footer__cat" href="/categories/money-business/"><span aria-hidden="true">💹</span>Money &amp; business</a></li>
+        <li><a class="footer__cat" href="/categories/math-science/"><span aria-hidden="true">🧮</span>Maths &amp; science</a></li>
+        <li><a class="footer__cat" href="/categories/unit-converters/"><span aria-hidden="true">🔄</span>Unit converters</a></li>
+        <li><a class="footer__cat" href="/categories/trades-farm/"><span aria-hidden="true">🔧</span>Trades &amp; farm</a></li>
+        <li><a class="footer__cat" href="/categories/health-animals/"><span aria-hidden="true">🩺</span>Health &amp; animals</a></li>
+</ul>
+    </div>
+    <div>
+      <h2 class="footer__h">More subjects</h2>
+      <ul>        <li><a class="footer__cat" href="/categories/sports-fitness/"><span aria-hidden="true">🏅</span>Sport &amp; fitness</a></li>
+        <li><a class="footer__cat" href="/categories/gaming/"><span aria-hidden="true">🎮</span>Gaming</a></li>
+        <li><a class="footer__cat" href="/categories/everyday-fun/"><span aria-hidden="true">✨</span>Everyday</a></li>
+        <li><a class="footer__cat" href="/categories/image-tools/"><span aria-hidden="true">🖼️</span>Image tools</a></li>
+        <li><a class="footer__cat" href="/categories/pdf-tools/"><span aria-hidden="true">📑</span>PDF tools</a></li>
+        <li><a class="footer__cat" href="/categories/file-tools/"><span aria-hidden="true">🗜️</span>File tools</a></li>
+        <li><a class="footer__cat" href="/categories/text-tools/"><span aria-hidden="true">📝</span>Text tools</a></li>
+        <li><a class="footer__cat" href="/categories/seo-tools/"><span aria-hidden="true">🔎</span>SEO tools</a></li>
+        <li><a class="footer__cat" href="/categories/audio-video-tools/"><span aria-hidden="true">🎙️</span>Audio and video</a></li>
+        <li><a class="footer__cat" href="/categories/developer-tools/"><span aria-hidden="true">🧰</span>Developer tools</a></li>
+        <li><a class="footer__cat" href="/categories/qr-tools/"><span aria-hidden="true">▦</span>QR &amp; barcodes</a></li>
+</ul>
+    </div>
+    <div>
+      <h2 class="footer__h">About this site</h2>
+      <ul>
+        <li><a href="/tools/">All 336 calculators</a></li>
+<li><a href="/blog/">Guides</a></li>        <li><a href="/about/">About &amp; methodology</a></li>
+        <li><a href="/sources/">Our sources</a></li>
+        <li><a href="/advertising/">Advertising</a></li>
+        <li><a href="/disclaimer/">Disclaimer</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+        <li><a href="/cookies/">Cookies</a></li>
+        <li><a href="/terms/">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer__bottom">
+    <p>&copy; 2026 CalculatorPlus &middot; Built in Canada for Canadian numbers</p>
+  </div>
+</footer>
+<script src="/assets/js/main.js?v=1753e831" defer></script>
+<script src="/assets/js/search.js?v=67a99a27" defer></script><script src="/assets/js/tools/ontario-works-eligibility-calculator.js?v=7fa094c2" defer></script></body>
+</html>
