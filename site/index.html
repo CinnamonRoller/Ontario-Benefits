@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ontario Benefits Check (draft)</title>
+<style>
+  :root { --ink:#1b1f23; --muted:#5a636d; --line:#d6dbe0; --bg:#f6f7f9; --card:#fff; --accent:#0b5cad; --warn:#8a5a00; --warnbg:#fff6e0; --good:#13652f; --goodbg:#e8f5ec; --badbg:#fdeceb; --bad:#9b1c1c; --unc:#444; --uncbg:#eef0f3; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:18px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color:var(--ink); background:var(--bg); }
+  main { max-width: 760px; margin: 0 auto; padding: 16px; }
+  h1 { font-size: 1.6rem; margin: 8px 0 4px; }
+  h2 { font-size: 1.2rem; margin: 0 0 8px; }
+  .banner { background: var(--warnbg); border:1px solid #e6c36a; color:var(--warn); padding:12px 14px; border-radius:8px; font-size:.95rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; margin:14px 0; }
+  label { display:block; margin:12px 0 4px; font-weight:600; }
+  .hint { color:var(--muted); font-size:.9rem; font-weight:400; display:block; }
+  input[type=number], select { width:100%; max-width:320px; padding:10px; font-size:1rem; border:1px solid #9aa4ae; border-radius:6px; background:#fff; }
+  .check { display:flex; gap:10px; align-items:flex-start; margin:12px 0; font-weight:600; }
+  .check input { margin-top:6px; width:20px; height:20px; }
+  .row { display:flex; gap:16px; flex-wrap:wrap; }
+  .row > div { flex:1 1 220px; }
+  button { font:inherit; font-weight:600; padding:12px 20px; border-radius:8px; border:0; background:var(--accent); color:#fff; cursor:pointer; }
+  button.secondary { background:#fff; color:var(--accent); border:1px solid var(--accent); }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline:3px solid #7fb2ee; outline-offset:2px; }
+  .result { border-radius:10px; padding:16px; margin:14px 0; border:1px solid var(--line); }
+  .likely { background:var(--goodbg); border-color:#8cc6a0; }
+  .no { background:var(--badbg); border-color:#e5a3a0; }
+  .unclear { background:var(--uncbg); }
+  .badge { display:inline-block; font-size:.85rem; font-weight:700; padding:2px 10px; border-radius:999px; background:#fff; border:1px solid currentColor; }
+  .likely .badge { color:var(--good); } .no .badge { color:var(--bad); } .unclear .badge { color:var(--unc); }
+  ul { padding-left: 1.2em; margin: 6px 0; }
+  .big { font-size:1.5rem; font-weight:700; }
+  .small { font-size:.9rem; color:var(--muted); }
+  [hidden] { display:none !important; }
+  footer { font-size:.85rem; color:var(--muted); margin:24px 0 40px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Ontario Benefits Check</h1>
+  <p class="banner"><strong>Draft, not official, not legal advice.</strong> This tool gives a rough idea only. Its rules were drafted by an AI from Ontario policy documents and have <strong>not yet been checked by a caseworker or legal clinic</strong>. It cannot say whether you will be approved. Only the Ministry or your local office can. Nothing you type leaves your device.</p>
+
+  <form id="form" class="card" autocomplete="off">
+    <h2>About you</h2>
+    <label for="status">Your immigration status in Canada
+      <span class="hint">Pick the closest one.</span></label>
+    <select id="status">
+      <option value="citizen">Canadian citizen</option>
+      <option value="permanent_resident">Permanent resident</option>
+      <option value="protected_person">Convention refugee or protected person</option>
+      <option value="refugee_claimant">Refugee claimant (I have made a claim)</option>
+      <option value="pr_applicant">I have applied to become a permanent resident</option>
+      <option value="visitor">Visitor or tourist (no other application)</option>
+      <option value="other_temporary">Student, worker or other temporary resident</option>
+      <option value="other">Something else, or I am not sure</option>
+    </select>
+    <label class="check"><input type="checkbox" id="sponsored"> <span>I am a sponsored immigrant (someone signed a sponsorship agreement for me)</span></label>
+    <label class="check"><input type="checkbox" id="disability"> <span>I have a disability that makes it hard to work or do daily activities<span class="hint">This makes us also check ODSP (the disability program). A doctor's form and a separate decision are needed for ODSP.</span></span></label>
+
+    <h2 style="margin-top:20px">Your household</h2>
+    <label class="check"><input type="checkbox" id="spouse"> <span>I live with a spouse or partner</span></label>
+    <label class="check" id="spouseDisRow" hidden><input type="checkbox" id="spouseDisabled"> <span>My spouse or partner also has a disability</span></label>
+    <div class="row">
+      <div><label for="children">Children under 18 who depend on you</label><input type="number" id="children" min="0" max="12" value="0"></div>
+      <div><label for="adults">Adult dependants (18 or older, living with you and depending on you)</label><input type="number" id="adults" min="0" max="8" value="0"></div>
+    </div>
+
+    <h2 style="margin-top:20px">What you own</h2>
+    <p class="small">Leave blank if none. Do not count your home, your first vehicle, a prepaid funeral, an RDSP, or a locked-in pension (LIRA). Those are generally not counted.</p>
+    <div class="row">
+      <div><label for="cash">Cash, bank accounts, investments, TFSA ($)</label><input type="number" id="cash" min="0" step="1"></div>
+      <div><label for="rrsp">RRSP you can take money out of ($)</label><input type="number" id="rrsp" min="0" step="1"></div>
+      <div><label for="otherProperty">Other property or valuables you could sell ($)</label><input type="number" id="otherProperty" min="0" step="1"></div>
+    </div>
+    <label class="check"><input type="checkbox" id="secondProperty"> <span>I own a second property (not the home I live in)</span></label>
+    <label class="check"><input type="checkbox" id="trust"> <span>I have money in a trust (for example from an inheritance)</span></label>
+    <label class="check"><input type="checkbox" id="hasSecondVehicle"> <span>I have a second vehicle</span></label>
+    <div id="vehicleRow" class="row" hidden>
+      <div><label for="v2">Value of the second vehicle ($)<span class="hint">Wholesale (Red Book) value if you can find it, or your best guess.</span></label><input type="number" id="v2" min="0" step="1"></div>
+      <div><label for="v2loan">Loan still owing on it ($)</label><input type="number" id="v2loan" min="0" step="1"></div>
+      <div><label class="check"><input type="checkbox" id="v2needed"> <span>Someone in my household needs it to get to work</span></label></div>
+    </div>
+
+    <h2 style="margin-top:20px">Money coming in each month</h2>
+    <div class="row">
+      <div><label for="yourGross">Your pay before deductions ($)</label><input type="number" id="yourGross" min="0" step="1"></div>
+      <div><label for="yourPayroll">Deductions from your pay (tax, CPP, EI, union dues) ($)</label><input type="number" id="yourPayroll" min="0" step="1"></div>
+    </div>
+    <div class="row" id="spouseIncomeRow" hidden>
+      <div><label for="spouseGross">Spouse's pay before deductions ($)</label><input type="number" id="spouseGross" min="0" step="1"></div>
+      <div><label for="spousePayroll">Spouse's deductions ($)</label><input type="number" id="spousePayroll" min="0" step="1"></div>
+    </div>
+    <div class="row">
+      <div><label for="childCare">Child care you pay so someone can work ($ a month)</label><input type="number" id="childCare" min="0" step="1"></div>
+      <div id="disExpRow" hidden><label for="disExp">Work costs caused by your disability ($ a month)<span class="hint">For example special transit or equipment. Up to $1,000.</span></label><input type="number" id="disExp" min="0" step="1"></div>
+    </div>
+    <label for="otherMonthly">Other income: EI, CPP/QPP, OAS/GIS, pensions, workers' compensation, support payments from a spouse ($ a month)
+      <span class="hint">Child benefits (CCB, OCB), the Ontario Trillium Benefit and the Canada Workers Benefit are generally not counted, so leave them out.</span></label>
+    <input type="number" id="otherMonthly" min="0" step="1">
+    <label class="check"><input type="checkbox" id="unsureOther"> <span>I get other money and I am not sure how it counts</span></label>
+    <label class="check"><input type="checkbox" id="onAssistance"> <span>I have already been getting Ontario Works or ODSP for 3 months or more<span class="hint">The Ontario Works earnings exemption only starts after 3 months.</span></span></label>
+
+    <h2 style="margin-top:20px">Housing</h2>
+    <label for="shelter">What you pay each month for your housing: rent or mortgage, property tax, insurance, heat, hydro, water ($)</label>
+    <input type="number" id="shelter" min="0" step="1">
+
+    <p style="margin-top:20px"><button type="submit">See my rough result</button></p>
+  </form>
+
+  <section id="results" hidden aria-live="polite"></section>
+
+  <footer>
+    Draft built from public Ontario policy directives: <a href="https://www.ontario.ca/document/ontario-disability-support-program-policy-directives-income-support" rel="noopener">ODSP</a> and <a href="https://www.ontario.ca/document/ontario-works-policy-directives" rel="noopener">Ontario Works</a>.
+    Amounts shown are the 2026 rates found in those documents. The source code and rules are open at <a href="https://github.com/CinnamonRoller/Ontario-Benefits" rel="noopener">github.com/CinnamonRoller/Ontario-Benefits</a>. Found a mistake? Please open an issue there.
+    To get real help: your local Ontario Works or ODSP office, or a community legal clinic (Legal Aid Ontario).
+  </footer>
+</main>
+<script src="screener.js"></script>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const num = (id) => Math.max(parseFloat($(id).value) || 0, 0);
+  const money = (n) => "$" + Math.round(n).toLocaleString("en-CA");
+
+  function sync() {
+    $("spouseDisRow").hidden = !($("spouse").checked && $("disability").checked);
+    $("spouseIncomeRow").hidden = !$("spouse").checked;
+    $("vehicleRow").hidden = !$("hasSecondVehicle").checked;
+    $("disExpRow").hidden = !$("disability").checked;
+  }
+  ["spouse", "disability", "hasSecondVehicle"].forEach((id) => $(id).addEventListener("change", sync));
+  sync();
+
+  function card(r) {
+    const label = { likely: "Might qualify", unclear: "Unclear", no: "Probably not" }[r.verdict];
+    const div = document.createElement("div");
+    div.className = "result " + r.verdict;
+    let h = '<h2>' + r.name + ' <span class="badge">' + label + '</span></h2>';
+    if (r.reasons.length) h += "<ul>" + r.reasons.map((x) => "<li>" + x + "</li>").join("") + "</ul>";
+    if (r.estimate !== null && r.verdict !== "no") {
+      h += '<p class="big">About ' + money(r.estimate) + ' a month</p><p class="small">A rough number from the published rates. Your real amount may differ.</p>';
+    }
+    if (r.details.length) h += "<ul>" + r.details.map((x) => "<li>" + x + "</li>").join("") + "</ul>";
+    if (r.unclear.length) h += "<p><strong>Things we could not check:</strong></p><ul>" + r.unclear.map((x) => "<li>" + x + "</li>").join("") + "</ul>";
+    div.innerHTML = h;
+    return div;
+  }
+
+  $("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const p = {
+      status: $("status").value, sponsored: $("sponsored").checked, hasDisability: $("disability").checked,
+      spouse: $("spouse").checked, spouseDisabled: $("spouse").checked && $("spouseDisabled").checked && $("disability").checked,
+      children: Math.round(num("children")), adultDependants: Math.round(num("adults"))
+    };
+    const assets = {
+      cash: num("cash"), accessibleRrsp: num("rrsp"), otherProperty: num("otherProperty"), secondProperty: $("secondProperty").checked,
+      trust: $("trust").checked ? 1 : 0,
+      secondVehicle: $("hasSecondVehicle").checked ? num("v2") : 0, secondVehicleLoan: num("v2loan"), secondVehicleNeeded: $("v2needed").checked
+    };
+    const income = {
+      yourGross: num("yourGross"), yourPayroll: num("yourPayroll"), spouseGross: num("spouseGross"), spousePayroll: num("spousePayroll"),
+      childCare: num("childCare"), disabilityExpenses: num("disExp"), otherMonthly: num("otherMonthly"), unsureOther: $("unsureOther").checked,
+      shelterCost: num("shelter"), onAssistance3Months: $("onAssistance").checked
+    };
+    const r = Screener.screen(p, assets, income);
+    const out = $("results");
+    out.innerHTML = "<h2>Your rough result</h2>";
+    if (r.odsp) out.appendChild(card(r.odsp));
+    out.appendChild(card(r.ow));
+    const next = document.createElement("div");
+    next.className = "card";
+    next.innerHTML = "<h2>What to do next</h2><ul><li>Apply through your local Ontario Works office, or ask a community legal clinic for free help. A rough result here is not a reason to skip applying.</li><li>If you are unsure about anything marked unclear, ask a caseworker or a legal clinic before deciding.</li><li>Do not give up assets or move money because of this tool. Some transfers can make you ineligible (ODSP Directive 4.4).</li></ul><p><button type=\"button\" class=\"secondary\" id=\"again\">Change my answers</button></p>";
+    out.appendChild(next);
+    out.hidden = false;
+    $("again").addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
+    out.scrollIntoView({ behavior: "smooth" });
+  });
+</script>
+</body>
+</html>

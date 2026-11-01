@@ -22,7 +22,7 @@
 - Resolve the open questions in `flags_for_human_review` (e.g. the directive 2.5 contradiction).
 - Done when: at least one qualified person has reviewed the core rules.
 
-### G3. Working screener (Claude)
+### G3. Working screener (Claude) - FIRST VERSION BUILT 2026-10-31 in site/
 - Plain-language questionnaire in the browser, English first (French and other languages later).
 - Output: "likely qualifies / unclear / likely not", with reasons and links to the source directive. Always a disclaimer: not legal advice, not a decision.
 - Done when: usable end to end on a phone, no data leaves the device.
